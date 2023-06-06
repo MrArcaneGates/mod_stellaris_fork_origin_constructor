@@ -84,7 +84,7 @@ guiTypes = {
 		}
 
 		#######################
-		# edit/select/delete/back/close
+		# edit/select/delete/back
 		#######################
 
 		buttonType = {
@@ -92,7 +92,7 @@ guiTypes = {
 			font = "malgun_goth_24"
 			spriteType = "GFX_standard_button_142_34_button"
 			buttonText = "CUSTOMIZE"
-			position = { x = -407 y = 296 }
+			position = { x = -407 y = 410 } #-407 296
 			orientation = CENTER
 			clicksound = confirm_click
 		}
@@ -101,7 +101,7 @@ guiTypes = {
 			name = "delete"
 			font = "cg_16b"
 			spriteType = "GFX_gamesetup_delete"
-			position = { x = -245 y = 305 }
+			position = { x = -245 y = 419 } #-245 305
 			orientation = CENTER
 		}
 
@@ -110,7 +110,7 @@ guiTypes = {
 			font = "malgun_goth_24"
 			spriteType = "GFX_select_button"
 			buttonText = "SELECT"
-			position = { x = 321 y = 291 }
+			position = { x = 321 y = 291 } #321 291
 			orientation = CENTER
 			clicksound = "confirmation"
 		}
@@ -120,7 +120,7 @@ guiTypes = {
 			font = "malgun_goth_24"
 			spriteType = "GFX_standard_button_large_211_40"
 			buttonText = "START"
-			position = { x = 125 y = 100 }
+			position = { x = 125 y = 100 } #125 100
 			orientation = CENTER
 			clicksound = "confirmation"
 		}
@@ -130,9 +130,8 @@ guiTypes = {
 			font = "malgun_goth_24"
 			spriteType = "GFX_select_button"
 			buttonText = "SELECT"
-			position = { x = 321 y = 290 }
+			position = { x = 321 y = 399 } #321 290
 			orientation = CENTER
-			shortcut = "RETURN"
 			clicksound = "confirm_click"
 			actionShortcut = "accept"
 		}
@@ -148,7 +147,7 @@ guiTypes = {
 			actionShortCut = "cancel"
 			clicksound = back_click
 		}
-
+		
 		instantTextBoxType = {
 			name = "back_button_gamepad_indicator"
 			format = center
@@ -159,7 +158,7 @@ guiTypes = {
 			font = "malgun_goth_24"
 			text = "BACK_TO_MENU_GAMEPAD_INDICATOR"
 		}
-
+		
 		instantTextBoxType = {
 			name = "edit_button_gamepad_indicator"
 			format = left
@@ -170,7 +169,7 @@ guiTypes = {
 			font = "malgun_goth_24"
 			text = "CUSTOMIZE_GAMEPAD_INDICATOR"
 		}
-
+		
 		instantTextBoxType = {
 			name = "delete_button_gamepad_indicator"
 			format = center
@@ -181,7 +180,7 @@ guiTypes = {
 			font = "malgun_goth_24"
 			text = "DELETE_GAMEPAD_INDICATOR"
 		}
-
+		
 		instantTextBoxType = {
 			name = "next_button_gamepad_indicator"
 			format = right
@@ -191,15 +190,6 @@ guiTypes = {
 			maxHeight = 20
 			font = "malgun_goth_24"
 			text = "SELECT_GAMEPAD_INDICATOR"
-		}
-
-		buttonType = {
-			name = "close"
-			quadTextureSprite = "GFX_close"
-			position = { x = 474 y = -388 }
-			orientation = CENTER
-			shortcut = "ESCAPE"
-			clicksound = "back_click"
 		}
 	}
 
