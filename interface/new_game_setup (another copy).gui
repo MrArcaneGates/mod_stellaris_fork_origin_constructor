@@ -6,8 +6,8 @@ guiTypes = {
 		name = "observer_preview"
 		orientation = center
 		origo = center
-		size = { width = 1040 height = 750 }
-		position = { x = 115 y = -20 }
+		size = { width = 1040 height = 825 } # 1040 750
+		position = { x = 115 y = 55 } # 115 -20
 
 		background = {
 			name = "random"
@@ -40,8 +40,8 @@ guiTypes = {
 		name = "random_species_preview"
 		orientation = center
 		origo = center
-		size = { width = 1040 height = 750 }
-		position = { x = 115 y = -20 }
+		size = { width = 1040 height = 825 } #1040 750
+		position = { x = 115 y = 55 } #115 -20
 
 		background = {
 			name = "random"
@@ -74,8 +74,8 @@ guiTypes = {
 		name = "custom_species_preview"
 		orientation = center
 		origo = center
-		size = { width = 1040 height = 710 }
-		position = { x = 115 y = 0 }
+		size = { width = 1040 height = 720 } #1040 710
+		position = { x = 115 y = 2 } #115 0
 
 		background = {
 			name = "custom"
@@ -227,22 +227,12 @@ guiTypes = {
 
 	### PRESET/USER SPECIES PREVIEW ###
 
-	positionType = {
-		name = "species_preview_no_offset"
-		position = { x = 0 y = -20 }
-	}
-
-	positionType = {
-		name = "species_preview_list_offset"
-		position = { x = 115 y = -20 }
-	}
-
 	containerWindowType = {
 		name = "species_preview"
 		orientation = center
 		origo = center
-		size = { width = 1040 height = 750 }
-		position = { x = 115 y = -20 }
+		size = { width = 1040 height = 825 } # 1040 750
+		position = { x = 115 y = 55 } # 115 -20
 
 		background = {
 			name = "background"
@@ -288,20 +278,20 @@ guiTypes = {
 		buttonType = {
 			name = "species_description_bg"
 			spriteType = "GFX_tiles_dark_area_cut_8"
-			size = { x = 450 y = 140 }
-			position = { x = 580 y = 530 }
+			size = { x = 450 y = 220 } #450 140
+			position = { x = 580 y = 530 } # 580 530
 			clicksound = tab_click
 		}
 
 		containerWindowType = {
 			name = "origin_window"
-			size = { width = 450 height = 140 }
-			position = { x = 580 y = 530 }
+			size = { width = 450 height = 220 } # 450 140
+			position = { x = 580 y = 530 } # 580 530
 
 			buttonType = {
 				name = "origin_bg"
 				spriteType = "GFX_tiles_dark_area_cut_8"
-				size = { x = 450 y = 140 }
+				size = { x = 450 y = 220 } #450 140
 				position = { x = 0 y = 0 }
 				clicksound = tab_click
 			}
@@ -328,7 +318,7 @@ guiTypes = {
 				position = { x = 10 y = 50 }
 				font = "cg_16b"
 				maxWidth = 425
-				maxHeight = 80
+				maxHeight = 160 #80
 				format = left
 				text_color_code = "E"
 				scrollbarType = "standardtext_slider_small"
@@ -414,7 +404,7 @@ guiTypes = {
 			size = { width = 280 height = 280 }
 			position = { x = 800 y = 60 }
 			clipping = no
-
+			
 			background = {
 				name = "bg"
 				spriteType = "GFX_invisible"
@@ -473,7 +463,7 @@ guiTypes = {
 		containerWindowType = {
 			name = "government_and_ethics"
 			position = { x = 10 y = 350 }
-			size = { width = 280 height = 320 }
+			size = { width = 280 height = 420 } # 280 320
 
 			background = {
 				name = "background"
@@ -518,7 +508,7 @@ guiTypes = {
 			smoothListboxType = {
 				name = "ethics"
 				position = { x = 20 y = 210 }
-				size = { x = 245 y = 105 }
+				size = { x = 245 y = 200 } #245 105
 				scrollbarType = "standardlistbox_slider"
 			}
 
@@ -528,7 +518,7 @@ guiTypes = {
 		containerWindowType = {
 			name = "species_window"
 			position = { x = 295 y = 350 }
-			size = { width = 280 height = 320 }
+			size = { width = 280 height = 420 } #280 320
 
 			background = {
 				name = "species_hitbox"
@@ -565,7 +555,7 @@ guiTypes = {
 			smoothListboxType = {
 				name = "traits"
 				position = { x = 5 y = 145 }
-				size = { x = 260 y = 170 }
+				size = { x = 260 y = 250 } # 260 170
 				scrollbarType = "standardlistbox_slider"
 				borderSize = { x = 0 y = 0 }
 				orientation = "UPPER_LEFT"
@@ -615,7 +605,7 @@ guiTypes = {
 		containerWindowType = {
 			name = "ship_preview"
 			position = { x = 580 y = 350 }
-			size = { width = 450 height = 175 }
+			size = { width = 450 height = 175 } # 450 175
 
 			background = {
 				name = "ship_hitbox"
@@ -627,7 +617,7 @@ guiTypes = {
 				name = "render_target"
 				quadTextureSprite = "GFX_dummy_3d_graphical_culture_preview"
 				position = { x = 10 y = 10 }
-				size = { x = 430 y = 155 }
+				size = { x = 430 y = 155 } # 430 155
 			}
 		}
 	}

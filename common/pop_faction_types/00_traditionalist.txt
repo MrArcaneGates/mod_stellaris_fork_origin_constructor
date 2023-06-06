@@ -5,6 +5,7 @@
 traditionalist = {
 	election_header = "GFX_faction_header_yellow"
 	guiding_ethic = ethic_spiritualist
+	visual_ethic = "traditionalist_visual_ethic"
 
 	unique = yes
 	support_multiplier = 1
@@ -47,7 +48,7 @@ traditionalist = {
 			exists = from
 			from = {
 				exists = leader
-				leader = { leader_class = ruler }
+				leader = { is_ruler = yes }
 			}
 		}
 
@@ -187,7 +188,7 @@ traditionalist = {
 			owner = {
 				has_surveyed_class = pc_nuked
 				NOR = {
-					is_origin_postapoc = yes
+					has_origin = origin_post_apocalyptic
 					has_country_flag = worm_tomb_ending
 					has_valid_civic = civic_memorialist
 				}
@@ -253,7 +254,7 @@ traditionalist = {
 			host_has_dlc = "Utopia"
 			exists = owner
 			owner = {
-				NOT = { is_origin_shroudwalker_apprentice = yes }
+				NOT = { has_origin = origin_shroudwalker_apprentice }
 				OR = {
 					num_ascension_perks > 0
 					num_ascension_perk_slots > 0
@@ -279,7 +280,7 @@ traditionalist = {
 		potential = {
 			exists = owner
 			owner = {
-				is_origin_shroudwalker_apprentice = yes
+				has_origin = origin_shroudwalker_apprentice
 			}
 		}
 
@@ -433,6 +434,15 @@ traditionalist = {
 		}
 	}
 
+
+	# Faction Demands for Ruler and Council positions.
+	inline_script = {
+		script = "paragon/global_faction_demands"
+		ETHIC = ethic_spiritualist
+		ETHIC_FANATIC = ethic_fanatic_spiritualist
+		ETHIC_OPPOSED = ethic_materialist
+	} 
+	
 	on_create = {
 		pop_faction_event = { id = factions.1 }
 	}
@@ -528,17 +538,6 @@ traditionalist = {
 				modifier = {
 					factor = 0
 					owner = { has_valid_civic = civic_fanatic_purifiers }
-				}
-				modifier = {
-					factor = 0
-					NOT = {
-						owner = {
-							exists = ruler
-							ruler = {
-								leader_of_faction = traditionalist
-							}
-						}
-					}
 				}
 				modifier = {
 					factor = 0
