@@ -1,0 +1,692 @@
+namespace = enclave
+
+ship_event = {
+	id = enclave.100
+	title = "enclave.100.name"
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		text = enclave.100a.desc
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = enclave.100b.desc
+	}
+	picture = GFX_evt_shroud_tunnel
+	show_sound = evn_ove_shroud_tunnel
+	location = FROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			NOT = {
+				is_origin_shroudwalker_apprentice = yes
+				has_country_flag = encountered_first_shroud_tunnel
+				has_country_flag = built_first_shroud_tunnel
+			}
+		}
+		FROM = {
+			OR = {
+				has_star_flag = shroud_tunnel_nexus
+				has_star_flag = shroud_tunnel_node
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = encountered_first_shroud_tunnel
+			add_seen_bypass_type = shroud_tunnel
+		}
+	}
+
+	option = {
+		name = enclave.100.a
+	}
+}
+country_event = {
+	id = enclave.405
+	title = enclave.405.name
+	location = event_target:shroudwalker_enclave_system
+	#First-time greetings
+	desc = {
+		trigger = {
+			NOR = {
+				has_country_flag = shroudwalker_enclave_diplomacy_engaged
+				is_hostile = event_target:shroudwalker_enclave_country
+				is_homicidal = yes
+				has_ascension_perk = ap_mind_over_matter
+				is_origin_shroudwalker_apprentice = yes
+			}
+		}
+		text = enclave.405.generic.a.desc
+	}
+	desc = {
+		trigger = {
+			NOT = { has_country_flag = shroudwalker_enclave_diplomacy_engaged }
+			OR = {
+				has_ascension_perk = ap_mind_over_matter #and by extension, psionic ascension.
+				is_origin_shroudwalker_apprentice = yes
+			}
+		}
+		text = enclave.405.psionic.a.desc
+	}
+	#Return visit greetings
+	desc = {
+		trigger = {
+			has_country_flag = shroudwalker_enclave_diplomacy_engaged
+			NOR = {
+				is_homicidal = yes
+				is_hostile = event_target:shroudwalker_enclave_country
+				has_ascension_perk = ap_mind_over_matter
+				is_origin_shroudwalker_apprentice = yes
+			}
+		}
+		text = enclave.405.generic.n.desc
+		text = enclave.405.generic.o.desc
+		text = enclave.405.generic.p.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = shroudwalker_enclave_diplomacy_engaged
+			OR = {
+				has_ascension_perk = ap_mind_over_matter #and by extension, psionic ascension.
+				is_origin_shroudwalker_apprentice = yes
+			}
+		}
+		text = enclave.405.psionic.n.desc
+		text = enclave.405.psionic.o.desc
+	}
+	#Hostile greeting
+	desc = {
+		trigger = {
+			OR = {
+				is_homicidal = yes
+				is_hostile = event_target:shroudwalker_enclave_country
+			}
+		}
+		text = enclave.405.hostile.a.desc
+	}
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		portrait = event_target:shroudwalker_enclave_country
+		room = shroudwalkers_room
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOR = {
+					has_country_flag = shroudwalker_enclave_diplomacy_engaged
+					is_homicidal = yes
+				}
+			}
+			every_system = {
+				limit = {
+					has_star_flag = shroudwalker_enclave_system
+				}
+				root = { set_visited = prev }
+			}
+		}
+	}
+
+	#Purchase Divination
+	option = {
+		name = enclave.405.a
+		trigger = {
+			NOR = {
+				is_hostile = event_target:shroudwalker_enclave_country
+				is_homicidal = yes
+			}
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = shroudwalker_divination_cooldown
+				has_active_shroudwalker_divination = no
+			}
+			custom_tooltip = {
+				fail_text = shroudwalker_divination_cooldown_two
+				NOT = {
+					has_country_flag = divination_purchase
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = enclave.410 }
+		}
+	}
+	# Purchase their aid
+	option = {
+		name = enclave.405.b
+		trigger = {
+			NOR = {
+				is_hostile = event_target:shroudwalker_enclave_country
+				is_homicidal = yes
+			}
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = shroudwalker_teacher_cooldown_tt
+				NOT = { has_country_flag = shroudwalker_teacher_cooldown }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = enclave.7100 }
+		}
+	}
+	# Purchase information about enemies
+	option = {
+		name = enclave.405.c
+		trigger = {
+			has_nemesis = yes
+			NOR = {
+				is_hostile = event_target:shroudwalker_enclave_country
+				is_homicidal = yes
+			}
+			event_target:shroudwalker_enclave_country = {
+				trust = {
+					who = root
+					value >= 10
+				}
+			}
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = shroudwalker_insight_cooldown_tt
+				NOT = { has_country_flag = shroudwalker_insight_cooldown }
+			}
+			custom_tooltip = {
+				fail_text = enclave.405.c.tt
+				event_target:shroudwalker_enclave_country = {
+					trust = {
+						who = root
+						value >= 20
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = enclave.405.c.tt.2
+				has_active_spynetwork = yes
+				any_spynetwork = {
+					owner = { is_same_value = root }
+					target = { is_country_type = default }
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = enclave.7050 }
+		}
+	}
+	#Purchase Shroud Beacon
+	option = {
+		name = enclave.405.d
+		trigger = {
+			NOR = {
+				has_country_flag = shroudwalker_enclave_bought_shroud_beacon
+				is_hostile = event_target:shroudwalker_enclave_country
+				is_homicidal = yes
+			}
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = enclave.405.d.tt
+				event_target:shroudwalker_enclave_country = {
+					trust = {
+						who = root
+						value >= 30
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = enclave.420 }
+		}
+	}
+	# Purchase zro extraction technology
+	option = {
+		name = enclave.405.e
+		trigger = {
+			NOR = {
+				is_hostile = event_target:shroudwalker_enclave_country
+				is_homicidal = yes
+				has_technology = tech_mine_zro
+				has_country_flag = purchased_zro_tech
+			}
+			event_target:shroudwalker_enclave_country = {
+				trust = {
+					who = root
+					value >= 30
+				}
+			}
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = enclave.405.e.tt
+				event_target:shroudwalker_enclave_country = {
+					trust = {
+						who = root
+						value >= 50
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = enclave.7250 }
+		}
+	}
+	#Ask about the Many-Striped Guest (Jaunted Traveler event chain)
+	option = {
+		name = enclave.405.e
+		trigger = {
+			has_country_flag = knows_jaunting_traveler_story
+			NOT = { has_country_flag = jaunted_traveler_secret_revealed }
+		}
+		hidden_effect = {
+			country_event = { id = enclave.7110 }
+		}
+	}
+	#Cease dialog
+	option = {
+		name = GOODBYE
+		trigger = {
+			NOR = {
+				is_hostile = event_target:shroudwalker_enclave_country
+				is_homicidal = yes
+			}
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = DOTDOTDOT
+		trigger = {
+			OR = {
+				is_hostile = event_target:shroudwalker_enclave_country
+				is_homicidal = yes
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			set_country_flag = shroudwalker_enclave_diplomacy_engaged
+		}
+	}
+}
+country_event = {
+	id = enclave.435
+	title = "enclave.435.name"
+	desc = "enclave.435.desc"
+	picture = GFX_evt_space_debris
+	location = event_target:shroudwalker_system
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = destroyed_shroudwalkers # Achievement
+		if = {
+			limit = {
+				is_origin_shroudwalker_apprentice = yes
+			}
+			set_country_flag = non_prophet_organization_achievement
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		add_resource = {
+			unity = 10000
+			sr_zro = 500
+		}
+	}
+}
+country_event = {
+	id = enclave.4200
+	title = "enclave.4200.name"
+	desc = "enclave.4200.desc"
+	picture = GFX_evt_shroud_tunnel
+	show_sound = evn_ove_shroud_tunnel
+	location = FROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = {
+			is_origin_shroudwalker_apprentice = yes
+			has_country_flag = built_first_shroud_tunnel
+		}
+		any_owned_starbase = {
+			has_starbase_building = shroud_beacon
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = built_first_shroud_tunnel
+			add_seen_bypass_type = shroud_tunnel
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}
+country_event = {
+	id = enclave.4239
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_crisis = yes #Contingency, Extradimensionals or Prethoryn
+		NOR = {
+			has_global_flag = shroudwalkers_departed
+			has_global_flag = marauder_crisis_ongoing #Khan
+			has_global_flag = gray_goo_crisis_active #Gray Tempest
+			crisis_happened_and_defeated = yes #Contingency, Extradimensionals or Prethoryn
+		}
+		any_country = {
+			is_country_type = enclave
+			has_country_flag = shroudwalker_enclave_country
+		}
+	}
+
+	immediate = {
+		every_country = {
+			limit = {
+				is_origin_shroudwalker_apprentice = yes
+				is_country_type = default # probably there is a need in checking if country has "Teachers of the Shroud" origin
+			}
+			country_event = { id = enclave.4240 }
+		}
+	}
+
+	after = {
+		every_country = {
+			limit = {
+				is_country_type = enclave
+				has_country_flag = shroudwalker_enclave_country
+			}
+			destroy_country = yes
+		}
+
+		set_global_flag = shroudwalkers_departed
+	}
+}
+country_event = {
+	id = enclave.4243
+	title = "enclave.4243.name"
+	desc = "enclave.4243.desc"
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		portrait = event_target:shroudwalker_enclave_country
+		room = shroudwalkers_room
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_origin_shroudwalker_apprentice = yes
+		has_crisis_level = crisis_level_2
+		exists = event_target:shroudwalker_enclave_country
+		NOR = {
+			has_country_flag = teachers_warning
+			has_global_flag = marauder_crisis_ongoing #Khan
+			has_global_flag = gray_goo_crisis_active #Gray Tempest
+		}
+	}
+
+	immediate = {
+		set_country_flag = teachers_warning
+	}
+
+	option = {
+		name = "enclave.4243.a"
+	}
+
+	option = {
+		name = "enclave.4243.b"
+	}
+}
+country_event = {
+	id = enclave.4244
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_crisis_level = crisis_level_5
+		exists = event_target:shroudwalker_enclave_country
+		NOR = {
+			has_global_flag = shroudwalkers_departed
+			has_global_flag = marauder_crisis_ongoing #Khan
+			has_global_flag = gray_goo_crisis_active #Gray Tempest
+			crisis_happened_and_defeated = yes #Contingency, Extradimensionals or Prethoryn
+		}
+		any_country = {
+			is_country_type = enclave
+			has_country_flag = shroudwalker_enclave_country
+		}
+	}
+
+	immediate = {
+		every_country = {
+			limit = {
+				is_origin_shroudwalker_apprentice = yes
+				is_country_type = default
+			}
+			country_event = { id = enclave.4245 }
+		}
+	}
+
+	after = {
+		every_country = {
+			limit = {
+				is_country_type = enclave
+				has_country_flag = shroudwalker_enclave_country
+			}
+			destroy_country = yes
+		}
+
+		set_global_flag = shroudwalkers_departed
+	}
+}
+country_event = {
+	id = enclave.4245
+	title = "enclave.4245.name"
+	desc = "enclave.4245.desc"
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		portrait = event_target:shroudwalker_enclave_country
+		room = shroudwalkers_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = "enclave.4245.a"
+		add_modifier = {
+			modifier = "shroudwalkers_depart_reverence"
+			years = 20
+		}
+	}
+
+	option = {
+		name = "enclave.4245.b"
+		add_modifier = {
+			modifier = "shroudwalkers_depart_anger"
+			years = 20
+		}
+	}
+
+	after = {
+		add_resource = { sr_zro = 50 }
+		if = {
+			limit = {
+				is_origin_shroudwalker_apprentice = yes
+			}
+			set_country_flag = non_prophet_organization_achievement
+		}
+	}
+}
+situation_event = {
+	id = enclave.5500
+	title = enclave.5500.name
+	desc = enclave.5500.desc
+	picture = GFX_evt_satellite_in_orbit
+	show_sound = event_yellow_alert
+	location = event_target:shattered_frontier_planet
+	situation = this
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = {
+			has_situation_flag = divination_occurring
+		}
+		situation_progress >= 50
+		owner = {
+			is_ai = no
+			NOR = {
+				has_country_flag = divination_shattered_frontier
+				is_origin_tree_of_life = yes
+				is_origin_doomsday = yes
+			}
+			any_owned_planet = {
+				is_homeworld = no
+				is_capital = no
+				is_colony = yes
+				original_owner = yes
+				has_ground_combat = no
+				is_occupied_flag = no
+				is_under_colonization = no
+				NOR = {
+					is_planet_class = pc_habitat
+					has_planet_flag = shattered_frontier_planet
+					has_modifier = penal_colony
+					has_modifier = resort_colony
+				}
+				count_owned_pop = {
+					count > 4
+				}
+			}
+		}
+	}
+
+	immediate = {
+		set_situation_flag = divination_occurring
+		save_event_target_as = divination_situation
+		owner = {
+			random_owned_planet = {
+				limit = {
+					is_homeworld = no
+					is_capital = no
+					is_colony = yes
+					original_owner = yes
+					has_ground_combat = no
+					is_occupied_flag = no
+					NOR = {
+						is_planet_class = pc_habitat
+						has_planet_flag = shattered_frontier_planet
+						has_modifier = penal_colony
+						has_modifier = resort_colony
+					}
+					count_owned_pop = {
+						count > 4
+					}
+				}
+				set_planet_flag = colony_event
+				set_planet_flag = shattered_frontier_planet
+				save_event_target_as = shattered_frontier_planet
+			}
+			set_country_flag = divination_shattered_frontier
+		}
+	}
+
+	option = {
+		name = enclave.5500.a
+		event_target:shattered_frontier_planet = {
+			enable_special_project = {
+				name = SHATTERED_FRONTIER_ANOMALY
+				owner = owner
+				location = this
+			}
+		}
+	}
+}
+country_event = { # Salvagers
+	id = enclave.7005
+	title = enclave.7005.title
+	desc = enclave.7005.desc
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "enclave_salvager_window"
+	custom_gui_option = "enclave_salvager_option"
+	picture_event_data = {
+		portrait = event_target:salvager_enclave_country
+		room = salvagers_room
+	}
+	location = event_target:salvager_enclave_system
+
+	trigger = {
+		is_ai = no
+		NOT = { has_country_flag = salvager_enclave_diplomacy_engaged }
+		exists = event_target:salvager_enclave_country
+		NOR = {
+			is_hostile = event_target:salvager_enclave_country
+			is_homicidal = yes
+			has_communications = event_target:salvager_enclave_country
+		}
+		OR = {
+			has_technology = tech_battleships
+			has_technology = tech_starbase_5
+			has_technology = tech_mega_engineering
+			AND = {
+				has_technology = tech_habitat_1
+				NOT = { is_origin_void_dwellers = yes }
+			}
+		}
+	}
+
+	immediate = {
+		set_country_flag = salvager_enclave_diplomacy_engaged
+		establish_communications_no_message = event_target:salvager_enclave_country
+	}
+
+	option = {
+		name = enclave.7005.a
+		trigger = {
+			is_xenophobe = no
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @tier2materialreward
+			min = @tier2materialmin
+			max = @tier2materialmax
+		}
+	}
+
+	option = {
+		name = enclave.7005.b
+		trigger = {
+			is_xenophobe = yes
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @tier2materialreward
+			min = @tier2materialmin
+			max = @tier2materialmax
+		}
+	}
+}

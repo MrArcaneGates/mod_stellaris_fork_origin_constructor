@@ -1,0 +1,549 @@
+namespace = new_game_start
+
+### Hidden Game Start Event (game_start.1)
+event = {
+	id = new_game_start.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+	
+		### ORIGINS
+
+		# Scion
+		every_playable_country = {
+			limit = { is_origin_scion = yes }
+			country_event = { id = origin.5 }
+		}
+
+		# Doomsday
+		every_playable_country = {
+			limit = { is_origin_doomsday = yes }
+			country_event = { id = origin.60 }
+			country_event = { id = origin_expand.11 }
+		}
+
+		# Shattered Ring
+		every_playable_country = {
+			limit = { is_origin_shattered_ring = yes }
+			country_event = { id = origin.3150 }
+			every_owned_planet = {
+				limit = { is_capital = yes }
+				generate_rw_init_build = yes
+			}
+		}
+
+		# Galactic Doorstep
+		every_playable_country = {
+			limit = { is_origin_galactic_doorstep = yes }
+			country_event = { id = origin.1001 }
+		}
+
+		# On the Shoulders of Giants
+		every_playable_country = {
+			limit = { is_origin_shoulders_of_giants = yes }
+			country_event = { id = origin.1199 }
+		}
+
+		# Here Be Dragons
+		every_playable_country = {
+			limit = { is_origin_here_be_dragons = yes }
+			country_event = { id = aquatics.100 }
+		}
+
+		# Ocean Paradise
+		every_playable_country = {
+			limit = { is_origin_ocean_paradise = yes }
+			country_event = { id = aquatics.1000 }
+			every_owned_planet = {
+				limit = { is_capital = yes }
+				create_ocean_paradise_planet = yes
+			}
+		}
+		
+		# Life-Seeded
+		every_playable_country = {
+			limit = { is_origin_life_seeded = yes }
+			every_owned_planet = {
+				limit = { is_capital = yes }
+				create_life_seeded_planet_edited = yes
+			}
+		}
+		
+		# Remnants
+		every_playable_country = {
+			limit = { is_origin_remnant = yes }
+			every_owned_planet = {
+				limit = { is_capital = yes }
+				create_relic_homeworld = yes
+			}
+		}
+		
+		# Post-apocaliptyc
+		every_playable_country = {
+			limit = { is_origin_postapoc = yes }
+			every_owned_planet = {
+				limit = { is_capital = yes }
+				create_postapoc_homeworld = yes
+			}
+		}
+		
+		# Payback
+		every_playable_country = {
+			limit = { is_origin_payback = yes }
+			country_event = { id = origin.4000 }	# init event, spawns broken MSI ship, etc.
+			country_event = { id = origin.112 }		# spawn Broken Shackles if it's absent
+			every_owned_planet = {
+				limit = { is_capital = yes }
+				create_payback_homeworld = yes
+			}
+		}
+		
+		# Broken Shackles
+		every_playable_country = {
+			limit = { is_origin_broken_shackles = yes }
+			every_owned_planet = {
+				limit = { is_capital = yes }
+				create_broken_shackles_homeworld = yes
+			}
+			country_event = { id = origin.110 }		# init event
+			country_event = { id = origin.113 }		# spawn Payback
+
+		}
+		
+		# Calamitous Birth
+		every_playable_country = {
+			limit = { has_valid_civic = civic_lithoid }
+			capital_scope = { spawn_lithoid_origin_crater = yes }
+		}
+		
+		# Resource Consolidation
+		every_playable_country = {
+			limit = { is_origin_machine = yes }
+			generate_machine_system = yes
+		}
+		
+		## Lost Colony
+		# add LC capital modifier
+		every_playable_country = {
+			limit = { is_origin_lost_colony = yes }
+			every_owned_planet = {
+				limit = { is_capital = yes }
+				add_modifier = { modifier = colonial_spirit_mod }
+			}
+		}
+		# if advanced starts are enabled or a player has picked it, let it ride
+		if = {
+			limit = {
+				OR = {
+					any_playable_country = {
+						is_origin_lost_colony = yes
+						is_ai = no
+					}
+					check_galaxy_setup_value = { setting = num_advanced_empires value > 0 }
+				}
+			}
+			every_playable_country = {
+				limit = {
+					is_origin_lost_colony = yes
+					NOT = { has_country_flag = human_2 }
+				}
+				country_event = { id = origin.100 }
+			}
+		}
+		# if an AI has picked it and advanced starts are not enabled,
+		# give them default origin instead.
+		# also affects lost_colony_1 initializer
+		else = {
+			every_playable_country = {
+				limit = {
+					is_origin_lost_colony = yes
+					NOT = { has_country_flag = human_2 }
+				}
+				log = "REMOVED LOST COLONY"
+				set_origin = origin_default
+			}
+		}
+		
+		# Fear of the Dark
+		every_playable_country = {
+			limit = { is_origin_fotd = yes }
+			generate_fotd_system = yes
+			init_fotd_planet = yes
+		}
+		
+		# Tree of Life
+		every_playable_country = {
+			limit = { is_origin_tree_of_life = yes }
+			tree_of_life_init = yes
+		}
+		
+		# Common Ground & Hegemon
+		every_playable_country = {
+			limit = {
+				OR = {
+					is_origin_common_ground = yes
+					is_origin_hegemon = yes
+				}
+			}
+			country_event = { id = origin.55 }
+		}
+		
+		# Imperial Vassal
+		if = {
+			limit = {
+				any_playable_country = {
+					is_origin_imperial = yes
+				}
+			}
+			imperial_origin_start_effect_copy = yes
+		}
+		
+		# Slingshot to the Stars
+		every_playable_country = {
+			limit = { is_origin_star_slingshot = yes }
+			country_event = { id = origin_expand.9 }
+		}
+		
+		# Galactic Wonders
+		every_playable_country = {
+			limit = { is_origin_galactic_wonders = yes }
+			country_event = { id = origin_expand.17 }
+		}
+
+		
+		# Toxic Knights
+		every_playable_country = {
+			limit = { is_origin_toxic_knights = yes }
+			country_event = { id = origin_expand.4 }
+		}
+		
+		# Mechanists
+		every_playable_country = {
+			limit = { is_origin_mechanist = yes }
+			spawn_mechanist_robots = yes
+		}
+		
+		# Syncretic Evolution
+		every_playable_country = {
+			limit = { is_origin_syncretic_evolution = yes }
+			#spawn_syncretic_species = yes
+			country_event = { id = origin_expand.13 }
+		}
+		
+		# Necrophage
+		every_playable_country = {
+			limit = { is_origin_necrophage = yes }
+			#spawn_necro_species = yes
+			country_event = { id = origin_expand.15 }
+		}
+		
+		# Clone Army
+		every_playable_country = {
+			limit = { is_origin_clone_army = yes }
+			clone_army_init = yes
+		}
+		
+		# Progenitor Hive
+		every_playable_country = {
+			limit = { is_origin_progenitor_hive = yes }
+			country_event = { id = origin_expand.10 }
+		}
+		# Heart of the Swarm
+		every_playable_country = {
+			limit = { is_origin_hots = yes }
+			country_event = { id = origin_expand.12 }
+		}
+		# Teachers of the Shroud
+		every_playable_country = {
+			limit = { is_origin_shroudwalker_apprentice = yes }
+			country_event = { id = origin.5600 }
+			country_event = { id = origin_expand.3 } ### adds latent_psi trait
+		}
+		
+		# Cyberpunk
+		every_playable_country = {
+			limit = { is_origin_cyberpunk = yes }
+			country_event = { id = origin_expand.14 } ### adds cybernetic trait
+			country_event = { id = origin_expand_cp.1 } ### cp situation
+		}
+	}
+}
+
+### Empire init - add technologies and some resources (game_start.8)
+country_event = {
+	id = new_game_start.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				is_origin_mechanist = yes
+			}
+			give_technology = { message = no tech = tech_powered_exoskeletons }
+			give_technology = { message = no tech = tech_robotic_workers }
+			add_research_option = tech_robomodding
+		}
+		if = {
+			limit = {
+				is_origin_cyberpunk = yes
+			}
+			give_technology = { message = no tech = tech_powered_exoskeletons }
+			give_technology = { message = no tech = tech_robotic_workers }
+			give_technology = { message = no tech = tech_integrated_cybernetics }
+			add_research_option = tech_robomodding
+			add_research_option = tech_neuro_quantum_links
+		}
+		if = {
+			limit = {
+				is_origin_overtuned = yes
+			}
+			give_technology = { message = no tech = tech_gene_tailoring }
+			country_event = {
+				id = tutorial.64
+				days = 5
+			}
+		}
+	}
+}
+
+### Empire init - populate home system (game_start.33)
+country_event = {
+	id = new_game_start.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+	}
+
+	immediate = {
+		if = {
+			limit = { #Make sure you are unlikely to be boxed in completely
+				OR = {
+					is_origin_hegemon = yes
+					is_origin_common_ground = yes
+				}
+				capital_scope = {
+					solar_system = {
+						NOT = {
+							any_neighbor_system = {
+								NOT = { exists = owner }
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_system = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 1
+							max_distance <= 15
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+				}
+				random_system = {
+					limit = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 1
+							max_distance <= 15
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+					save_event_target_as = hyperlane_system
+					add_hyperlane = {
+						from = this
+						to = root.capital_scope.solar_system
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_system = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 15
+							max_distance <= 20
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+				}
+				random_system = {
+					limit = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 15
+							max_distance <= 20
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+					save_event_target_as = hyperlane_system
+					add_hyperlane = {
+						from = this
+						to = root.capital_scope.solar_system
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_system = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 20
+							max_distance <= 25
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+				}
+				random_system = {
+					limit = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 20
+							max_distance <= 25
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+					save_event_target_as = hyperlane_system
+					add_hyperlane = {
+						from = this
+						to = root.capital_scope.solar_system
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_system = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 25
+							max_distance <= 40
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+				}
+				random_system = {
+					limit = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 25
+							max_distance <= 40
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+					save_event_target_as = hyperlane_system
+					add_hyperlane = {
+						from = this
+						to = root.capital_scope.solar_system
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_system = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 40
+							max_distance <= 60
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+				}
+				random_system = {
+					limit = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 40
+							max_distance <= 60
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+					save_event_target_as = hyperlane_system
+					add_hyperlane = {
+						from = this
+						to = root.capital_scope.solar_system
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = new_game_start.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { is_country_type = default }
+			fix_lithoid_sync = yes
+		}
+		every_owned_planet = { fix_disticts = yes }
+		fix_unemployment = yes
+	}
+}
+
+country_event = {
+	id = new_game_start.5
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = { has_ethic = ethic_mining_expertise }
+			mining_exp_init = yes
+			country_remove_ethic = ethic_mining_expertise
+		}
+		if = {
+			limit = { has_ethic = ethic_chemistry_expertise }
+			chemistry_exp_init = yes
+			country_remove_ethic = ethic_chemistry_expertise
+		}
+		if = {
+			limit = { has_ethic = ethic_starbase_expertise }
+			starbase_exp_init = yes
+			country_remove_ethic = ethic_starbase_expertise
+		}
+		if = {
+			limit = { has_ethic = ethic_shipcraft_expertise }
+			shipcraft_exp_init = yes
+			country_remove_ethic = ethic_shipcraft_expertise
+		}
+		if = {
+			limit = { has_ethic = ethic_terraform_expertise }
+			terraform_exp_init = yes
+			country_remove_ethic = ethic_terraform_expertise
+		}
+		if = {
+			limit = { has_ethic = ethic_trade_expertise }
+			trade_exp_init = yes
+			country_remove_ethic = ethic_trade_expertise
+		}
+	}
+}

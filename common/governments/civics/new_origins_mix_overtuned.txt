@@ -1,0 +1,2505 @@
+### new_origins_mix + overtuned
+
+originxo_lifeseed = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_life_seeded.dds"
+	picture = GFX_origin_life_seeded
+	
+
+	starting_colony = pc_gaia
+	habitability_preference = pc_gaia
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	possible = {
+		authority = { NOT = { value = auth_machine_intelligence } }
+		civics = {
+			NOT = {
+				value = civic_toxic_baths
+			}
+			NOR = {
+				text = civic_tooltip_not_relentless_industrialists
+				value = civic_relentless_industrialists
+				value = civic_corporate_relentless_industrialists
+			}
+		}
+	}
+
+	potential = {
+		ethics = {
+			value = ethic_true_lifeseed
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_syncretic_evolution
+				value = ethic_necrophage
+				value = ethic_clone_army
+			}
+		}
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "civic_tooltip_life_seeded_effects"
+
+}
+
+originxo_unbound_lifeseed = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_life_seeded.dds"
+	picture = GFX_origin_life_seeded
+	
+	
+	starting_colony = pc_gaia
+
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	possible = {
+		authority = { NOT = { value = auth_machine_intelligence } }
+		civics = {
+			NOT = {
+				value = civic_toxic_baths
+			}
+			NOR = {
+				text = civic_tooltip_not_relentless_industrialists
+				value = civic_relentless_industrialists
+				value = civic_corporate_relentless_industrialists
+			}
+		}
+	}
+
+	potential = {
+		ethics = {
+			value = ethic_lifeseed
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_syncretic_evolution
+				value = ethic_necrophage
+				value = ethic_clone_army
+			}
+		}
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "origin_tooltip_default_effects"
+
+	advanced_start = yes
+}
+
+originxo_postapoc = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_post_apocalyptic.dds"
+	picture = GFX_origin_post_apocalyptic
+	
+	
+	starting_colony = pc_nuked
+	
+	possible = {
+		authority = { NOT = { value = auth_machine_intelligence } }
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	description = "civic_tooltip_post_apocalyptic_effects"
+
+	traits = {
+		trait = trait_survivor
+	}
+
+	potential = {
+		ethics = {
+			value = ethic_postapoc
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_syncretic_evolution
+				value = ethic_necrophage
+				value = ethic_clone_army
+			}
+		}
+	}
+
+	random_weight = {
+		base = 0
+	}
+
+	advanced_start = yes
+}
+
+originxo_remnant = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_remnant.dds"
+	picture = GFX_origin_remnants
+	
+
+	starting_colony = pc_relic #Changes homeworld class regardless of what is picked for empire
+
+	potential = {
+		ethics = {
+			value = ethic_remnant
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_syncretic_evolution
+				value = ethic_necrophage
+				value = ethic_clone_army
+			}
+		}
+	}
+
+	playable = {
+		OR = {
+			has_ancrel = yes
+			host_has_dlc = Federations
+		}
+	}
+
+	possible = {
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	description = "origin_tooltip_remnants_effects"
+
+	advanced_start = yes
+}
+
+originxo_ringworld = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	picture = GFX_origin_shattered_ring
+	
+
+	starting_colony = pc_shattered_ring_habitable
+	habitability_preference = pc_shattered_ring_habitable
+	initializers = { shattered_ring_start }
+	non_colonizable_planet_class_neighbor = yes
+	
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	potential = {
+		ethics = {
+			value = ethic_true_ringworld
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_syncretic_evolution
+				value = ethic_necrophage
+				value = ethic_clone_army
+			}
+		}
+	}
+
+	possible = {
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+
+	description = "origin_tooltip_shattered_ring_effects"
+
+	random_weight = {
+		base = 0
+	}
+	advanced_start = yes
+}
+
+originxo_unbound_ringworld = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	picture = GFX_origin_shattered_ring
+	
+
+	starting_colony = pc_shattered_ring_habitable
+	initializers = { shattered_ring_start }
+	
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	potential = {
+		ethics = {
+			value = ethic_ringworld
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_syncretic_evolution
+				value = ethic_necrophage
+				value = ethic_clone_army
+			}
+		}
+	}
+
+	possible = {
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+
+	description = "origin_tooltip_shattered_ring_effects"
+
+	random_weight = {
+		base = 0
+	}
+	advanced_start = yes
+}
+
+
+originxo_void_dwellers = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origin_void_dwellers.dds"
+	picture = GFX_origin_void_dwellers
+
+	starting_colony = pc_habitat
+	initializers = { void_dweller_system sol_system_void_dweller_system }
+	habitability_preference = pc_habitat
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		ethics = { NOT = { value = ethic_payback } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+		ethics = { NOT = { value = ethic_trade_expertise } }
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_idyllic_bloom
+				value = civic_idyllic_bloom
+				value = civic_hive_idyllic_bloom
+			}
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+
+	potential = {
+		ethics = {
+			value = ethic_true_void_dwellers
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_syncretic_evolution
+				value = ethic_necrophage
+				value = ethic_clone_army
+			}
+		}
+	}
+
+	description = "origin_tooltip_void_dwellers_effects"
+
+	traits = {
+		trait = trait_void_dweller_1
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+originxo_unbound_void_dwellers = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origin_void_dwellers.dds"
+	picture = GFX_origin_void_dwellers
+
+	starting_colony = pc_habitat
+	initializers = { void_dweller_system sol_system_void_dweller_system }
+
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		ethics = { NOT = { value = ethic_payback } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+		ethics = { NOT = { value = ethic_trade_expertise } }
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_idyllic_bloom
+				value = civic_idyllic_bloom
+				value = civic_hive_idyllic_bloom
+			}
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	potential = {
+		ethics = {
+			value = ethic_void_dwellers
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_syncretic_evolution
+				value = ethic_necrophage
+				value = ethic_clone_army
+			}
+		}
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "origin_tooltip_void_dwellers_effects"
+
+	traits = {
+		trait = trait_void_dweller_good
+	}
+}
+
+originxo_ocean_paradise = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_ocean_paradise.dds"
+	picture = GFX_origin_ocean_paradise
+	
+	
+	starting_colony = pc_ocean
+	habitability_preference = pc_ocean
+	initializers = { ocean_paradise_start }
+	
+	playable = {
+		has_aquatics = yes
+	}
+
+	possible = {
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+	}
+
+	description = origin_ocean_paradise_effects
+
+	traits = {
+		trait = trait_aquatic
+	}
+
+	potential = {
+		ethics = {
+			value = ethic_ocean_paradise
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_syncretic_evolution
+				value = ethic_necrophage
+				value = ethic_clone_army
+			}
+		}
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+originxo_subterranean = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_subterranean.dds"
+	picture = GFX_origin_subterranean
+	
+	#set_city_graphical_culture = SUBTERRANEAN
+	
+	playable = {
+		has_overlord_dlc = yes
+	}
+
+	possible = {
+		authority = { NOT = { value = auth_machine_intelligence } }
+	}
+	
+	potential = {
+		ethics = {
+			value = ethic_subterranean
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_syncretic_evolution
+				value = ethic_necrophage
+				value = ethic_clone_army
+			}
+		}
+	}
+
+	description = "origin_tooltip_subterranean_effects"
+
+	advanced_start = yes
+
+	traits = {
+		trait = trait_cave_dweller
+	}
+
+	modifier = {
+		planet_structures_cost_mult = 0.10
+		planet_structures_upkeep_mult = 0.10
+		planet_building_build_speed_mult = -0.10
+		planet_orbital_bombardment_damage = -0.75
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+originxo_hots = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_hots.dds"
+	picture = GFX_origin_hots
+	starting_colony = pc_hive
+	max_once_global = yes
+
+	playable = {
+		always = yes
+	}
+
+	possible = {
+		authority = { value = auth_hive_mind }
+	}
+	
+	potential = {
+		ethics = {
+			value = ethic_hots
+			value = ethic_overtuned
+			NOT = {
+				value = ethic_necrophage
+			}
+		}
+	}
+
+	#
+
+	traits = {
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
+############### Only "species" origins ###############
+
+originxo_syncretic_evolution = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_syncretic_evolution.dds"
+	picture = GFX_origin_syncretic_evolution
+
+	playable = {
+		host_has_dlc = "Utopia"
+	}
+
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+		civics = { NOT = { value = civic_fanatic_purifiers } }
+	}
+	
+	potential = {
+		ethics = {
+			value = ethic_syncretic_evolution
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_true_lifeseed
+				value = ethic_lifeseed
+				value = ethic_postapoc
+				value = ethic_remnant
+				value = ethic_true_ringworld
+				value = ethic_ringworld
+				value = ethic_true_void_dwellers
+				value = ethic_void_dwellers
+				value = ethic_ocean_paradise
+				value = ethic_machine
+				value = ethic_subterranean
+			}
+		}
+	}
+
+	description = civic_tooltip_syncretic_evolution_effects
+
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_syncretic_proles
+		}
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
+originxo_necrophage = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_necrophage.dds"
+	picture = GFX_origin_necrophage
+	
+
+	playable = {
+		host_has_dlc = "Necroids Species Pack"
+	}
+
+	possible = {
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_fanatic_egalitarian
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+				value = civic_hive_empath
+				value = civic_permanent_employment
+			}
+		}
+	}
+	
+	potential = {
+		ethics = {
+			value = ethic_necrophage
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_true_lifeseed
+				value = ethic_lifeseed
+				value = ethic_postapoc
+				value = ethic_remnant
+				value = ethic_true_ringworld
+				value = ethic_ringworld
+				value = ethic_true_void_dwellers
+				value = ethic_void_dwellers
+				value = ethic_ocean_paradise
+				value = ethic_machine
+				value = ethic_subterranean
+			}
+		}
+	}
+
+	description = civic_tooltip_necrophage_effects
+
+	traits = {
+		trait = trait_necrophage
+	}
+
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
+originxo_clone_army = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_clones.dds"
+	picture = GFX_origin_clone_army
+	
+
+	playable = {
+		host_has_dlc = "Humanoids Species Pack"
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		civics = {
+			NOT = { value = civic_permanent_employment }
+		}
+		ethics = {
+			NOR =  {
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_fotd
+				value = ethic_lost_colony
+			}
+		}
+	}
+	
+	potential = {
+		ethics = {
+			value = ethic_clone_army
+			value = ethic_overtuned
+			NOR = {
+				value = ethic_true_lifeseed
+				value = ethic_lifeseed
+				value = ethic_postapoc
+				value = ethic_remnant
+				value = ethic_true_ringworld
+				value = ethic_ringworld
+				value = ethic_true_void_dwellers
+				value = ethic_void_dwellers
+				value = ethic_ocean_paradise
+				value = ethic_machine
+				value = ethic_subterranean
+			}
+		}
+	}
+
+	description = origin_tooltip_clone_army_effects
+
+	traits = {
+		trait = trait_clone_soldier_infertile
+	}
+
+	advanced_start = no
+
+	random_weight = {
+		base = 0
+	}
+}
+
+### new_origins_mix_clone + overtuned
+
+originco_lifeseed = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_life_seeded.dds"
+	picture = GFX_origin_life_seeded
+
+	starting_colony = pc_gaia
+	habitability_preference = pc_gaia
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR =  {
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_fotd
+				value = ethic_lost_colony
+			}
+		}
+		civics = {
+			NOT = { value = civic_permanent_employment }
+		}
+		civics = {
+			NOT = {
+				value = civic_toxic_baths
+			}
+			NOR = {
+				text = civic_tooltip_not_relentless_industrialists
+				value = civic_relentless_industrialists
+				value = civic_corporate_relentless_industrialists
+			}
+		}
+	}
+
+	potential = {
+		ethics = { value = ethic_clone_army }
+		ethics = { value = ethic_true_lifeseed }
+		ethics = { value = ethic_overtuned }
+	}
+	
+	traits = {
+		trait = trait_clone_soldier_infertile
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "civic_tooltip_life_seeded_effects"
+
+}
+
+originco_unbound_lifeseed = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_life_seeded.dds"
+	picture = GFX_origin_life_seeded
+	
+	starting_colony = pc_gaia
+
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR =  {
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_fotd
+				value = ethic_lost_colony
+			}
+		}
+		civics = {
+			NOT = { value = civic_permanent_employment }
+		}
+		civics = {
+			NOT = {
+				value = civic_toxic_baths
+			}
+			NOR = {
+				text = civic_tooltip_not_relentless_industrialists
+				value = civic_relentless_industrialists
+				value = civic_corporate_relentless_industrialists
+			}
+		}
+	}
+
+	potential = {
+		ethics = { value = ethic_clone_army }
+		ethics = { value = ethic_lifeseed }
+		ethics = { value = ethic_overtuned }
+	}
+	
+	traits = {
+		trait = trait_clone_soldier_infertile
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "origin_tooltip_default_effects"
+
+	advanced_start = yes
+}
+
+originco_postapoc = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_post_apocalyptic.dds"
+	picture = GFX_origin_post_apocalyptic
+	
+	starting_colony = pc_nuked
+	
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR =  {
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_fotd
+				value = ethic_lost_colony
+			}
+		}
+		civics = {
+			NOT = { value = civic_permanent_employment }
+		}
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	description = "civic_tooltip_post_apocalyptic_effects"
+	
+	traits = {
+		trait = trait_clone_soldier_infertile
+		trait = trait_survivor
+	}
+
+	potential = {
+		ethics = { value = ethic_clone_army }
+		ethics = { value = ethic_postapoc }
+		ethics = { value = ethic_overtuned }
+	}
+
+	random_weight = {
+		base = 0
+	}
+
+	advanced_start = yes
+}
+
+originco_remnant = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_remnant.dds"
+	picture = GFX_origin_remnants
+
+	starting_colony = pc_relic #Changes homeworld class regardless of what is picked for empire
+
+	potential = {
+		ethics = { value = ethic_clone_army }
+		ethics = { value = ethic_remnant }
+		ethics = { value = ethic_overtuned }
+	}
+
+	playable = {
+		OR = {
+			has_ancrel = yes
+			host_has_dlc = Federations
+		}
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR =  {
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_fotd
+				value = ethic_lost_colony
+			}
+		}
+		civics = {
+			NOT = { value = civic_permanent_employment }
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	
+	traits = {
+		trait = trait_clone_soldier_infertile
+	}
+	
+	description = "origin_tooltip_remnants_effects"
+
+	advanced_start = yes
+}
+
+originco_ringworld = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	picture = GFX_origin_shattered_ring
+
+	starting_colony = pc_shattered_ring_habitable
+	habitability_preference = pc_shattered_ring_habitable
+	initializers = { shattered_ring_start }
+	non_colonizable_planet_class_neighbor = yes
+	
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	potential = {
+		ethics = { value = ethic_clone_army }
+		ethics = { value = ethic_true_ringworld }
+		ethics = { value = ethic_overtuned }
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR =  {
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_fotd
+				value = ethic_lost_colony
+			}
+		}
+		civics = {
+			NOT = { value = civic_permanent_employment }
+		}
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	traits = {
+		trait = trait_clone_soldier_infertile
+	}
+
+	description = "origin_tooltip_shattered_ring_effects"
+
+	random_weight = {
+		base = 0
+	}
+	advanced_start = yes
+}
+
+originco_unbound_ringworld = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	picture = GFX_origin_shattered_ring
+
+	starting_colony = pc_shattered_ring_habitable
+	initializers = { shattered_ring_start }
+	
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	potential = {
+		ethics = { value = ethic_clone_army }
+		ethics = { value = ethic_ringworld }
+		ethics = { value = ethic_overtuned }
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR =  {
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_fotd
+				value = ethic_lost_colony
+			}
+		}
+		civics = {
+			NOT = { value = civic_permanent_employment }
+		}
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	traits = {
+		trait = trait_clone_soldier_infertile
+	}
+
+	description = "origin_tooltip_shattered_ring_effects"
+
+	random_weight = {
+		base = 0
+	}
+	advanced_start = yes
+}
+
+
+originco_void_dwellers = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origin_void_dwellers.dds"
+	picture = GFX_origin_void_dwellers
+
+	starting_colony = pc_habitat
+	initializers = { void_dweller_system sol_system_void_dweller_system }
+	habitability_preference = pc_habitat
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR =  {
+				value = ethic_trade_expertise 
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_fotd
+				value = ethic_lost_colony
+			}
+		}
+		civics = {
+			NOT = { value = civic_permanent_employment }
+		}
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_idyllic_bloom
+				value = civic_idyllic_bloom
+				value = civic_hive_idyllic_bloom
+			}
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+
+	potential = {
+		ethics = { value = ethic_clone_army }
+		ethics = { value = ethic_true_void_dwellers }
+		ethics = { value = ethic_overtuned }
+	}
+
+	description = "origin_tooltip_void_dwellers_effects"
+
+	traits = {
+		trait = trait_clone_soldier_infertile
+		trait = trait_void_dweller_1
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+originco_unbound_void_dwellers = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origin_void_dwellers.dds"
+	picture = GFX_origin_void_dwellers
+
+	starting_colony = pc_habitat
+	initializers = { void_dweller_system sol_system_void_dweller_system }
+
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR =  {
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_fotd
+				value = ethic_lost_colony
+				value = ethic_trade_expertise 
+			}
+		}
+		civics = {
+			NOT = { value = civic_permanent_employment }
+		}
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_idyllic_bloom
+				value = civic_idyllic_bloom
+				value = civic_hive_idyllic_bloom
+			}
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	potential = {
+		ethics = { value = ethic_clone_army }
+		ethics = { value = ethic_void_dwellers }
+		ethics = { value = ethic_overtuned }
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "origin_tooltip_void_dwellers_effects"
+
+	traits = {
+		trait = trait_clone_soldier_infertile
+		trait = trait_void_dweller_good
+	}
+}
+
+originco_ocean_paradise = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_ocean_paradise.dds"
+	picture = GFX_origin_ocean_paradise
+	
+	
+	starting_colony = pc_ocean
+	habitability_preference = pc_ocean
+	initializers = { ocean_paradise_start }
+	
+	playable = {
+		has_aquatics = yes
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR =  {
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_fotd
+				value = ethic_lost_colony
+			}
+		}
+		civics = {
+			NOT = { value = civic_permanent_employment }
+		}
+	}
+
+	description = origin_ocean_paradise_effects
+
+	traits = {
+		trait = trait_clone_soldier_infertile
+		trait = trait_aquatic
+	}
+
+	potential = {
+		ethics = { value = ethic_clone_army }
+		ethics = { value = ethic_ocean_paradise }
+		ethics = { value = ethic_overtuned }
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+originco_subterranean = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_subterranean.dds"
+	picture = GFX_origin_subterranean
+	
+	#set_city_graphical_culture = SUBTERRANEAN
+	
+	playable = {
+		has_overlord_dlc = yes
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR =  {
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_fotd
+				value = ethic_lost_colony
+			}
+		}
+		civics = {
+			NOT = { value = civic_permanent_employment }
+		}
+	}
+	
+	potential = {
+		ethics = { value = ethic_clone_army }
+		ethics = { value = ethic_subterranean }
+		ethics = { value = ethic_overtuned }
+	}
+
+	description = "origin_tooltip_subterranean_effects"
+
+	advanced_start = yes
+
+	traits = {
+		trait = trait_clone_soldier_infertile
+		trait = trait_cave_dweller
+	}
+
+	modifier = {
+		planet_structures_cost_mult = 0.10
+		planet_structures_upkeep_mult = 0.10
+		planet_building_build_speed_mult = -0.10
+		planet_orbital_bombardment_damage = -0.75
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+
+### new_origins_mix_necro + overtuned
+
+originno_lifeseed = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_life_seeded.dds"
+	picture = GFX_origin_life_seeded
+
+	starting_colony = pc_gaia
+	habitability_preference = pc_gaia
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		host_has_dlc = "Apocalypse"
+		host_has_dlc = "Utopia"
+	}
+
+	possible = {
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_fanatic_egalitarian
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+				value = civic_hive_empath
+				value = civic_permanent_employment
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_toxic_baths
+			}
+			NOR = {
+				text = civic_tooltip_not_relentless_industrialists
+				value = civic_relentless_industrialists
+				value = civic_corporate_relentless_industrialists
+			}
+		}
+	}
+
+	potential = {
+		ethics = { value = ethic_necrophage }
+		ethics = { value = ethic_true_lifeseed }
+		ethics = { value = ethic_overtuned }
+	}
+	
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+	}
+	traits = {
+		trait = trait_necrophage
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "civic_tooltip_life_seeded_effects"
+
+}
+
+originno_unbound_lifeseed = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_life_seeded.dds"
+	picture = GFX_origin_life_seeded
+	
+	starting_colony = pc_gaia
+
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	possible = {
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_fanatic_egalitarian
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+				value = civic_hive_empath
+				value = civic_permanent_employment
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_toxic_baths
+			}
+			NOR = {
+				text = civic_tooltip_not_relentless_industrialists
+				value = civic_relentless_industrialists
+				value = civic_corporate_relentless_industrialists
+			}
+		}
+	}
+	potential = {
+		ethics = { value = ethic_necrophage }
+		ethics = { value = ethic_lifeseed }
+		ethics = { value = ethic_overtuned }
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "origin_tooltip_default_effects"
+	
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+	}
+	traits = {
+		trait = trait_necrophage
+	}
+
+	advanced_start = yes
+}
+
+originno_postapoc = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_post_apocalyptic.dds"
+	picture = GFX_origin_post_apocalyptic
+	
+	starting_colony = pc_nuked
+	
+	possible = {
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_fanatic_egalitarian
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+				value = civic_hive_empath
+				value = civic_permanent_employment
+			}
+		}
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	description = "civic_tooltip_post_apocalyptic_effects"
+
+	traits = {
+		trait = trait_survivor
+		trait = trait_necrophage
+	}
+	potential = {
+		ethics = { value = ethic_necrophage }
+		ethics = { value = ethic_postapoc }
+		ethics = { value = ethic_overtuned }
+	}
+
+	random_weight = {
+		base = 0
+	}
+	
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+		traits = {
+			trait = trait_survivor
+		}
+	}
+
+
+	advanced_start = yes
+}
+
+originno_remnant = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_remnant.dds"
+	picture = GFX_origin_remnants
+
+	starting_colony = pc_relic #Changes homeworld class regardless of what is picked for empire
+	
+	potential = {
+		ethics = { value = ethic_necrophage }
+		ethics = { value = ethic_remnant }
+		ethics = { value = ethic_overtuned }
+	}
+
+	playable = {
+		OR = {
+			has_ancrel = yes
+			host_has_dlc = Federations
+		}
+	}
+
+	possible = {
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+		}
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_fanatic_egalitarian
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+				value = civic_hive_empath
+				value = civic_permanent_employment
+			}
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	traits = {
+		trait = trait_necrophage
+	}
+	description = "origin_tooltip_remnants_effects"
+
+	advanced_start = yes
+	
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+	}
+
+}
+
+originno_ringworld = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	picture = GFX_origin_shattered_ring
+
+	starting_colony = pc_shattered_ring_habitable
+	habitability_preference = pc_shattered_ring_habitable
+	initializers = { shattered_ring_start }
+	non_colonizable_planet_class_neighbor = yes
+	
+	playable = {
+		host_has_dlc = Federations
+	}
+	
+	potential = {
+		ethics = { value = ethic_necrophage }
+		ethics = { value = ethic_true_ringworld }
+		ethics = { value = ethic_overtuned }
+	}
+
+	possible = {
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_fanatic_egalitarian
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+				value = civic_hive_empath
+				value = civic_permanent_employment
+			}
+		}
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+
+	description = "origin_tooltip_shattered_ring_effects"
+
+	random_weight = {
+		base = 0
+	}
+	advanced_start = yes
+	
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+	}
+	traits = {
+		trait = trait_necrophage
+	}
+}
+
+originno_unbound_ringworld = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	picture = GFX_origin_shattered_ring
+
+	starting_colony = pc_shattered_ring_habitable
+	initializers = { shattered_ring_start }
+	
+	playable = {
+		host_has_dlc = Federations
+	}
+	
+	potential = {
+		ethics = { value = ethic_necrophage }
+		ethics = { value = ethic_ringworld }
+		ethics = { value = ethic_overtuned }
+	}
+
+
+	possible = {
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_fanatic_egalitarian
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+				value = civic_hive_empath
+				value = civic_permanent_employment
+			}
+		}
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+
+	description = "origin_tooltip_shattered_ring_effects"
+
+	random_weight = {
+		base = 0
+	}
+	advanced_start = yes
+	
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+	}
+	traits = {
+		trait = trait_necrophage
+	}
+}
+
+
+originno_void_dwellers = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origin_void_dwellers.dds"
+	picture = GFX_origin_void_dwellers
+
+	starting_colony = pc_habitat
+	initializers = { void_dweller_system sol_system_void_dweller_system }
+	habitability_preference = pc_habitat
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_fanatic_egalitarian
+				value = ethic_payback
+				value = ethic_broken_shackles
+				value = ethic_trade_expertise 
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+				value = civic_hive_empath
+				value = civic_permanent_employment
+			}
+		}
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_idyllic_bloom
+				value = civic_idyllic_bloom
+				value = civic_hive_idyllic_bloom
+			}
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	potential = {
+		ethics = { value = ethic_necrophage }
+		ethics = { value = ethic_true_void_dwellers }
+		ethics = { value = ethic_overtuned }
+	}
+	
+	description = "origin_tooltip_void_dwellers_effects"
+
+	traits = {
+		trait = trait_void_dweller_1
+		trait = trait_necrophage
+	}
+
+	random_weight = {
+		base = 0
+	}
+	
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+		traits = {
+			trait = trait_void_dweller_1
+		}
+	}
+}
+
+originno_unbound_void_dwellers = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origin_void_dwellers.dds"
+	picture = GFX_origin_void_dwellers
+
+	starting_colony = pc_habitat
+	initializers = { void_dweller_system sol_system_void_dweller_system }
+
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	possible = {
+		ethics = {
+			NOT = {	value = ethic_gestalt_consciousness	}
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_fanatic_egalitarian
+				value = ethic_payback
+				value = ethic_toxic_knights
+				value = ethic_trade_expertise 
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+				value = civic_hive_empath
+				value = civic_permanent_employment
+			}
+		}
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_idyllic_bloom
+				value = civic_idyllic_bloom
+				value = civic_hive_idyllic_bloom
+			}
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	potential = {
+		ethics = { value = ethic_necrophage }
+		ethics = { value = ethic_void_dwellers }
+		ethics = { value = ethic_overtuned }
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "origin_tooltip_void_dwellers_effects"
+
+	traits = {
+		trait = trait_void_dweller_good
+		trait = trait_necrophage
+	}
+	
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+		traits = {
+			trait = trait_void_dweller_good
+		}
+	}
+}
+
+originno_ocean_paradise = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_ocean_paradise.dds"
+	picture = GFX_origin_ocean_paradise
+	
+	
+	starting_colony = pc_ocean
+	habitability_preference = pc_ocean
+	initializers = { ocean_paradise_start }
+	
+	playable = {
+		has_aquatics = yes
+	}
+
+	possible = {
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_fanatic_egalitarian
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+				value = civic_hive_empath
+				value = civic_permanent_employment
+			}
+		}
+	}
+
+	description = origin_ocean_paradise_effects
+
+	traits = {
+		trait = trait_aquatic
+		trait = trait_necrophage
+	}
+	
+	potential = {
+		ethics = { value = ethic_necrophage }
+		ethics = { value = ethic_ocean_paradise }
+		ethics = { value = ethic_overtuned }
+	}
+
+
+	random_weight = {
+		base = 0
+	}
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+		traits = {
+			trait = trait_aquatic
+		}
+	}
+}
+
+originno_subterranean = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_subterranean.dds"
+	picture = GFX_origin_subterranean
+	
+	#set_city_graphical_culture = SUBTERRANEAN
+	
+	playable = {
+		has_overlord_dlc = yes
+	}
+
+	possible = {
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+		ethics = {
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_fanatic_egalitarian
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+				value = civic_hive_empath
+				value = civic_permanent_employment
+			}
+		}
+	}
+	
+	potential = {
+		ethics = { value = ethic_necrophage }
+		ethics = { value = ethic_subterranean }
+		ethics = { value = ethic_overtuned }
+	}
+
+	description = "origin_tooltip_subterranean_effects"
+
+	advanced_start = yes
+
+	traits = {
+		trait = trait_cave_dweller
+		trait = trait_necrophage
+	}
+	
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+		traits = {
+			trait = trait_cave_dweller
+		}
+	}
+
+	modifier = {
+		planet_structures_cost_mult = 0.10
+		planet_structures_upkeep_mult = 0.10
+		planet_building_build_speed_mult = -0.10
+		planet_orbital_bombardment_damage = -0.75
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+originno_hots = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_necrophage.dds"
+	picture = GFX_origin_necrophage
+	
+	starting_colony = pc_hive
+
+	playable = {
+		always = yes
+	}
+
+	possible = {
+		authority = {
+			value = auth_hive_mind
+		}
+	}
+	potential = {
+		ethics = { value = ethic_necrophage }
+		ethics = { value = ethic_hots }
+		ethics = { value = ethic_overtuned }
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "origin_tooltip_default_effects"
+	
+	has_secondary_species = {
+		title = civic_necrophage_secondary_species
+	}
+	traits = {
+		trait = trait_necrophage
+	}
+
+	advanced_start = yes
+}
+
+### new_origins_mix_syncretic + overtuned
+
+originso_lifeseed = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_life_seeded.dds"
+	picture = GFX_origin_life_seeded
+
+	starting_colony = pc_gaia
+	habitability_preference = pc_gaia
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		host_has_dlc = "Apocalypse"
+		host_has_dlc = "Utopia"
+	}
+
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = { NOT = { value = civic_fanatic_purifiers } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+		civics = {
+			NOT = {
+				value = civic_toxic_baths
+			}
+			NOR = {
+				text = civic_tooltip_not_relentless_industrialists
+				value = civic_relentless_industrialists
+				value = civic_corporate_relentless_industrialists
+			}
+		}
+	}
+
+	potential = {
+		ethics = { value = ethic_syncretic_evolution }
+		ethics = { value = ethic_true_lifeseed }
+		ethics = { value = ethic_overtuned }
+	}
+	
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_syncretic_proles
+		}
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "civic_tooltip_life_seeded_effects"
+
+}
+
+originso_unbound_lifeseed = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_life_seeded.dds"
+	picture = GFX_origin_life_seeded
+	
+	starting_colony = pc_gaia
+
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = { NOT = { value = civic_fanatic_purifiers } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+		civics = {
+			NOT = {
+				value = civic_toxic_baths
+			}
+			NOR = {
+				text = civic_tooltip_not_relentless_industrialists
+				value = civic_relentless_industrialists
+				value = civic_corporate_relentless_industrialists
+			}
+		}
+	}
+	potential = {
+		ethics = { value = ethic_syncretic_evolution }
+		ethics = { value = ethic_lifeseed }
+		ethics = { value = ethic_overtuned }
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "origin_tooltip_default_effects"
+	
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_syncretic_proles
+		}
+	}
+
+
+	advanced_start = yes
+}
+
+originso_postapoc = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_post_apocalyptic.dds"
+	picture = GFX_origin_post_apocalyptic
+	
+	starting_colony = pc_nuked
+	
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = { NOT = { value = civic_fanatic_purifiers } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	description = "civic_tooltip_post_apocalyptic_effects"
+
+	traits = {
+		trait = trait_survivor
+	}
+	
+	potential = {
+		ethics = { value = ethic_syncretic_evolution }
+		ethics = { value = ethic_postapoc }
+		ethics = { value = ethic_overtuned }
+	}
+
+	random_weight = {
+		base = 0
+	}
+	
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_syncretic_proles
+			trait = trait_survivor
+		}
+	}
+
+
+	advanced_start = yes
+}
+
+originso_remnant = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_remnant.dds"
+	picture = GFX_origin_remnants
+
+	starting_colony = pc_relic #Changes homeworld class regardless of what is picked for empire
+	
+	potential = {
+		ethics = { value = ethic_syncretic_evolution }
+		ethics = { value = ethic_remnant }
+		ethics = { value = ethic_overtuned }
+	}
+
+	playable = {
+		OR = {
+			has_ancrel = yes
+			host_has_dlc = Federations
+		}
+	}
+
+	possible = {
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+		}
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = { NOT = { value = civic_fanatic_purifiers } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+	}
+	random_weight = {
+		base = 0
+	}
+	description = "origin_tooltip_remnants_effects"
+
+	advanced_start = yes
+	
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_syncretic_proles
+		}
+	}
+
+}
+
+originso_ringworld = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	picture = GFX_origin_shattered_ring
+
+	starting_colony = pc_shattered_ring_habitable
+	habitability_preference = pc_shattered_ring_habitable
+	initializers = { shattered_ring_start }
+	non_colonizable_planet_class_neighbor = yes
+	
+	playable = {
+		host_has_dlc = Federations
+	}
+	
+	potential = {
+		ethics = { value = ethic_syncretic_evolution }
+		ethics = { value = ethic_true_ringworld }
+		ethics = { value = ethic_overtuned }
+	}
+
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = { NOT = { value = civic_fanatic_purifiers } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+
+	description = "origin_tooltip_shattered_ring_effects"
+
+	random_weight = {
+		base = 0
+	}
+	advanced_start = yes
+	
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_syncretic_proles
+		}
+	}
+
+}
+
+originso_unbound_ringworld = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	picture = GFX_origin_shattered_ring
+
+	starting_colony = pc_shattered_ring_habitable
+	initializers = { shattered_ring_start }
+	
+	playable = {
+		host_has_dlc = Federations
+	}
+	
+	potential = {
+		ethics = { value = ethic_syncretic_evolution }
+		ethics = { value = ethic_ringworld }
+		ethics = { value = ethic_overtuned }
+	}
+
+
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = { NOT = { value = civic_fanatic_purifiers } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+		civics = {
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+
+	description = "origin_tooltip_shattered_ring_effects"
+
+	random_weight = {
+		base = 0
+	}
+	advanced_start = yes
+	
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_syncretic_proles
+		}
+	}
+
+}
+
+
+originso_void_dwellers = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origin_void_dwellers.dds"
+	picture = GFX_origin_void_dwellers
+
+	starting_colony = pc_habitat
+	initializers = { void_dweller_system sol_system_void_dweller_system }
+	habitability_preference = pc_habitat
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = { NOT = { value = civic_fanatic_purifiers } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+		ethics = { NOT = { value = ethic_payback } }
+		ethics = { NOT = { value = ethic_trade_expertise } }
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_idyllic_bloom
+				value = civic_idyllic_bloom
+				value = civic_hive_idyllic_bloom
+			}
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	potential = {
+		ethics = { value = ethic_syncretic_evolution }
+		ethics = { value = ethic_true_void_dwellers }
+		ethics = { value = ethic_overtuned }
+	}
+	
+	description = "origin_tooltip_void_dwellers_effects"
+
+	traits = {
+		trait = trait_void_dweller_1
+	}
+
+	random_weight = {
+		base = 0
+	}
+	
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_syncretic_proles
+			trait = trait_void_dweller_1
+		}
+	}
+}
+
+originso_unbound_void_dwellers = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origin_void_dwellers.dds"
+	picture = GFX_origin_void_dwellers
+
+	starting_colony = pc_habitat
+	initializers = { void_dweller_system sol_system_void_dweller_system }
+
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = { NOT = { value = civic_fanatic_purifiers } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+		ethics = { NOT = { value = ethic_payback } }
+		ethics = { NOT = { value = ethic_toxic_knights } }
+		ethics = { NOT = { value = ethic_trade_expertise } }
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_idyllic_bloom
+				value = civic_idyllic_bloom
+				value = civic_hive_idyllic_bloom
+			}
+			NOT = { value = civic_agrarian_idyll }
+			NOR = {
+				text = civic_tooltip_not_anglers
+				value = civic_anglers
+				value = civic_corporate_anglers
+			}
+		}
+	}
+	
+	potential = {
+		ethics = { value = ethic_syncretic_evolution }
+		ethics = { value = ethic_void_dwellers }
+		ethics = { value = ethic_overtuned }
+	}
+
+	random_weight = {
+		base = 0
+	}
+	description = "origin_tooltip_void_dwellers_effects"
+
+	traits = {
+		trait = trait_void_dweller_good
+	}
+	
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_syncretic_proles
+			trait = trait_void_dweller_good
+		}
+	}
+}
+
+originso_ocean_paradise = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_ocean_paradise.dds"
+	picture = GFX_origin_ocean_paradise
+	
+	
+	starting_colony = pc_ocean
+	habitability_preference = pc_ocean
+	initializers = { ocean_paradise_start }
+	
+	playable = {
+		has_aquatics = yes
+	}
+
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = { NOT = { value = civic_fanatic_purifiers } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+	}
+
+	description = origin_ocean_paradise_effects
+
+	traits = {
+		trait = trait_aquatic
+	}
+	
+	potential = {
+		ethics = { value = ethic_syncretic_evolution }
+		ethics = { value = ethic_ocean_paradise }
+		ethics = { value = ethic_overtuned }
+	}
+
+
+	random_weight = {
+		base = 0
+	}
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_syncretic_proles
+			trait = trait_aquatic
+		}
+	}
+}
+
+originso_subterranean = {
+	is_origin = yes
+	flags = { custom_start_screen }
+	icon = "gfx/interface/icons/origins/origins_subterranean.dds"
+	picture = GFX_origin_subterranean
+	
+	#set_city_graphical_culture = SUBTERRANEAN
+	
+	playable = {
+		has_overlord_dlc = yes
+	}
+
+	possible = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = { NOT = { value = civic_fanatic_purifiers } }
+		ethics = { NOT = { value = ethic_broken_shackles } }
+	}
+	
+	potential = {
+		ethics = { value = ethic_syncretic_evolution }
+		ethics = { value = ethic_subterranean }
+		ethics = { value = ethic_overtuned }
+	}
+
+	description = "origin_tooltip_subterranean_effects"
+
+	advanced_start = yes
+
+	traits = {
+		trait = trait_cave_dweller
+	}
+	
+	has_secondary_species = {
+		title = civic_syncretic_evolution_secondary_species
+		traits = {
+			trait = trait_syncretic_proles
+			trait = trait_cave_dweller
+		}
+	}
+
+	modifier = {
+		planet_structures_cost_mult = 0.10
+		planet_structures_upkeep_mult = 0.10
+		planet_building_build_speed_mult = -0.10
+		planet_orbital_bombardment_damage = -0.75
+	}
+
+	random_weight = {
+		base = 0
+	}
+}

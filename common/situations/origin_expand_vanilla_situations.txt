@@ -1,0 +1,53 @@
+# 01_overlord_situations
+shroudwalker_spy_network = {
+	picture = GFX_evt_shroudwalker_enclave
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_unknown
+	abort_trigger = {
+		OR = {
+			NOT = { exists = event_target:shroudwalker_enclave_country }
+			owner = { is_hostile = event_target:shroudwalker_enclave_country }
+		}
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 100
+		}
+	}
+	monthly_progress = {
+		base = 12.5
+		modifier = {
+			factor = 2
+			desc = shroudwalker_spy_network_modifier
+			owner = {
+				OR = {
+					is_origin_shroudwalker_apprentice = yes
+					has_ascension_perk = ap_mind_over_matter
+				}
+			}
+		}
+	}
+	on_progress_complete = {
+		custom_tooltip = shroudwalker_spy_network_finish
+		hidden_effect = {
+			owner = {
+				fire_on_action = {
+					on_action = on_shroudwalker_insight_situation_finish
+					scopes = { from = root.target }
+				}
+			}
+			destroy_situation = this
+		}
+	}
+	approach = {
+		name = into_the_unknown
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_green
+		default = yes
+		on_select = {
+			custom_tooltip = deficit_approach_do_nothing_tooltip
+		}
+	}
+}

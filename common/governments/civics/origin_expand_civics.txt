@@ -1,0 +1,23 @@
+civic_lithoid = {
+	modification = yes
+	playable = { has_lithoids = yes }
+	description = "civic_lithoid_effects"
+	potential = {
+		authority = { NOT = { value = auth_machine_intelligence } }
+	}
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_catalytic_processing
+				value = civic_hive_catalytic_processing
+				value = civic_corporate_catalytic_processing
+			}
+		}
+	}
+	traits = {
+		trait = trait_lithoid
+	}
+	random_weight = {
+		base = 0
+	}
+}

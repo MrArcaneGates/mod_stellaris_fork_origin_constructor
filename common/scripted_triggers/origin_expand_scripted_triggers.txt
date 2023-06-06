@@ -1,0 +1,301 @@
+is_origin_common_ground = {
+	OR = {
+		has_origin = origin_common_ground
+		has_ethic = ethic_common_ground
+		has_modifier = modifier_origin_common_ground
+	}
+}
+is_origin_hegemon = {
+	OR = {
+		has_origin = origin_hegemon
+		has_ethic = ethic_hegemon
+		has_modifier = modifier_origin_hegemon
+	}
+}
+is_origin_imperial = {
+	OR = {
+		has_origin = origin_imperial_vassal
+		has_ethic = ethic_imperial
+		has_modifier = modifier_origin_imperial
+	}
+}
+is_origin_scion = {
+	OR = {
+		has_origin = origin_scion
+		has_ethic = ethic_scion
+		has_modifier = modifier_origin_scion
+	}
+}
+is_origin_lost_colony = {
+	OR = {
+		has_origin = origin_lost_colony
+		has_ethic = ethic_lost_colony
+		has_modifier = modifier_origin_lost_colony
+	}
+}
+is_origin_payback = {
+	OR = {
+		has_origin = origin_payback
+		has_ethic = ethic_payback
+		has_modifier = modifier_origin_payback
+	}
+}
+is_origin_broken_shackles = {
+	OR = {
+		has_origin = origin_broken_shackles
+		has_ethic = ethic_broken_shackles
+		has_modifier = modifier_origin_broken_shackles
+	}
+}
+is_origin_fotd = {
+	OR = {
+		has_origin = origin_fear_of_the_dark
+		has_ethic = ethic_fotd
+		has_modifier = modifier_origin_fotd
+	}
+}
+is_origin_galactic_doorstep = {
+	OR = {
+		has_origin = origin_galactic_doorstep
+		has_ethic = ethic_galactic_doorstep
+		has_modifier = modifier_origin_galactic_doorstep
+	}
+}
+is_origin_star_slingshot = {
+	OR = {
+		has_origin = origin_star_slingshot
+		has_ethic = ethic_star_slingshot
+		has_modifier = modifier_origin_star_slingshot
+	}
+}
+is_origin_shoulders_of_giants = {
+	OR = {
+		has_origin = origin_shoulders_of_giants
+		has_ethic = ethic_shoulders_of_giants
+		has_modifier = modifier_origin_shoulders_of_giants
+	}
+}
+is_origin_toxic_knights = {
+	OR = {
+		has_origin = origin_toxic_knights
+		has_ethic = ethic_toxic_knights
+		has_modifier = modifier_origin_toxic_knights
+	}
+}
+is_origin_here_be_dragons = {
+	OR = {
+		has_origin = origin_here_be_dragons
+		has_ethic = ethic_here_be_dragons
+		has_modifier = modifier_origin_here_be_dragons
+	}
+}
+is_origin_true_lifeseed = {
+	OR = {
+		has_origin = origin_life_seeded
+		has_ethic = ethic_true_lifeseed
+		has_modifier = modifier_origin_true_lifeseed
+	}
+}
+is_origin_lifeseed = {
+	OR = {
+		has_origin = origin_life_seeded
+		has_ethic = ethic_lifeseed
+		has_modifier = modifier_origin_lifeseed
+	}
+}
+is_origin_life_seeded = {
+	OR = {
+		has_origin = origin_life_seeded
+		has_ethic = ethic_lifeseed
+		has_modifier = modifier_origin_lifeseed
+		has_ethic = ethic_true_lifeseed
+		has_modifier = modifier_origin_true_lifeseed
+	}
+}
+is_origin_postapoc = {
+	OR = {
+		has_origin = origin_post_apocalyptic
+		has_ethic = ethic_postapoc
+		has_modifier = modifier_origin_postapoc
+	}
+}
+is_origin_remnant = {
+	OR = {
+		has_origin = origin_remnants
+		has_ethic = ethic_remnant
+		has_modifier = modifier_origin_remnant
+	}
+}
+is_origin_true_ringworld = {
+	OR = {
+		has_origin = origin_shattered_ring
+		has_ethic = ethic_true_ringworld
+		has_modifier = modifier_origin_true_ringworld
+	}
+}
+is_origin_ringworld = {
+	OR = {
+		has_origin = origin_shattered_ring
+		has_ethic = ethic_ringworld
+		has_modifier = modifier_origin_ringworld
+	}
+}
+is_origin_shattered_ring = {
+	OR = {
+		has_origin = origin_shattered_ring
+		has_ethic = ethic_ringworld
+		has_ethic = ethic_true_ringworld
+		has_modifier = modifier_origin_ringworld
+		has_modifier = modifier_origin_true_ringworld
+	}
+}
+is_origin_true_void_dwellers = {
+	OR = {
+		has_origin = origin_void_dwellers
+		has_ethic = ethic_true_void_dwellers
+		has_modifier = modifier_origin_true_void_dwellers
+	}
+}
+is_origin_unbound_void_dwellers = {
+	OR = {
+		has_origin = origin_void_dwellers
+		has_ethic = ethic_void_dwellers
+		has_modifier = modifier_origin_void_dwellers
+	}
+}
+is_origin_void_dwellers = {
+	OR = {
+		has_origin = origin_void_dwellers
+		has_ethic = ethic_void_dwellers
+		has_modifier = modifier_origin_void_dwellers
+		has_ethic = ethic_true_void_dwellers
+		has_modifier = modifier_origin_true_void_dwellers
+	}
+}
+is_origin_ocean_paradise = {
+	OR = {
+		has_origin = origin_ocean_paradise
+		has_ethic = ethic_ocean_paradise
+		has_modifier = modifier_origin_ocean_paradise
+	}
+}
+is_origin_doomsday = {
+	OR = {
+		has_origin = origin_doomsday
+		has_ethic = ethic_doomsday
+		has_modifier = modifier_origin_doomsday
+	}
+}
+is_origin_machine = {
+	OR = {
+		has_origin = origin_machine
+		has_ethic = ethic_machine
+		has_modifier = modifier_origin_machine
+	}
+}
+is_origin_subterranean = {
+	OR = {
+		has_origin = origin_subterranean
+		has_ethic = ethic_subterranean
+		has_modifier = modifier_origin_subterranean
+	}
+}
+is_origin_mechanist = {
+	OR = {
+		has_origin = origin_mechanists
+		has_ethic = ethic_mechanist
+		has_modifier = modifier_origin_mechanist
+	}
+}
+is_origin_syncretic_evolution = {
+	OR = {
+		has_origin = origin_syncretic_evolution
+		has_ethic = ethic_syncretic_evolution
+		has_modifier = modifier_origin_syncretic_evolution
+	}
+}
+is_origin_necrophage = {
+	OR = {
+		has_origin = origin_necrophage
+		has_ethic = ethic_necrophage
+		has_modifier = modifier_origin_necrophage
+	}
+}
+is_origin_clone_army = {
+	OR = {
+		has_origin = origin_clone_army
+		has_ethic = ethic_clone_army
+		has_modifier = modifier_origin_clone_army
+	}
+}
+is_origin_overtuned = {
+	OR = {
+		has_origin = origin_overtuned
+		has_ethic = ethic_overtuned
+		has_modifier = modifier_origin_overtuned
+	}
+}
+is_origin_shroudwalker_apprentice = {
+	OR = {
+		has_origin = origin_shroudwalker_apprentice
+		has_ethic = ethic_shroudwalker_apprentice
+		has_modifier = modifier_origin_shroudwalker_apprentice
+	}
+}
+is_origin_progenitor_hive = {
+	OR = {
+		has_origin = origin_progenitor_hive
+		has_ethic = ethic_progenitor_hive
+		has_modifier = modifier_origin_progenitor_hive
+	}
+}
+is_origin_tree_of_life = {
+	OR = {
+		has_origin = origin_tree_of_life
+		has_ethic = ethic_tree_of_life
+		has_modifier = modifier_origin_tree_of_life
+	}
+}
+is_origin_lithoid = {
+	OR = {
+		has_origin = origin_lithoid
+		has_ethic = ethic_lithoid
+		has_civic = civic_lithoid
+		has_modifier = modifier_origin_lithoid
+	}
+}
+
+is_origin_cyberpunk = {
+	OR = {
+		has_ethic = ethic_cyberpunk
+		has_modifier = modifier_origin_cyberpunk
+	}
+}
+
+is_origin_hots = {
+	OR = {
+		has_ethic = ethic_hots
+		has_modifier = modifier_origin_hots
+	}
+}
+
+is_origin_galactic_wonders = {
+	OR = {
+		has_ethic = ethic_galactic_wonders
+		has_modifier = modifier_origin_galactic_wonders
+	}
+}
+
+### Check if have any fanatic ethic
+has_any_fanatic_ethic = {
+	OR = {
+		has_ethic = ethic_fanatic_materialist
+		has_ethic = ethic_fanatic_spiritualist
+		has_ethic = ethic_fanatic_egalitarian
+		has_ethic = ethic_fanatic_authoritarian
+		has_ethic = ethic_fanatic_xenophile
+		has_ethic = ethic_fanatic_xenophobe
+		has_ethic = ethic_fanatic_pacifist
+		has_ethic = ethic_fanatic_militarist
+	}
+}

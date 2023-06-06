@@ -1,0 +1,147 @@
+situation_cyberpsychosis = {
+	picture = GFX_evt_cybernetics
+	complete_icon_frame = GFX_situation_outcome_frame_blue
+	complete_icon = GFX_situation_outcome_positive
+	on_progress_complete = {
+		custom_tooltip = situation_cp_outcome
+		hidden_effect = {
+			situation_event = { id = origin_expand_cp.3 }
+		}
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 30
+			custom_tooltip = stage_cp_effects
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 60
+			on_first_enter = {
+				situation_event = { id = origin_expand_cp.2 }
+			}
+			custom_tooltip = stage_cp_effects
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 90
+			on_first_enter = {
+				situation_event = { id = origin_expand_cp.2 }
+			}
+			custom_tooltip = stage_cp_effects
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_blue
+			end = 120
+			on_first_enter = {
+				situation_event = { id = origin_expand_cp.2 }
+			}
+			custom_tooltip = stage_cp_effects
+		}
+	}
+	approach = {
+		name = situation_cyberpsychosis_regular
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = approach_cp_regular
+		}
+		default = yes
+		modifier = {
+			all_technology_research_speed = -0.05
+		}
+	}
+	approach = {
+		name = situation_cyberpsychosis_generous
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		on_select = {
+			custom_tooltip = approach_cp_generous
+		}
+		modifier = {
+			all_technology_research_speed = -0.10
+		}
+	}
+	approach = {
+		name = situation_cyberpsychosis_none
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_red
+
+		on_select = {
+			custom_tooltip = approach_cp_none
+		}
+	}
+	on_monthly = {
+		random_events = {
+			110 = 0
+			10 = origin_expand_cp.20
+		}
+	}
+	monthly_progress = {
+		base = 0.35
+		modifier = {
+			add = 0.3
+			desc = situation_cp_has_gen_fund
+			current_situation_approach = situation_cyberpsychosis_generous
+		}
+		modifier = {
+			add = 0.15
+			desc = situation_cp_has_reg_fund
+			current_situation_approach = situation_cyberpsychosis_regular
+		}
+		modifier = {
+			add = 0.1
+			desc = situation_cp_has_nql
+			owner = { has_technology = tech_neuro_quantum_links }
+		}
+		modifier = {
+			add = 0.05
+			desc = situation_cp_has_robomodding
+			owner = { has_technology = tech_robomodding }
+		}
+		modifier = {
+			add = 0.05
+			desc = situation_cp_has_droids
+			owner = { has_technology = tech_droid_workers }
+		}
+		modifier = {
+			add = 0.05
+			desc = situation_cp_has_cybernetics_trad
+			owner = { has_tradition = tr_cybernetics_adopt }
+		}
+		modifier = {
+			add = 0.05
+			desc = situation_cp_has_cybernetics_trad
+			owner = { has_tradition = tr_cybernetics_assembly_standards }
+		}
+		modifier = {
+			add = 0.05
+			desc = situation_cp_has_cybernetics_trad
+			owner = { has_tradition = tr_cybernetics_finish }
+		}
+		modifier = {
+			add = 0.05
+			desc = situation_cp_has_cybernetics_trad
+			owner = { has_tradition = tr_cybernetics_modular_cybernetics }
+		}
+		modifier = {
+			add = 0.25
+			desc = situation_cp_has_experiments
+			owner = { has_modifier = cp_auth_questionable_experiments }
+		}
+		modifier = {
+			add = 0.25
+			desc = situation_cp_has_experiments
+			owner = { has_modifier = cp_xeno_questionable_experiments }
+		}
+		modifier = {
+			add = 0.05
+			desc = situation_cp_has_experiments
+			owner = { has_modifier = cp_questionable_experiments }
+		}
+	}
+}

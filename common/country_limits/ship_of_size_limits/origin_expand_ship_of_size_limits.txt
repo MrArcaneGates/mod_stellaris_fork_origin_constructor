@@ -1,0 +1,17 @@
+progenitor_ships_limit = {
+	ship_types = { 
+		offspring_corvette 
+		offspring_destroyer
+		offspring_cruiser
+		offspring_battleship
+	}
+	
+	base = 1
+	max = 200
+	naval_cap_fraction = 0.1
+	
+	show = {
+		is_scope_valid = yes
+		is_origin_progenitor_hive = yes
+	}
+}

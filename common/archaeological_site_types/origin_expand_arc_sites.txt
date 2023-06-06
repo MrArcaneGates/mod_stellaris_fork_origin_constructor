@@ -1,0 +1,57 @@
+galactic_wonders_digsite = {
+	desc = galactic_wonders_digsite_desc
+	picture = GFX_evt_ruined_system
+	stages = 4
+	weight = 0
+	max_instances = 999
+
+	allow = {
+		is_ship_class = shipclass_science_ship
+		exists = leader
+	}
+
+	potential = {
+		hidden_trigger = {
+			owner = {
+				has_country_flag = gw_arcsite_owner
+			}
+		}
+	}
+
+	visible = {
+		default_site_visible_trigger = yes
+		owner = {
+			has_country_flag = gw_arcsite_owner
+		}
+	}
+
+	stage = {
+		difficulty = 8
+		icon = GFX_archaeology_runes_A1
+		event = origin_expand.173
+	}
+
+	stage = {
+		difficulty = 8
+		icon = GFX_archaeology_runes_A2
+		event = origin_expand.174
+	}
+
+	stage = {
+		difficulty = 8
+		icon = GFX_archaeology_runes_A3
+		event = origin_expand.175
+	}
+	
+	stage = {
+		difficulty = 8
+		icon = GFX_archaeology_runes_A4
+		event = origin_expand.176
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = all_random_events }
+		}
+	}
+}

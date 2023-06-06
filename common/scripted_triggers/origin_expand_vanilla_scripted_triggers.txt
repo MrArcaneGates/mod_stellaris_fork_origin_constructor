@@ -1,0 +1,95 @@
+# 00_scripted_triggers
+has_encountered_other_species = {
+	OR = {
+		is_origin_syncretic_evolution = yes
+		is_origin_necrophage = yes
+		is_origin_payback = yes
+		has_civic = civic_machine_servitor
+		num_communications > 0
+		any_owned_species = {
+			NOT = { has_trait = "trait_mechanical" }
+			NOT = { is_same_species = prev }
+		}
+	}
+}
+is_low_tech_start = {
+	OR = {
+		is_primitive = yes
+		is_origin_broken_shackles = yes
+		is_origin_payback = yes
+		is_eager_explorer_empire = yes
+	}
+}
+is_subterranean_empire = {
+	is_origin_subterranean = yes
+}
+is_faction_allowed = {
+	OR = {
+		AND = {
+			years_passed > 10
+			has_encountered_other_species = yes
+		}
+		AND = {
+			days_passed > 30
+			has_valid_civic = civic_parliamentary_system
+		}
+		AND = {
+			days_passed > 350
+			is_origin_broken_shackles = yes
+		}
+	}
+	NOT = { has_ethic = ethic_gestalt_consciousness }
+	NOT = { has_country_flag = suppress_vanilla_factions }
+}
+ai_should_build_habitats = {
+	is_country_type = default
+	OR = {
+		is_at_war = no
+		mid_game_years_passed > 0
+	}
+	has_technology = tech_habitat_1
+	if = {
+		limit = {
+			NOT = { is_origin_void_dwellers = yes } #VDs should build habitats even if there are other planets available
+		}
+		ai_colonize_plans <= 0
+		OR = {
+			NOT = { has_trait = trait_aquatic }
+			has_ascension_perk = ap_hydrocentric
+		}
+	}
+	NOT = {
+		any_planet_within_border = {
+			is_planet_class = pc_habitat
+			is_colony = no
+		}
+	}
+	NOT = {
+		any_neighbor_country = {
+			is_crisis_faction = yes
+		}
+	}
+}
+has_slave_origin = {
+	OR = {
+		is_origin_broken_shackles = yes
+		is_origin_payback = yes
+	}
+}
+can_remove_overtuned_traits = {
+	hidden_trigger = { exists = from }
+	from = {
+		OR = {
+			has_tradition = tr_genetics_resequencing
+			is_origin_overtuned = yes
+		}
+	}
+}
+# 02_scripted_triggers_first_contact_dlc
+has_blocked_random_devastating_pre_ftl_events = {
+	OR = {
+		is_origin_fotd = yes
+		has_country_flag = fotd_hunter
+		has_country_flag = solarpunk_country
+	}
+}

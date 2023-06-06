@@ -1,0 +1,538 @@
+d_toxic_knights_cache = {
+	icon = "unused/d_space_walk"
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		can_have_habitable_deposits = yes
+		is_planet_class = pc_habitat
+	}
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			minerals = 6
+			alloys = 6
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_trader_cache = {
+	icon = "unused/d_space_walk"
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		can_have_habitable_deposits = yes
+		is_planet_class = pc_habitat
+	}
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			consumer_goods = 6
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_arcane_engineering_bay = {
+	icon = "d_station_junk"
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		can_have_habitable_deposits = yes
+		is_planet_class = pc_habitat
+	}
+	planet_modifier = {
+		planet_max_buildings_add = 1
+	}
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_arcane_elevation_chamber = {
+	icon = "d_station_junk"
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		can_have_habitable_deposits = yes
+		is_planet_class = pc_habitat
+	}
+	planet_modifier = {
+		job_necro_apprentice_add = 1
+	}
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_origin_expand_ruined_city = {
+	is_for_colonizable = yes
+	icon = "d_station_junk"
+
+	planet_modifier = {
+		planet_max_buildings_add = 1
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_calamitous_birth = {
+	is_for_colonizable = yes
+	icon = "d_crater"
+	
+	resources = {
+		category = planet_deposits
+		produces = {
+			minerals = 12
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_hive_overgrowth = {
+	time = 270
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 400
+		}
+	}
+
+	potential = {
+		planet_size >= 10
+	}
+
+	planet_modifier = {
+		planet_max_buildings_add = -1
+	}
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_trade_exp_hab_1 = {
+	time = 720
+
+	is_for_colonizable = yes
+	icon = "d_station_reactor"
+	category = deposit_cat_blockers
+
+	potential = {
+		always = no
+	}
+
+	can_be_cleared = {
+		exists = owner
+		owner = {
+			has_technology = tech_habitat_2
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			alloys = 1000
+		}
+	}
+	
+	ai_weight = {
+		weight = 2
+	}
+}
+d_trade_exp_hab_2 = {
+	time = 720
+
+	is_for_colonizable = yes
+	icon = "d_station_reactor"
+	category = deposit_cat_blockers
+
+	potential = {
+		always = no
+	}
+
+	can_be_cleared = {
+		exists = owner
+		owner = {
+			has_technology = tech_habitat_3
+		}
+
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			alloys = 1500
+		}
+	}
+	
+	ai_weight = {
+		weight = 2
+	}
+}
+d_broken_thrusters = {
+	icon = "d_station_junk"
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		can_have_habitable_deposits = yes
+		is_planet_class = pc_habitat
+	}
+	resources = {
+		category = planet_deposits
+		produces = {
+			engineering_research = 10
+		}
+	}
+	drop_weight = {
+		weight = 0
+	}
+}
+
+### VANILLA DEPOSITS ###
+# 01_blocker_deposits
+d_ruined_arcology = {
+	time = 365
+	icon = d_city_ruins
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 750
+			minerals = 250
+		}
+	}
+
+	on_cleared = {
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					has_ancrel = yes
+				}
+			}
+
+			custom_tooltip = minor_artifacts_found
+			random_list = {
+				33 = {
+					owner = { add_resource = { minor_artifacts = 10 } }
+				}
+				33 = {
+					owner = { add_resource = { minor_artifacts = 30 } }
+				}
+				33 = {
+					owner = { add_resource = { minor_artifacts = 50 } }
+				}
+			}
+
+			if = {
+				limit = {
+					owner = {
+						NOT = { has_country_flag = league_world_found }
+					}
+					planet = { has_modifier = first_league_homeworld }
+				}
+				hidden_effect = {
+					owner = {
+						set_country_flag = league_world_found
+					}
+				}
+				custom_tooltip = league_artifact_research_unlocked
+			}
+		}
+		if = {
+			limit = {
+				owner = { is_origin_remnant = yes }
+				is_capital = yes
+			}
+			custom_tooltip = rediscover_tech
+			hidden_effect = {
+				owner = {
+					country_event = { id = origin.3100 }
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+# 07_federations_deposits
+d_tree_of_life_home = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_huge_tree
+
+	potential = {
+		exists = owner
+		owner = {
+			is_origin_tree_of_life = yes
+		}
+	}
+
+	planet_modifier = {
+		pop_growth_speed = 0.15
+		planet_jobs_society_research_produces_mult = 0.10
+		planet_housing_add = 10
+		district_farming_max = 4
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			food = 4
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+d_tree_of_life_colony = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_huge_tree
+
+	potential = {
+		exists = owner
+		planet = {
+			owner = {
+				is_origin_tree_of_life = yes
+			}
+		}
+	}
+
+	planet_modifier = {
+		pop_growth_speed = 0.1
+		planet_jobs_society_research_produces_mult = 0.10
+		planet_housing_add = 5
+		district_farming_max = 2
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			food = 2
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+d_buried_lithoids = {
+	icon = d_buried_lithoids
+	time = 360
+
+	is_for_colonizable = yes
+	category = deposit_cat_rare_blocker
+
+	potential = { always = no }
+
+	on_cleared = {
+		if = {
+			limit = {
+				NOT = { owner = { has_valid_civic = civic_lithoid } }
+			}
+			owner = { add_resource = { minerals = 300 } }
+		}
+
+		if = {
+			limit = {
+				owner = { has_valid_civic = civic_lithoid }
+			}
+			create_pop = {
+				species = owner
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			trigger = {
+				NOT = { owner = { has_valid_civic = civic_lithoid } }
+			}
+			energy = 300
+		}
+		cost = {
+			trigger = {
+				owner = { has_valid_civic = civic_lithoid }
+			}
+			minerals = 1000
+		}
+	}
+
+	ai_weight = {
+		weight = 2
+
+		modifier = {
+			factor = 0
+			AND = {
+				owner = { has_valid_civic = civic_lithoid }
+				from = { num_unemployed > 0 }
+			}
+		}
+	}
+}
+
+d_buried_lithoids_overlord = {
+	icon = d_buried_lithoids
+	time = 360
+
+	is_for_colonizable = yes
+	category = deposit_cat_rare_blocker
+
+	potential = { always = no }
+
+	on_cleared = {
+		if = {
+			limit = {
+				NOT = { owner.overlord = { has_valid_civic = civic_lithoid } }
+			}
+			owner = { add_resource = { minerals = 300 } }
+		}
+
+		if = {
+			limit = {
+				owner.overlord = { has_valid_civic = civic_lithoid }
+			}
+			create_pop = {
+				species = owner.overlord
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 2
+
+		modifier = {
+			factor = 0
+			AND = {
+				owner.overlord = { has_valid_civic = civic_lithoid }
+				from = { num_unemployed > 0 }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			trigger = {
+				NOT = { owner = { has_valid_civic = civic_lithoid } }
+			}
+			energy = 300
+		}
+		cost = {
+			trigger = {
+				owner = { has_valid_civic = civic_lithoid }
+			}
+			minerals = 1000
+		}
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+d_lithoid_crater = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_crater
+
+	potential = {
+		exists = owner
+		owner = {
+			has_valid_civic = civic_lithoid
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = 6
+		district_mining_max = 6
+		district_farming_max = -6
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_lithoid }
+		}
+		pop_growth_speed = 0.25
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+# 09_first_contact_deposits
+d_crashed_slaver_ship_memorial = {
+	is_for_colonizable = yes
+	icon = "d_crashed_ship"
+	category = deposit_cat_rare
+
+	potential = { always = no }
+
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_origin_broken_shackles = yes }
+		}
+		job_culture_worker_add = 2
+	}
+}

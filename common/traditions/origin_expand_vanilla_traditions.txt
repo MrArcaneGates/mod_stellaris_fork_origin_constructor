@@ -1,0 +1,267 @@
+# 00_adaptability
+tr_adaptability_finish = {
+	custom_tooltip_with_modifiers = tr_adaptability_finish_desc
+	modifier = {
+		ascension_perks_add = 1
+	}
+
+	tradition_swap = {
+		name = tr_adaptability_void_finish
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			is_origin_void_dwellers = yes
+		}
+		custom_tooltip = tr_adaptability_void_finish_desc
+		modifier = {
+			ascension_perks_add = 1
+		}
+		weight = {
+			factor = 1
+		}
+	}
+}
+# 00_domination
+tr_domination_adopt = {
+	modifier = {
+		deposit_blockers_cost_mult = -0.33
+	}
+
+	tradition_swap = {
+		name = tr_domination_adopt_void
+		inherit_name = yes
+		inherit_icon = yes
+		custom_tooltip = tr_domination_adopt_void_desc
+		trigger = {
+			is_origin_void_dwellers = yes
+		}
+		# Effects are implemented in 00_capital_buildings.txt
+		weight = {
+			factor = 1
+		}
+	}
+}
+# 00_expansion
+tr_expansion_finish = {
+	modifier = {
+		planet_non_artificial_max_districts_add = 1
+		ascension_perks_add = 1
+	}
+
+	tradition_swap = {
+		name = tr_expansion_finish_void
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_origin_void_dwellers = yes
+		}
+		modifier = {
+			megastructures_habitat_cost_mult = -0.20
+			ascension_perks_add = 1
+		}
+		weight = {
+			factor = 1
+		}
+	}
+}
+# 00_harmony
+tr_harmony_mind_and_body = {
+
+	modifier = {
+		leader_age = 20
+		leader_skill_levels = 1
+	}
+
+	tradition_swap = {
+		name = tr_harmony_unity_of_self
+
+		custom_tooltip = tr_harmony_unity_of_self_desc
+		# gain unity per pop necrophaged
+
+		trigger = {
+			is_origin_necrophage = yes
+		}
+		weight = {
+			factor = 2
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+		modifier = {
+			factor = 10
+			is_origin_necrophage = yes
+		}
+	}
+}
+# 00_prosperity
+tr_prosperity_public_works = {
+	possible = {
+		has_tradition = tr_prosperity_sct
+	}
+	custom_tooltip = tr_prosperity_public_works_desc
+
+	tradition_swap = {
+		name = tr_prosperity_extended_hives
+		custom_tooltip = tr_prosperity_extended_hives_desc
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_prosperity_optimized_nexus
+		custom_tooltip = tr_prosperity_optimized_nexus_desc
+		trigger = {
+			is_machine_empire = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_prosperity_void_works
+		inherit_icon = yes
+		custom_tooltip = tr_prosperity_void_works_desc
+
+		# Effects are implemented in 00_capital_buildings.txt
+
+		trigger = {
+			is_origin_void_dwellers = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+# 00_synchroncity
+tr_synchronicity_cloned_organs = {
+	modifier = {
+		leader_age = 20
+	}
+
+	tradition_swap = {
+		name = tr_synchronicity_self_preservation
+		trigger = {
+			is_machine_empire = yes
+		}
+		custom_tooltip = tr_synchronicity_self_preservation_desc
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_synchronicity_unity_of_mind
+		# gain unity per pop necrophaged
+		custom_tooltip = tr_synchronicity_unity_of_mind_desc
+		trigger = {
+			is_origin_necrophage = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+		modifier = {
+			factor = 10
+			is_origin_necrophage = yes
+		}
+	}
+}
+# 01_cybernetics
+tr_cybernetics_adopt = {
+	possible = {
+		if = {
+			limit = { is_hive_empire = no }
+			OR = {
+				has_ascension_perk = ap_the_flesh_is_weak
+				is_origin_cyberpunk = yes
+			}
+		}
+		else = {
+			has_ascension_perk = ap_organo_machine_interfacing
+		}
+	}
+	custom_tooltip = tr_cybernetics_adopt_desc
+
+	on_enabled = {
+		hidden_effect = {
+			if = {
+				limit = { is_origin_cyberpunk = no }
+				country_event = { id = utopia.2500 }
+			}
+		}
+	}
+
+	tradition_swap = {
+		name = tr_cybernetics_adopt_hive
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+		custom_tooltip = tr_cybernetics_adopt_hive_desc
+		on_enabled = {
+			hidden_effect = {
+				country_event = { id = utopia.2500 }
+			}
+		}
+		weight = {
+			factor = 1
+		}
+	}
+}
+# 01_psionics
+tr_psionics_adopt = {
+	possible = {
+		if = {
+			limit = { is_origin_shroudwalker_apprentice = yes }
+			has_technology = tech_psionic_theory
+		}
+		else = {
+			has_ascension_perk = ap_mind_over_matter
+		}
+	}
+	modifier = {
+		custom_tooltip = tr_psionics_adopt_tooltip
+	}
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = utopia.2600 }
+		}
+	}
+	# Grants the Latent Psionic trait
+
+	tradition_swap = {
+		name = tr_psionics_adopt_shroudwalker
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_origin_shroudwalker_apprentice = yes
+		}
+		modifier = {
+			custom_tooltip = tr_psionics_adopt_shroudwalker_tooltip
+		}
+		on_enabled = {
+			add_research_option = tech_telepathy
+			hidden_effect = {
+				country_event = { id = utopia.2600 }
+			}
+		}
+		weight = {
+			factor = 1
+		}
+	}
+}

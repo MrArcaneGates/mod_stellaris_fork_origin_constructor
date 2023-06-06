@@ -1,0 +1,41 @@
+cb_payback = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	potential = {
+		is_country_type = default
+		is_origin_payback = yes
+		has_event_chain = payback_make_them_pay_swords_chain
+	}
+	is_valid = {
+		from = {
+			OR = {
+				has_origin = origin_slavers
+				has_country_flag = payback_stole_revenge
+			}
+		}
+		NOT = { is_overlord_to = FROM }
+		OR = {
+			is_subject = no
+			overlord = { NOT = { is_same_value = from } }
+		}
+	}
+}
+
+cb_payback_punishment = {
+	show_notification = yes
+	potential = {
+		has_country_flag = payback_punish_slavers
+		is_country_type = default
+		is_origin_payback = yes
+	}
+	is_valid = {
+		allows_slavery = no
+		from = {
+			OR = {
+				allows_preftl_exploitation = yes
+				allows_slavery = yes
+				allows_purge = yes
+			}
+		}
+	}
+}

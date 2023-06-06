@@ -1,0 +1,768 @@
+namespace = colony
+
+planet_event = {
+	id = colony.50
+	title = "colony.50.name"
+	desc = {
+		trigger = {
+			NOT = {
+				owner = { is_origin_subterranean = yes }
+			}
+		}
+		text = "colony.50.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { is_origin_subterranean = yes }
+		}
+		text = "colony.50.desc.subterranean"
+	}
+
+	picture = GFX_evt_in_the_dark
+	show_sound = event_air_raid_siren
+	location = ROOT
+	trackable = yes
+
+	pre_triggers = {
+		is_ai = no
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		#owner = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+		num_pops > 0
+		NOR = {
+			has_global_flag = seismic_disturbance_global
+			has_planet_flag = colony_event
+			is_planet_class = pc_nuked
+			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_shattered_ring_habitable
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = { save_event_target_as = subterranean_planet_owner }
+		set_global_flag = seismic_disturbance_global
+		set_planet_flag = seismic_disturbance
+		set_planet_flag = colony_event
+		add_deposit = d_underground_farm_blocked
+		add_deposit = d_underground_mine_blocked
+		add_deposit = d_underground_generator_blocked
+		create_subterranean_nation = { FLAG = subterranean_nation }
+	}
+
+	option = {
+		name = colony.50.a
+		begin_event_chain = {
+			event_chain = "subterranean_civilization_chain"
+			target = ROOT
+		}
+		enable_special_project = {
+			name = "SEISMIC_DISTURBANCE_1_PROJECT" #Establish Communications
+			location = this
+			owner = root
+		}
+		enable_special_project = {
+			name = "SEISMIC_DISTURBANCE_2_PROJECT" #Preemptive Strike
+			location = this
+			owner = root
+		}
+
+	}
+	option = {
+		name = distar.216.a.exter
+		exclusive_trigger = { owner = { is_homicidal = yes } }
+		begin_event_chain = {
+			event_chain = "subterranean_civilization_chain"
+			target = ROOT
+		}
+		enable_special_project = {
+			name = "SEISMIC_DISTURBANCE_2_PROJECT" #Preemptive Strike
+			location = this
+			owner = root
+		}
+
+	}
+}
+
+# Subterranean Aliens
+country_event = {
+	id = colony.53
+	title = "colony.53.name"
+	desc = {
+		trigger = {
+			NOT = { is_origin_subterranean = yes }
+		}
+		text = "colony.53.desc"
+	}
+	desc = {
+		trigger = { is_origin_subterranean = yes }
+		text = "colony.53.desc.subterranean"
+	}
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+
+	picture_event_data = {
+		room = no_video_feed_room
+	}
+
+	option = {
+		name = colony.53.a
+		response_text = colony.53.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		trigger = {
+			NOT = { is_origin_subterranean = yes }
+		}
+		name = colony.53.b
+		response_text = "colony.53.b.response"
+		hidden_effect = {
+			FROM = {
+				set_planet_flag = seismic_disturbance_friendly
+				create_subterranean_nation = { FLAG = subterranean_nation }
+			}
+		}
+		FROM = {
+			add_modifier = {
+				modifier = "subterranean_civilization"
+				days = -1
+			}
+			add_deposit = d_underground_contact_zone
+			#set_planet_flag = trade_size_increase
+		}
+	}
+	option = {
+		trigger = { is_origin_subterranean = yes }
+		name = colony.53.b
+		response_text = "colony.53.b.response.subterranean"
+		hidden_effect = {
+			FROM = {
+				set_planet_flag = seismic_disturbance_friendly
+				create_subterranean_nation = { FLAG = subterranean_nation }
+			}
+		}
+		FROM = {
+			add_modifier = {
+				modifier = "subterranean_civilization"
+				days = -1
+			}
+			add_deposit = d_underground_contact_zone
+			#set_planet_flag = trade_size_increase
+		}
+	}
+	option = {
+		name = colony.53.c
+		response_text = colony.53.c.response
+		hidden_effect = {
+			FROM = {
+				planet_event = { id = colony.54 days = 35 random = 40 }
+			}
+		}
+	}
+}
+
+# Subterranean Invasion!
+planet_event = {
+	id = colony.54
+	title = "colony.54.name"
+	desc = {
+		trigger = {
+			NOT = {
+				owner = { is_origin_subterranean = yes }
+			}
+		}
+		text = "colony.54.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { is_origin_subterranean = yes }
+		}
+		text = "colony.54.desc.subterranean"
+	}
+	picture = GFX_evt_ground_combat
+	show_sound = event_ground_battle
+	location = ROOT
+
+	is_triggered_only = yes
+
+	immediate = {
+		create_subterranean_nation = { FLAG = subterranean_nation } #makes sure the event targets are set
+		owner = {
+			set_country_flag = has_fought_subterraneans
+			set_country_flag = subterranean_invasion_country
+		}
+		set_planet_flag = subterranean_invasion_planet
+		event_target:subterranean_nation = {
+			create_leader = {
+				class = general
+				species = owner_main_species
+				name = random
+				skill = 3
+			}
+		}
+		if = {
+			limit = {
+				event_target:subterranean_nation = {
+					NOT = { has_country_flag = tech_request_approved }
+				}
+			}
+			while = {
+				count = 6
+				create_army = {
+					name = "NAME_Invading_Horde"
+					owner = event_target:subterranean_nation
+					species = event_target:subterranean_species
+					type = "subterranean_industrial_army"
+					leader = last_created_leader
+				}
+			}
+		}
+		if = {
+			limit = {
+				event_target:subterranean_nation = { has_country_flag = tech_request_approved }
+			}
+			while = {
+				count = 6
+				create_army = {
+					name = "NAME_Invading_Horde"
+					owner = event_target:subterranean_nation
+					species = event_target:subterranean_species
+					type = "subterranean_postatomic_army"
+					leader = last_created_leader
+				}
+			}
+		}
+	}
+
+	after = {
+		remove_deposit = d_underground_contact_zone
+	}
+
+	option = {
+		name = colony.54.a
+		custom_tooltip = subterranean_invasion
+	}
+}
+
+# Victory
+country_event = {
+	id = colony.56
+	title = "colony.56.name"
+	desc = {
+		trigger = { NOT = { is_origin_subterranean = yes } }
+		text = "colony.56.desc"
+	}
+	desc = {
+		trigger = { is_origin_subterranean = yes }
+		text = "colony.56.desc.subterranean"
+	}
+	picture = GFX_evt_ground_combat
+	show_sound = event_ground_battle
+	location = FROMFROM
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = subterranean_invasion_country
+		NOT = { has_country_flag = subterraneans_defeated_once }
+		FROMFROM = { has_planet_flag = subterranean_invasion_planet }
+	}
+
+	immediate = {
+		remove_country_flag = subterranean_invasion_country
+		set_country_flag = subterraneans_defeated_once
+		FROMFROM = {
+			set_planet_flag = seismic_disturbance_war
+			remove_planet_flag = subterranean_invasion_planet
+		}
+	}
+
+	option = {
+		name = colony.56.a
+		enable_special_project = {
+			name = "SEISMIC_DISTURBANCE_3_PROJECT" #Destroy them
+			location = FROMFROM
+			owner = ROOT
+		}
+	}
+}
+
+# Incoming Transmission
+country_event = {
+	id = colony.58
+	title = TRANSMISSION
+	desc = {
+		trigger = {
+			NOT = { is_origin_subterranean = yes }
+		}
+		text = "colony.58.desc"
+	}
+	desc = {
+		trigger = { is_origin_subterranean = yes }
+		text = "colony.58.desc.subterranean"
+	}
+
+	diplomatic = yes
+
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:subterranean_empire
+		room = event_target:subterranean_empire.ruler
+	}
+
+	option = {
+		name = colony.58.a
+	}
+}
+
+# Aliens Surface
+planet_event = {
+	id = colony.59
+	title = "colony.59.name"
+	desc = {
+		trigger = {
+			NOT = {
+				owner = { is_origin_subterranean = yes }
+			}
+		}
+		text = "colony.59.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { is_origin_subterranean = yes }
+		}
+		text = "colony.59.desc.subterranean"
+	}
+	picture = GFX_evt_alien_cavemen
+	show_sound = event_pre_ftl_civilization
+	location = ROOT
+
+	is_triggered_only = yes
+
+	option = {
+		name = colony.59.a
+		owner = {
+			country_event = { id = colony.53 }
+		}
+	}
+}
+
+planet_event = {
+	id = colony.64
+	title = "colony.64.name"
+	desc = "colony.64.desc"
+	picture = GFX_evt_in_the_dark
+	show_sound = event_scanner
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+	}
+
+	trigger = {
+		has_planet_flag = seismic_disturbance_destroyed
+		NOT = { has_planet_flag = seismic_disturbance_pocket }
+		has_ground_combat = no
+		num_pops > 0
+	}
+
+	mean_time_to_happen = {
+		months = 240
+	}
+
+	immediate = {
+		set_planet_flag = seismic_disturbance_pocket
+		create_species = {
+			name = random
+			class = random_non_machine
+			portrait = random
+			traits = random
+			homeworld = planet
+		}
+		last_created_species = {
+			save_event_target_as = subterranean_species
+		}
+	}
+
+	option = {
+		name = colony.64.a
+	}
+	option = {
+		name = {
+			trigger = { NOT = { owner = { is_origin_subterranean = yes } } }
+			text = "colony.64.b"
+		}
+		name = {
+			trigger = { owner = { is_origin_subterranean = yes } }
+			text = "colony.64.b.subterranean"
+		}
+		trigger = {
+			#free_housing > 5
+			owner = { OR = { is_authoritarian = yes is_xenophobe = yes } }
+		}
+		hidden_effect = {
+			create_pop = {
+				species = event_target:subterranean_species
+				ethos = {
+					ethic = "ethic_spiritualist"
+				}
+			}
+			create_pop = {
+				species = event_target:subterranean_species
+				ethos = {
+					ethic = "ethic_spiritualist"
+				}
+			}
+			last_created_pop = { set_citizenship_type = { type = citizenship_slavery cooldown = yes } }
+		}
+	}
+}
+
+planet_event = {
+	id = colony.66
+	title = "colony.66.name"
+	desc = {
+		trigger = {
+			NOT = {
+				owner = { is_origin_subterranean = yes }
+			}
+		}
+		text = "colony.66.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { is_origin_subterranean = yes }
+		}
+		text = "colony.66.desc.subterranean"
+	}
+	picture = GFX_evt_in_the_dark
+	show_sound = event_mystic_reveal
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+	}
+
+	trigger = {
+		has_planet_flag = seismic_disturbance_destroyed
+		NOT = { has_planet_flag = seismic_disturbance_gold }
+		num_pops > 0
+	}
+
+	mean_time_to_happen = {
+		months = 240
+	}
+
+	immediate = {
+		hidden_effect = {
+			set_planet_flag = seismic_disturbance_gold
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		owner = {
+			add_monthly_resource_mult = {
+				resource = energy
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = colony.70
+	title = "colony.70.name"
+	desc = {
+		trigger = {
+			NOT = {
+				owner = { is_origin_subterranean = yes }
+			}
+		}
+		text = "colony.70.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { is_origin_subterranean = yes }
+		}
+		text = "colony.70.desc.subterranean"
+	}
+	picture = GFX_evt_alien_cavemen
+	show_sound = event_pre_ftl_civilization
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+	}
+
+	trigger = {
+		has_planet_flag = seismic_disturbance_friendly
+		NOT = { has_planet_flag = seismic_disturbance_gift }
+		num_pops > 0
+		check_variable = {
+			which = "angry_subterraneans"
+			value < 1
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 240
+	}
+
+	immediate = {
+		set_planet_flag = seismic_disturbance_gift
+	}
+
+	option = {
+		name = colony.70.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = minerals
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+	}
+}
+
+# Subterranean Refugees
+planet_event = {
+	id = colony.71
+	title = "colony.71.name"
+	desc = {
+		trigger = {
+			NOT = {
+				owner = { is_origin_subterranean = yes }
+			}
+		}
+		text = "colony.71.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { is_origin_subterranean = yes }
+		}
+		text = "colony.71.desc.subterranean"
+	}
+	picture = GFX_evt_alien_cavemen
+	show_sound = event_pre_ftl_civilization
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+	}
+
+	trigger = {
+		has_planet_flag = seismic_disturbance_friendly
+		NOT = { has_planet_flag = seismic_disturbance_refugees }
+		num_pops > 0
+		#free_housing > 0
+	}
+
+	mean_time_to_happen = {
+		months = 240
+	}
+
+	immediate = {
+		set_planet_flag = seismic_disturbance_refugees
+		random_country = {
+			limit = {
+				is_country_type = adversary
+				has_country_flag = subterranean_nation
+			}
+			owner_species = { save_event_target_as = subterranean_species }
+		}
+	}
+
+	option = {
+		name = colony.71.a
+		trigger = {
+			#free_housing > 0
+		}
+		create_pop = {
+			species = event_target:subterranean_species
+			ethos = {
+				ethic = "ethic_spiritualist"
+			}
+		}
+		hidden_effect = {
+			change_variable = {
+				which = "angry_subterraneans"
+				value = 1
+			}
+		}
+		custom_tooltip = subterraneans_displeased
+	}
+	option = {
+		name = colony.71.b
+		hidden_effect = {
+			change_variable = {
+				which = "angry_subterraneans"
+				value = -1
+			}
+		}
+		custom_tooltip = subterraneans_pleased
+	}
+}
+
+country_event = {
+	id = colony.76
+	title = "colony.76.name"
+	desc = {
+		trigger = {
+			NOT = {
+				owner = { is_origin_subterranean = yes }
+			}
+		}
+		text = "colony.76.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { is_origin_subterranean = yes }
+		}
+		text = "colony.76.desc.subterranean"
+	}
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+
+	picture_event_data = {
+		room = no_video_feed_room
+	}
+
+	immediate = {
+		random_country = {
+			limit = {
+				has_country_flag = subterranean_nation
+				is_country_type = adversary
+			}
+			save_event_target_as = subterranean_nation
+		}
+	}
+
+	option = {
+		name = colony.76.a
+		FROM = {
+			remove_modifier = "subterranean_civilization"
+		}
+		hidden_effect = {
+			FROM = {
+				planet_event = { id = colony.54 days = 35 random = 40 }
+			}
+		}
+	}
+}
+planet_event = {
+	id = colony.107
+	title = "PROJECT_COMPLETE"
+	desc = {
+		trigger = {
+			NOR = {
+				owner = { is_origin_postapoc = yes }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+			}
+		}
+		text = "colony.107.desc"
+	}
+	desc = {
+		trigger = {
+			OR = {
+				owner = { is_origin_postapoc = yes }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+			}
+		}
+		text = "colony.107.desc.nuked_pref"
+	}
+	picture = GFX_evt_dead_city
+	show_sound = event_activating_unknown_technology
+	location = ROOT
+
+	is_triggered_only = yes
+
+	option = {
+		trigger = {
+			NOR = {
+				owner = { is_origin_postapoc = yes }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+			}
+		}
+		name = colony.107.a
+		change_pc = pc_nuked
+		hidden_effect = { set_planet_flag = nuked_planet_anomalies_disabled }
+		if = { #Destroys colony if no planet pops can live on Tomb Worlds
+			limit = {
+				NOT = {
+					any_owned_pop = {
+						OR = {
+							has_trait = trait_pc_nuked_preference
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+						}
+					}
+				}
+			}
+			destroy_colony = yes
+		}
+		else = { #Kills only planet pops that cannot live on Tomb Worlds
+			hidden_effect = {
+				every_owned_pop = {
+					limit = {
+						NOR = {
+							has_trait = trait_pc_nuked_preference
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+						}
+					}
+					kill_pop = yes
+				}
+			}
+			custom_tooltip = colony.107.a.tooltip
+		}
+		hidden_effect = {
+			remove_modifier = "abandoned_terraforming"
+		}
+	}
+	option = {
+		trigger = {
+			OR = {
+				owner = { is_origin_postapoc = yes }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+			}
+		}
+		name = EXCELLENT
+		hidden_effect = { change_pc = pc_nuked }
+		set_planet_flag = nuked_planet_anomalies_disabled
+		hidden_effect = {
+			remove_modifier = "abandoned_terraforming"
+		}
+	}
+}

@@ -1,0 +1,408 @@
+# 00_rules
+species_can_live_on_planet = {
+	exists = root #somehow this appeared in the error log. No idea how!
+	NAND = {
+		root = { is_planet_class = pc_machine }
+		NOR = {
+			has_trait = trait_machine_unit
+			has_trait = trait_mechanical
+			AND = {
+				has_trait = trait_cybernetic
+				exists = root.owner
+				root.owner = {
+					has_authority = auth_machine_intelligence
+					has_civic = civic_machine_assimilator # Assimilator empire
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			root = { is_planet_class = pc_hive }
+		}
+		OR = {
+			has_trait = trait_hive_mind
+			AND = { #Necrophage Hive Mind can have Necrophytes
+				exists = root.owner
+				root.owner = {
+					is_hive_empire = yes
+					is_origin_necrophage = yes
+					prev = { species_can_be_necrophaged = yes }
+				}
+			}
+		}
+	}
+}
+can_generate_leader_from_pop = {
+	has_citizenship_rights = yes
+	NOT = { has_trait = trait_syncretic_proles }
+	can_think = yes
+	OR = {
+		is_robot_pop = no
+		root = {
+			OR = {
+				has_technology = tech_synthetic_leaders
+				has_authority = auth_machine_intelligence
+				is_mechanical_empire = yes
+			}
+		}
+	}
+	OR = {
+		is_same_species = root
+		root = {
+			NAND = {
+				is_origin_necrophage = yes
+				has_trait = trait_necrophage
+			}
+		}
+	}
+}
+can_generate_military_leader_from_pop = {
+	can_be_military_leader = yes
+	OR = {
+		is_robot_pop = no
+		root = {
+			OR = {
+				has_technology = tech_synthetic_leaders
+				has_authority = auth_machine_intelligence
+				is_mechanical_empire = yes
+			}
+		}
+	}
+	OR = {
+		is_same_species = root
+		root = {
+			NAND = {
+				is_origin_necrophage = yes
+				has_trait = trait_necrophage
+			}
+		}
+	}
+}
+can_release_vassal_from_species = {
+	root = {
+		is_sapient = yes
+		NOR = {
+			has_trait = trait_machine_unit
+			AND = {
+				has_trait = trait_hive_mind
+				NOT = { prev.this = { is_origin_progenitor_hive = yes } }
+			}
+			AND = {
+				NOT = { has_trait = trait_hive_mind }
+				prev.this = { has_authority = auth_hive_mind }
+			}
+			has_trait = trait_mechanical
+			can_think = no
+		}
+	}
+}
+can_take_hostile_actions = {
+	if = {
+		limit = {
+			ROOT = {
+				NOT = { has_policy_flag = first_contact_attack_allowed }
+			}
+			NOT = {
+				is_hostile = ROOT
+				has_communications = ROOT
+			}
+		}
+		custom_tooltip = {
+			text = "CAN_TAKE_HOSTILE_ACTION_FIRST_CONTACT_PROTOCOL"
+			always = no
+		}
+	}
+	else_if = {
+		limit = {
+			has_country_flag = fotd_seperatist_country@ROOT
+			ROOT = {
+				is_origin_fotd = yes
+			}
+		}
+		custom_tooltip = {
+			text = "CAN_TAKE_HOSTILE_ACTION_FOTD"
+			always = no
+		}
+	}
+	else_if = {
+		limit = {
+			AND = {
+				NOT = { has_country_flag = hostile_to_nomads }
+				ROOT = {
+					is_country_type = nomad
+				}
+			}
+		}
+		custom_tooltip = {
+			text = "CAN_TAKE_HOSTILE_ACTION_FIRST_CONTACT_PROTOCOL"
+			always = no
+		}
+	}
+	else_if = {
+		#attacking primitives with non-interference
+		limit = {
+			ROOT = {
+				is_country_type = default
+				NOT = {
+					has_policy_flag = interference_aggressive
+				}
+			}
+			is_primitive = yes
+		}
+		custom_tooltip = {
+			text = "CAN_TAKE_HOSTILE_ACTION_NATIVE_INTERFERENCE"
+			always = no
+		}
+	}
+	else_if = {
+		limit = {
+			is_primitive = yes
+			ROOT = { is_country_type = default }
+			capital_scope = {
+				root = {
+					NOT = {
+						any_planet_within_border = {
+							is_same_value = prevprev
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			text = ""
+			always = no
+		}
+	}
+	else_if = {
+		limit = {
+			ROOT = { any_agreement = { agreement_preset = preset_satrapy } }
+			is_country_type = faction
+			root = {
+				any_owned_planet = {
+					exists = controller
+					controller = {
+						is_same_value = prevprevprev
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			text = ""
+			always = yes
+		}
+	}
+	else_if = {
+		limit = {
+			exists = overlord
+			ROOT = { any_agreement = { agreement_preset = preset_satrapy } }
+		}
+		custom_tooltip = {
+			text = "CAN_TAKE_HOSTILE_ACTION_SATRAPY"
+			always = no
+		}
+	}
+	else_if = {
+		limit = {
+			exists = overlord
+			overlord = { is_same_value = root }
+			ROOT = { any_agreement = { agreement_preset = preset_satrapy } }
+		}
+		custom_tooltip = {
+			text = "CAN_TAKE_HOSTILE_ACTION_OVERLORD"
+			always = no
+		}
+	}
+	else = {
+		always = yes
+	}
+}
+should_force_decline_species = {
+	# Infertile Clone Army pops should decline if in Country that can't have Vats, or there is a Vat shortage.
+	custom_tooltip = {
+		success_text = CLONE_ARMY_FORCE_DECLINE
+		OR = {
+			has_trait = trait_clone_soldier_infertile
+			has_trait = trait_clone_soldier_infertile_full_potential
+		}
+		from = {
+			OR = {
+				# Check if country is unable to build Vats for this species.
+				AND = {
+					exists = owner
+					owner = {
+						OR = {
+							NOT = { is_origin_clone_army = yes }					# Can't have Vats.
+							has_country_flag = clone_army_fertility_unlocked			# Can't have Vats anymore.
+							NOT = { owner_main_species = { is_same_species = root } }	# Our Vats can't build this species.
+						}
+					}
+				}
+				# Vats check out, but are there more pops than Vats support?
+				check_variable = { which = clone_pops_missing value < 0 }
+			}
+		}
+	}
+}
+has_enough_pops_for_necrophage_on_planet = {
+	owner = { is_origin_necrophage = yes }
+	has_available_jobs = necro_apprentice
+	if = {
+		limit = {
+			has_planet_flag = necrophage_alert_timer
+		}
+		count_owned_species = {
+			count = 0
+			limit = { species_can_be_necrophaged = yes }
+		}
+	}
+	else = {
+		NOT = { any_owned_pop = { can_work_specific_job = necro_apprentice } }
+	}
+}
+can_remove_positive_traits_organic = {
+	OR = {
+		AND = {
+			has_utopia = yes
+			OR = {
+				has_tradition = tr_genetics_resequencing
+				has_tradition = tr_cybernetics_integrated_anatomy
+				has_tradition = tr_cybernetics_assimilator_integrated_anatomy
+			}
+		}
+		AND = {
+			has_toxoids = yes
+			is_origin_overtuned = yes
+		}
+		has_technology = tech_epigenetic_triggers
+	}
+}
+can_have_first_contact = {
+	if = {
+		limit = { from = { is_amoeba_country_type = yes } }
+		NOT = {
+			any_active_first_contact = {
+				contact_country = { is_amoeba_country_type = yes }
+			}
+		}
+	}
+	else_if = {
+		limit = { from = { is_tiyanki_country_type = yes } }
+		NOT = {
+			any_active_first_contact = {
+				contact_country = { is_tiyanki_country_type = yes }
+			}
+		}
+	}
+	else_if = {
+		limit = { from = { is_crystal_country_type = yes } }
+		NOT = {
+			any_active_first_contact = {
+				contact_country = {
+					is_crystal_country_type = yes
+					NOT = { has_country_flag = queued_to_destroy }
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { from = { is_drone_country_type = yes } }
+		NOT = {
+			any_active_first_contact = {
+				contact_country = {
+					is_drone_country_type = yes
+					NOT = { has_country_flag = queued_to_destroy }
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { from = { is_country_type = cloud } }
+		NOT = {
+			any_active_first_contact = {
+				contact_country = { is_country_type = cloud }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			from = {
+				OR = {
+					is_country_type = caravaneer_fleet
+					is_country_type = caravaneer_home
+				}
+			}
+		}
+		NOT = {
+			any_active_first_contact = {
+				contact_country = {
+					OR = {
+						is_country_type = caravaneer_fleet
+						is_country_type = caravaneer_home
+					}
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			from = {
+				is_country_type = dragon_dummy
+			}
+		}
+		is_origin_here_be_dragons = yes
+		from = { has_country_flag = dragon_of@prev }
+	}
+	else_if = {
+		limit = {
+			from = {
+				is_country_type = jaunting_traveler_dummy
+			}
+		}
+		from = { has_country_flag = jaunting_traveler_of@prev }
+	}
+}
+can_fill_ruler_job = {
+	if = {
+		limit = {
+			exists = owner
+			owner = {
+				is_origin_necrophage = yes
+				has_trait = trait_necrophage
+			}
+		}
+		custom_tooltip = {
+			text = RULER_JOB_NECROPHAGE_TRIGGER
+			has_trait = trait_necrophage
+			is_enslaved = no
+			is_being_purged = no
+			is_being_assimilated = no
+		}
+	}
+	else = {
+		custom_tooltip = RULER_JOB_TRIGGER
+		hidden_trigger = {
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			exists = owner
+			is_enslaved = no
+			is_being_purged = no
+			is_being_assimilated = no
+			NOT = { has_trait = trait_syncretic_proles }
+			can_think = yes
+			OR = {
+				NOT = { has_trait = trait_mechanical }
+				AND = {
+					owner = { has_technology = tech_synthetic_workers }
+					owner = { has_policy_flag = ai_full_rights }
+				}
+			}
+			NOT = { has_citizenship_type = { type = citizenship_organic_trophy country = owner } }
+			if = {
+				limit = {
+					divinity_right_to_work_job_check_trigger_exempt = no
+				}
+				divinity_right_to_work_job_check_trigger_ruler = yes
+			}
+		}
+	}
+}

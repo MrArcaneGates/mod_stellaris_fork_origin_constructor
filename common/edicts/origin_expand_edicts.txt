@@ -1,0 +1,73 @@
+@Edict1Cost = 10
+@EdictSpecialCost = 1
+@EdictPerpetual = -1
+
+# 00_edicts
+evacuation_protocols = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_colony_development_speed_mult = 1.00
+		pop_resettlement_cost_mult = -0.50
+	}
+
+	potential = {
+		is_origin_doomsday = yes
+		any_owned_planet = {
+			is_doomsday_planet = yes
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "requires_doomsday_colony"
+			any_owned_planet = {
+				habitable_planet = yes
+				is_doomsday_planet = no
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 500
+	}
+}
+damn_the_consequences = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	edict_lock_in_months = 60
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @EdictSpecialCost
+			multiplier = value:consequences_cost
+		}
+	}
+
+	modifier = {
+		custom_tooltip = "edict_damn_the_consequences_effects"
+		show_only_custom_tooltip = no
+		planet_pops_organics_upkeep_mult = 1
+	}
+
+	potential = {
+		is_origin_overtuned = yes
+	}
+
+	allow = { }
+
+	ai_weight = {
+		weight = 0
+	}
+}

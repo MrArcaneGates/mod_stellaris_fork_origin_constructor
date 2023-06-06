@@ -1,0 +1,210 @@
+ap_hydrocentric = {
+	potential = {
+		has_aquatics = yes
+		NOT = { has_ascension_perk = ap_hydrocentric }
+		has_trait = trait_pc_ocean_preference
+	}
+	possible = {
+		has_trait = trait_aquatic
+		has_technology = tech_terrestrial_sculpting
+	}
+
+	on_enabled = {
+		custom_tooltip = ap_hydrocentric_tooltip
+		if = {
+			limit = {
+				host_has_dlc = "Apocalypse"
+			}
+			if = {
+				limit = { has_ascension_perk = ap_colossus }
+				custom_tooltip = ap_hydrocentric_deluge_tooltip
+			}
+			else = {
+				custom_tooltip = ap_hydrocentric_deluge_pre_unlock_tooltip
+			}
+		}
+		hidden_effect = {
+			country_event = { id = aquatics.1 }
+		}
+	}
+
+	modifier = {
+		terraforming_ocean_cost_mult = -0.25
+	}
+
+	ai_weight = {
+		factor = 80 #it really is quite good for Aquatic species
+		modifier = {
+			factor = 0.5
+			is_xenophobe = no
+			is_hive_empire = no
+		}
+		modifier = {
+			factor = 5
+			is_origin_ocean_paradise = yes
+		}
+	}
+}
+
+ap_world_shaper = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+	}
+
+	modifier = {
+		terraforming_cost_mult = -0.25
+	}
+
+	on_enabled = {
+		custom_tooltip = "allow_gaia"
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_world_shaper
+		}
+		NOT = { has_authority = auth_hive_mind }
+		OR = {
+			NOT = { has_authority = auth_machine_intelligence }
+			has_valid_civic = civic_machine_servitor
+			has_valid_civic = civic_machine_assimilator
+		}
+	}
+
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 0
+			OR = {
+				is_origin_void_dwellers = yes
+				is_origin_shattered_ring = yes
+				has_trait = trait_aquatic
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 3
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = { #only way to get more nice planets
+			factor = 100
+			is_origin_life_seeded = yes
+		}
+	}
+}
+
+ap_mastery_of_nature = {
+	on_enabled = {
+		custom_tooltip = "allow_decision_mastery_of_nature"
+		custom_tooltip = "describe_decision_mastery_of_nature"
+	}
+	modifier = {
+		deposit_blockers_cost_mult = -0.33
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_mastery_of_nature
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0
+			OR = {
+				is_origin_void_dwellers = yes
+				is_origin_shattered_ring = yes
+			}
+		}
+		modifier = {
+			factor = 2
+			years_passed > 40
+			num_owned_planets < 5
+		}
+		modifier = {
+			factor = 2
+			years_passed > 80
+			num_owned_planets < 10
+		}
+	}
+}
+
+ap_voidborn = {
+	potential = {
+		host_has_dlc = "Utopia"
+		NOT = {
+			has_ascension_perk = ap_voidborn
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_habitat_1"
+			has_technology = tech_habitat_1
+		}
+	}
+
+	on_enabled = {
+		custom_tooltip = "ap_voidborn_habitat_effect"
+		if = {
+			limit = {
+				NOT = { has_technology = tech_habitat_2 }
+			}
+			add_research_option = tech_habitat_2
+			custom_tooltip = "add_research_options_voidborn"
+		}
+		if = {
+			limit = {
+				has_technology = tech_habitat_2
+				NOT = { has_technology = tech_habitat_3 }
+			}
+			add_research_option = tech_habitat_3
+		}
+	}
+
+	modifier = {
+		pc_habitat_habitability = 0.2
+	}
+
+	ai_weight = {
+		base = 10
+		complex_trigger_modifier = {
+			trigger = count_owned_planet
+			parameters = {
+				limit = { is_planet_class = pc_habitat }
+			}
+			mode = add
+			mult = 2
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 1000
+			is_origin_void_dwellers = yes
+		}
+	}
+}

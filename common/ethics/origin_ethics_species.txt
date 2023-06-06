@@ -1,0 +1,52 @@
+ethic_overtuned = {
+	cost = 40
+	category = "spe"
+	category_value = 0
+	
+	playable = {
+		has_toxoids = yes
+	}
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_shroudwalker_apprentice = {
+	cost = 30
+	category = "spe"
+	category_value = 1
+	
+	playable = {
+		has_overlord_dlc = yes
+	}
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_cyberpunk = {
+	cost = 40
+	category = "spe"
+	category_value = 2
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}

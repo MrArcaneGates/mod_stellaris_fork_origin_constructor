@@ -1,0 +1,37 @@
+ethic_progenitor_hive = {
+	cost = 30
+	category = "hiv"
+	category_value = 0
+	
+	playable = {
+		has_overlord_dlc = yes
+	}
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_tree_of_life = {
+	cost = 30
+	category = "hiv"
+	category_value = 1
+	
+	playable = {
+		host_has_dlc = "Utopia"
+	}
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}

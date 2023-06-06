@@ -1,0 +1,90 @@
+ethic_galactic_doorstep = {
+	cost = 10
+	category = "sys"
+	category_value = 0
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_star_slingshot = {
+	cost = 30
+	category = "sys"
+	category_value = 1
+	
+	playable = {
+		has_overlord_dlc = yes
+	}
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_shoulders_of_giants = {
+	cost = 30
+	category = "sys"
+	category_value = 2
+	
+	playable = {
+		host_has_dlc = "Federations"
+	}
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_here_be_dragons = {
+	cost = 30
+	category = "sys"
+	category_value = 3
+	
+	playable = {
+		has_aquatics = yes
+	}
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_galactic_wonders = {
+	cost = 30
+	category = "sys"
+	category_value = 4
+	
+	playable = {
+		host_has_dlc = "Utopia"
+	}
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}

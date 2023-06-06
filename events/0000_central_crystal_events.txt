@@ -1,0 +1,22 @@
+namespace = central
+
+event = {
+	id = central.1
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			is_ai = no
+			is_origin_void_dwellers = yes
+		}
+	}
+
+	immediate = {
+		random = {
+			chance = 1
+			set_global_flag = central_crystal_flag
+		}
+	}
+}

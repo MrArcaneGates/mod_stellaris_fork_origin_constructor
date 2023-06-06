@@ -1,0 +1,266 @@
+modifier_origin_common_ground = {
+	icon = "gfx/interface/icons/origins/origins_common_ground.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_hegemon = {
+	icon = "gfx/interface/icons/origins/origins_hegemon.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_imperial = {
+	icon = "gfx/interface/icons/origins/origins_imperial_vassal.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_scion = {
+	icon = "gfx/interface/icons/origins/origins_scion_1.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_lost_colony = {
+	icon = "gfx/interface/icons/origins/origins_lost_colony.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_payback = {
+	icon = "gfx/interface/icons/origins/origins_payback.dds"
+	icon_frame = 1
+	damage_vs_superior_empires_mult = 0.15
+}
+modifier_origin_broken_shackles = {
+	icon = "gfx/interface/icons/origins/origins_broken_shackles.dds"
+	icon_frame = 1
+	envoys_add = 1
+	first_contact_speed_mult = 0.20
+	spy_network_daily_value_mult = 0.20
+}
+modifier_origin_fotd = {
+	icon = "gfx/interface/icons/origins/origins_fear_of_the_dark.dds"
+	icon_frame = 1
+	ship_anomaly_generation_chance_mult = 0.1
+	ship_anomaly_research_speed_mult = 0.2
+	num_tech_alternatives_add = -1
+	country_leader_pool_size = -1
+}
+modifier_origin_galactic_doorstep = {
+	icon = "gfx/interface/icons/origins/origins_gateway.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_star_slingshot = {
+	icon = "gfx/interface/icons/origins/origins_star_slingshot.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_shoulders_of_giants = {
+	icon = "gfx/interface/icons/origins/origins_one_the_shoulders_of_giant.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_toxic_knights = {
+	icon = "gfx/interface/icons/origins/origins_toxic_knights.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_here_be_dragons = {
+	icon = "gfx/interface/icons/origins/origin_here_be_dragons.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_true_lifeseed = {
+	icon = "gfx/interface/icons/origins/origins_life_seeded.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_lifeseed = {
+	icon = "gfx/interface/icons/origins/origins_life_seeded.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_postapoc = {
+	icon = "gfx/interface/icons/origins/origins_post_apocalyptic.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_remnant = {
+	icon = "gfx/interface/icons/origins/origins_remnant.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_true_ringworld = {
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_ringworld = {
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_true_void_dwellers = {
+	icon = "gfx/interface/icons/origins/origin_void_dwellers.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_void_dwellers = {
+	icon = "gfx/interface/icons/origins/origin_void_dwellers.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_ocean_paradise = {
+	icon = "gfx/interface/icons/origins/origins_ocean_paradise.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_doomsday = {
+	icon = "gfx/interface/icons/origins/origins_doomsday.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_machine = {
+	icon = "gfx/interface/icons/origins/origins_resource_consolidation.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_subterranean = {
+	icon = "gfx/interface/icons/origins/origins_subterranean.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_mechanist = {
+	icon = "gfx/interface/icons/origins/origins_mechanist.dds"
+	icon_frame = 1
+	planet_pop_assembly_mult = 0.15
+	ROBOT_species_trait_picks_add = 1
+}
+modifier_origin_syncretic_evolution = {
+	icon = "gfx/interface/icons/origins/origins_syncretic_evolution.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_necrophage = {
+	icon = "gfx/interface/icons/origins/origins_necrophage.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_clone_army = {
+	icon = "gfx/interface/icons/origins/origins_clones.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_overtuned = {
+	icon = "gfx/interface/icons/origins/origins_overtuned.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_shroudwalker_apprentice = {
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_progenitor_hive = {
+	icon = "gfx/interface/icons/origins/origins_progenitor_hive.dds"
+	icon_frame = 1
+	owned_ship_speed_mult = -0.5
+	owned_ship_evasion_mult = -0.5
+	owned_ship_fire_rate_mult = -0.5
+	owned_ship_accuracy_mult = -0.5
+}
+modifier_origin_tree_of_life = {
+	icon = "gfx/interface/icons/origins/origins_tree_of_life.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_lithoid = {
+	icon = "gfx/interface/icons/origins/origins_lithoid.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_cyberpunk = {
+	icon = "gfx/interface/icons/origins/origins_cyberpunk.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_hots = {
+	icon = "gfx/interface/icons/origins/origins_hots.dds"
+	icon_frame = 1
+	#country_naval_cap_mult = 0.1
+}
+modifier_origin_galactic_wonders = {
+	icon = "gfx/interface/icons/origins/origins_galactic_wonders.dds"
+	icon_frame = 1
+	megastructure_build_speed_mult = 0.1
+}
+
+cp_questionable_experiments = {
+	pop_happiness = -0.1
+	icon = "gfx/interface/icons/modifiers/mod_country_num_tech_alternatives_negative.dds"
+}
+
+cp_auth_questionable_experiments = {
+	pop_happiness = -0.15
+	icon = "gfx/interface/icons/modifiers/mod_country_num_tech_alternatives_negative.dds"
+}
+
+cp_xeno_questionable_experiments = {
+	pop_happiness = 0.10
+	icon = "gfx/interface/icons/modifiers/mod_country_num_tech_alternatives_add_positive.dds"
+}
+
+cp_implant_recall = {
+	planet_pops_consumer_goods_upkeep_mult = 0.1
+	icon = "gfx/interface/icons/modifiers/mod_consumer_goods_cost_add.dds"
+}
+
+cp_worker_strike = {
+	planet_jobs_worker_produces_mult = -0.1
+	icon = "gfx/interface/icons/modifiers/cost_of_freedom_penalty.dds"
+}
+
+cp_worker_strike_banned = {
+	pop_cat_worker_happiness = -0.1
+	pop_cat_slave_happiness = -0.1
+	icon = "gfx/interface/icons/modifiers/mod_planet_jobs_slave_produces_mult.dds"
+}
+
+cp_materialist_movement = {
+	pop_ethic_materialist_attraction_mult = 0.5
+	icon = "gfx/interface/icons/modifiers/mod_cat_technology.dds"
+}
+
+cp_consp_theories = {
+	pop_factions_produces_mult = -0.25
+	pop_ethics_shift_speed_mult = 1
+	icon = "gfx/interface/icons/modifiers/mod_ethic_attraction_mult.dds"
+}
+
+cp_anti_implant_sect = {
+	pop_ethic_spiritualist_attraction_mult = 0.5
+	icon = "gfx/interface/icons/planet_modifiers/pm_alien_propaganda.dds"
+}
+
+cp_materialist_revolution = {
+	planet_stability_add = -5
+	icon = "gfx/interface/icons/planet_modifiers/pm_victorious_army.dds"
+}
+
+cp_dead_ruler = {
+	planet_stability_add = -5
+	icon = "gfx/interface/icons/planet_modifiers/pm_surreal_visions.dds"
+}
+
+cp_crime = {
+	planet_crime_add = 25
+	icon = "gfx/interface/icons/planet_modifiers/pm_crime.dds"
+}
+
+oc_trade_boom = {
+	trade_value_mult = 0.15
+	icon = "gfx/interface/icons/planet_modifiers/pm_resources_2.dds"
+}
+
+oc_wrath_of_the_toxic_god = {
+	planet_jobs_unity_produces_mult = 0.5
+	icon = "gfx/interface/icons/planet_modifiers/pm_surreal_visions.dds"
+}

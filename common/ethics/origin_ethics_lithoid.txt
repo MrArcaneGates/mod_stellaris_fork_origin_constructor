@@ -1,0 +1,14 @@
+ethic_lithoid = {
+	cost = 20
+	category = "lit"
+	category_value = 0
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}

@@ -1,0 +1,11 @@
+ta_name_list = {
+	selectable = { always = no }
+	randomized = no
+	character_names = {
+		default = {
+			full_names = {
+				Neriael Nerielys Nerisande Neriyuko Neriss Nerysgosa Neryssa Neridana Neridora Neriett Nerieth
+			}
+		}
+	}
+}

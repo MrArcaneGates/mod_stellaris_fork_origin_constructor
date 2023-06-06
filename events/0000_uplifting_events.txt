@@ -1,0 +1,70 @@
+namespace = uplift
+
+planet_event = {
+	id = uplift.7510
+	title = uplift.7510.name
+	desc = uplift.7510.desc
+	picture = GFX_evt_alien_cavemen
+	location = root
+
+	pre_triggers = { has_owner = yes }
+
+	trigger = {
+		owner = { is_ai = no }
+		any_owned_pop = { is_sapient = no }
+		NOT = { has_planet_flag = unethical_presapient_experiments }
+	}
+
+	mean_time_to_happen = { months = 1200 }
+
+	immediate = { set_planet_flag = unethical_presapient_experiments }
+
+	option = {
+		name = uplift.7510.a
+		add_modifier = {
+			modifier = unproductive_without_experiments
+			days = 720
+		}
+	}
+
+	option = {
+		name = uplift.7510.b
+		custom_tooltip = uplift.7510.b.tooltip
+		trigger = { owner = { is_xenophobe = no } }
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		add_modifier = {
+			modifier = unhappy_with_experiments
+			days = 720
+		}
+	}
+
+	option = {
+		name = uplift.7510.c
+		trigger = { owner = { is_xenophobe = yes } }
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = influence
+				value = @tier2influencereward
+				min = @tier2influencemin
+				max = @tier2influencemax
+			}
+			if = {
+				limit = { NOT = { has_ethic = ethic_fanatic_xenophobe } }
+				shift_fanatic_ethic_safe = { ETHIC = xenophobe OPPETHIC = xenophile }
+			}
+		}
+	}
+}

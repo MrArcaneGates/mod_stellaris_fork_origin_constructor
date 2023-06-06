@@ -1,0 +1,545 @@
+namespace = toxoids
+
+country_event = {
+	id = toxoids.7000
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_origin_toxic_knights = yes
+	}
+
+	immediate = {
+		start_situation = {
+			type = situation_toxic_knights
+		}
+		capital_scope = {
+			solar_system = {
+				closest_system = {
+					limit = {
+						any_system_planet = {
+							is_colonizable = no
+							OR = {
+								is_planet_class = pc_barren
+								is_planet_class = pc_molten
+								is_planet_class = pc_toxic
+							}
+							NOR = {
+								has_modifier = terraforming_candidate
+								has_modifier = frozen_terraforming_candidate
+								has_modifier = toxic_terraforming_candidate
+							}
+							has_deposit = no
+						}
+					}
+					min_steps = 1
+					random_system_planet = {
+						limit = {
+							is_colonizable = no
+							OR = {
+								is_planet_class = pc_barren
+								is_planet_class = pc_molten
+								is_planet_class = pc_toxic
+							}
+							NOR = {
+								has_modifier = terraforming_candidate
+								has_modifier = frozen_terraforming_candidate
+								has_modifier = toxic_terraforming_candidate
+							}
+							has_deposit = no
+						}
+						change_pc = pc_molten
+						add_deposit = d_alloys_2
+						add_deposit = d_energy_6
+					}
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = toxoids.7040
+	title = toxoids.7040.name
+	desc = toxoids.7040.desc
+	picture = GFX_evt_knights
+	show_sound = evn_tox_knights_of_the_toxic_god
+
+	is_triggered_only = yes
+
+	option = {
+		name = toxoids.7040.A
+		custom_tooltip = knights_more_unity_tooltip
+		hidden_effect = { set_country_flag = toxoids_7040_a }
+	}
+	option = {
+		name = toxoids.7040.B
+		custom_tooltip = knights_more_research_tooltip
+		hidden_effect = { set_country_flag = toxoids_7040_b }
+	}
+	option = {
+		name = toxoids.7040.C
+		allow = {
+			NOR = {
+				is_origin_void_dwellers = yes
+				is_origin_doomsday = yes
+			}
+		}
+		home_planet = {
+			hidden_effect = {
+				remove_deposit = d_toxic_god_pools_most_venemous
+			}
+			add_deposit = d_toxic_god_pools_most_venemous_upgraded
+		}
+	}
+}
+country_event = {
+	id = toxoids.7060
+	title = toxoids.7060.name
+	desc = toxoids.7060.desc
+	picture = GFX_evt_psionics
+	show_sound = event_mystic_reveal
+
+	is_triggered_only = yes
+
+	option = {
+		name = toxoids.7060.A
+		custom_tooltip = toxoids.7060.A.tooltip
+		hidden_effect = {
+			set_country_flag = toxoids_7060_A
+		}
+	}
+	option = {
+		name = toxoids.7060.B
+		allow = {
+			resource_stockpile_compare = {
+				resource = unity
+				value >= 1000
+			}
+			NOR = {
+				is_origin_void_dwellers = yes
+				is_origin_doomsday = yes
+			}
+		}
+		add_resource = {
+			unity = -1000
+		}
+		home_planet = {
+			hidden_effect = { remove_deposit = d_toxic_god_blight_upon_the_land }
+			add_deposit = d_toxic_god_blight_upon_the_land_upgraded
+		}
+	}
+	after = {
+		add_modifier = {
+			modifier = low_motivation
+			days = 3600
+		}
+	}
+}
+country_event = { #The Knight follows the vengeful companions through the unstable wormhole. Exits alone near a station full of long dead people. The Wanderer is there and very dead.
+	id = toxoids.7095
+	title = "toxoids.7095"
+	desc = "toxoids.7095.desc"
+	picture = GFX_evt_shroud_tunnel
+	show_sound = evn_tox_knights_of_the_toxic_god
+
+	is_triggered_only = yes
+
+	option = {
+		name = toxoids.7095.a
+		custom_tooltip = toxoids.7095.a.tooltip
+		allow = {
+			NOR = {
+				is_origin_void_dwellers = yes
+				is_origin_doomsday = yes
+			}
+		}
+		home_planet = {
+			hidden_effect = {
+				remove_deposit = d_toxic_god_pestilential_wasteland
+			}
+			add_deposit = d_toxic_god_pestilential_wasteland_upgraded
+		}
+	}
+	option = {
+		name = toxoids.7095.b
+		custom_tooltip = toxoids.7095.b.tooltip
+		hidden_effect = { set_country_flag = toxoids_7095_b } #To be called in the last Quest
+	}
+}
+country_event = {
+	id = toxoids.7130
+	title = toxoids.7130.name
+	desc = toxoids.7130.desc
+	picture = GFX_evt_robot_encounter
+	show_sound = evn_tox_knights_of_the_toxic_god
+
+	is_triggered_only = yes
+
+	option = {
+		name = toxoids.7130.A
+		allow = {
+			NOR = {
+				is_origin_void_dwellers = yes
+				is_origin_doomsday = yes
+			}
+		}
+		home_planet = {
+			hidden_effect = {
+				remove_deposit = d_toxic_god_deitys_swarms
+			}
+			add_deposit = d_toxic_god_deitys_swarms_upgraded
+		}
+	}
+
+	option = {
+		name = toxoids.7130.B
+		custom_tooltip = knights_more_research_tooltip
+		hidden_effect = { set_country_flag = toxoids_7130_b }
+	}
+
+	option = {
+		name = toxoids.7130.C
+		custom_tooltip = knights_more_unity_tooltip
+		hidden_effect = { set_country_flag = toxoids_7130_c }
+	}
+}
+country_event = { #Knight accepts to protect the trickster, unknowingly fights and kills a fellow knight. Swears vengeance
+	id = toxoids.7160
+	title = "toxoids.7160"
+	desc = "toxoids.7160.desc"
+	picture = GFX_evt_space_funeral
+	show_sound = evn_tox_knights_of_the_toxic_god
+
+	is_triggered_only = yes
+
+	option = {
+		name = toxoids.7160.a
+		custom_tooltip = toxoids.7160.a.tooltip
+		set_country_flag = toxoids.7160.a #To be used in the final quest
+		home_planet = {
+			if = {
+				limit = {
+					owner = {
+						NOR = {
+							is_origin_void_dwellers = yes
+							is_origin_doomsday = yes
+						}
+					}
+				}
+				hidden_effect = {
+					remove_deposit = d_toxic_god_envenomed_seas
+				}
+				add_deposit = d_toxic_god_envenomed_seas_upgraded
+			}
+													
+		}
+		hidden_effect = { country_event = { id = toxoids.7170 } } #Fire an event to clear the flags
+	}
+}
+fleet_event = { #Enter the toxic system, meet the entity
+	id = toxoids.7310
+	title = "toxoids.7310.name"
+	desc = "toxoids.7310.desc" # Just open hyperlane
+	picture = GFX_evt_toxic_god
+	show_sound = evn_tox_knights_of_the_toxic_god
+	location = from
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = guardian_toxic_god_system
+		}
+		controller = {
+			is_origin_toxic_knights = yes
+			NOR = {
+				has_country_flag = visited_toxic_god_system
+				has_global_flag = toxic_god_killed
+			}
+		}
+		from = {
+			any_fleet_in_system = { has_fleet_flag = toxic_god_original_fleet }
+		}
+	}
+
+	immediate = {
+		controller = {
+			set_country_flag = visited_toxic_god_system
+			remove_point_of_interest = toxoid_knights_finisher.poi
+		}
+	}
+
+	option = { # This monstruosity is no god of mine! Smite it!
+		name = toxoids.7310.a
+	}
+
+	option = { # The God wishes to test our mettle! Bring our armies!
+		name = toxoids.7310.b
+	}
+}
+fleet_event = { #Enter the toxic system, meet the entity - Non Knight
+	id = toxoids.7311
+	title = "toxoids.7311.name"
+	desc = "toxoids.7311.desc" # Just open hyperlane
+	picture = GFX_evt_toxic_god
+	show_sound = evn_tox_knights_of_the_toxic_god
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = guardian_toxic_god_system
+		}
+		controller = {
+			NOR = {
+				is_origin_toxic_knights = yes
+				has_country_flag = visited_toxic_god_system
+				has_global_flag = toxic_god_killed
+			}
+		}
+		from = {
+			any_fleet_in_system = { has_fleet_flag = toxic_god_original_fleet }
+		}
+	}
+
+	immediate = {
+		controller = {
+			set_country_flag = visited_toxic_god_system
+		}
+	}
+
+	option = { # What the hell is this thing??
+		name = toxoids.7311.a
+	}
+}
+fleet_event = { #Enter the toxic system, but there is not entity
+	id = toxoids.7312
+	title = "toxoids.7312.name"
+	desc = "toxoids.7312.desc" # Just open hyperlane
+	picture = GFX_evt_toxic_god
+	show_sound = event_bad_omen
+	location = from
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = guardian_toxic_god_system
+		}
+		controller = {
+			is_origin_toxic_knights = yes
+			NOT = { has_country_flag = visited_toxic_god_system }
+		}
+		OR = {
+			has_global_flag = toxic_god_killed
+			NOT = {
+				from = {
+					any_fleet_in_system = { has_fleet_flag = toxic_god_original_fleet }
+				}
+			}
+		}
+	}
+
+	immediate = {
+		controller = {
+			set_country_flag = visited_toxic_god_system
+			remove_point_of_interest = toxoid_knights_finisher.poi
+		}
+	}
+
+	option = { # Sad
+		name = toxoids.7312.A
+		custom_tooltip = toxoids.7312.tooltip
+		add_modifier = {
+			modifier = despair_of_the_knightly_order
+		}
+		hidden_effect = {
+			controller = { country_event = { id = toxoids.8020 days = 6000 random = 1500 } }
+		}
+	}
+}
+country_event = { # Upon defeating the Entity
+	id = toxoids.7315
+	title = "toxoids.7315.name"
+	desc = "toxoids.7315.desc"
+	picture = GFX_evt_toxic_god
+	show_sound = evn_tox_knights_of_the_toxic_god
+
+	is_triggered_only = yes
+
+	trigger = {
+		this = {
+			from = { is_country_type = guardian_toxic_god }
+		}
+		is_origin_toxic_knights = yes
+	}
+
+	option = { # Tame it
+		name = toxoids.7315.a
+		custom_tooltip = toxoids.7315.a.tt
+		hidden_effect = {
+			owner = {
+				country_event = { id = toxoids.7320 days = 900 }
+				create_fleet = {
+					name = "NAME_Toxic_God"
+					settings = {
+						spawn_debris = no
+						is_boss = yes
+					}
+					effect = {
+						set_owner = root.owner
+						create_ship = {
+							name = "NAME_Toxic_God"
+							design = "NAME_Venomous_Deity"
+						}
+						set_location = {
+							target = fromfrom
+							distance = 5
+							angle = random
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = { # Finish it
+		name = toxoids.7315.b
+		custom_tooltip = toxoids.7315.b.tt
+		hidden_effect = {
+			owner = {
+				country_event = { id = toxoids.7510 scopes = { fromfrom = fromfrom.solar_system } }
+				country_event = { id = toxoids.8020 days = 6000 random = 1500 }
+			}
+		}
+	}
+}
+country_event = {
+	id = toxoids.7515
+	title = toxoids.7510.name
+	desc = toxoids.7510.desc.not_origin
+	picture = GFX_evt_toxic_god
+	location = fromfrom
+	show_sound = event_mystic_reveal
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = { is_country_type = guardian_toxic_god }
+		NOT = { is_origin_toxic_knights = yes }
+	}
+
+	immediate = {
+		set_global_flag = toxic_god_killed
+	}
+
+	option = {
+		name = toxoids.7510.A
+		add_relic = r_toxic_god
+	}
+	option = {
+		name = toxoids.7510.A.reanimators
+		trigger = {
+			is_reanimator = yes
+		}
+		add_relic = r_toxic_god
+	}
+}
+country_event = {
+	id = toxoids.8014
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		any_playable_country = {
+			is_origin_toxic_knights = yes
+			NOT = {
+				has_country_flag = toxic_knights_lost_keep
+				has_country_flag = toxic_knights_destroyed_keep
+				any_owned_planet = {
+					has_planet_flag = toxic_knights_habitat
+				}
+			}
+		}
+	}
+
+	immediate = {
+		random_playable_country = {
+			limit = {
+				is_origin_toxic_knights = yes
+				NOT = {
+					has_country_flag = toxic_knights_lost_keep
+					has_country_flag = toxic_knights_destroyed_keep
+					any_owned_planet = {
+						has_planet_flag = toxic_knights_habitat
+					}
+				}
+			}
+			country_event = { id = toxoids.8015 }
+			random_situation = {
+				limit = {
+					#is_owned_by = root
+					is_situation_type = situation_toxic_knights
+				}
+				set_situation_locked = yes
+			}
+		}
+	}
+}
+planet_event = {
+	id = toxoids.8016
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_planet_flag = toxic_knights_habitat
+		owner = {
+			is_origin_toxic_knights = yes
+		}
+	}
+
+	immediate = {
+		owner  = {
+			set_country_flag = toxic_knights_destroyed_keep
+			country_event = { id = toxoids.8017 days = 3 }
+		}
+	}
+}
+country_event = {
+	id = toxoids.8025
+	title = "toxoids.8025.name"
+	desc = "toxoids.8025.desc"
+	picture = GFX_evt_knights
+	show_sound = evn_ove_mercenary_fleet #TODO_CD better sound
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_origin_toxic_knights = yes
+		has_country_flag = toxic_knights_lost_keep
+		NOT = {
+			has_country_flag = toxic_knights_destroyed_keep
+		}
+		any_owned_planet = {
+			has_planet_flag = toxic_knights_habitat
+		}
+	}
+
+	immediate = {
+		remove_country_flag = toxic_knights_lost_keep
+		random_situation = {
+			limit = {
+				#is_owned_by = root
+				is_situation_type = situation_toxic_knights
+			}
+			set_situation_locked = no
+		}
+	}
+
+	option = {
+		name = toxoids.8025.a
+	}
+}

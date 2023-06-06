@@ -1,0 +1,1041 @@
+namespace = fircon
+
+country_event = {
+	id = fircon.1261
+	title = "fircon.1261.name"
+	desc = "fircon.1261.desc"
+	picture = GFX_evt_alien_cavemen
+	show_sound = event_pre_ftl_civilization
+	location = event_target:pre_ftl_planet
+
+	is_triggered_only = yes
+	
+	trigger = {
+		exists = event_target:pre_ftl_planet
+		exists = event_target:pre_ftl_species
+		exists = event_target:pre_ftl_country
+		NOT = {
+			has_country_flag = fircon_1260_fired
+		}
+	}
+
+	immediate = {
+		set_timed_country_flag = {
+			flag = fircon_1260_fired
+			days = 1800
+		}
+		set_country_flag = society_insights
+		set_predictive_observation_insight = {
+			VALUE = 10
+		}
+		save_event_target_as = observation_post_owner
+	}
+	
+	option = {
+		name = "fircon.1261.a"
+		add_observation_insight_effect = {
+			VALUE = 10
+			OUTPOST = event_target:pre_ftl_planet.observation_outpost 
+		}
+		observation_breach_effect = {
+			RESOLUTION = resolution_pre_ftl_stances_exploitation
+		}
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier1researchreward
+			min = @tier1researchmin
+			max = @tier1researchmax
+		}
+		add_modifier = {
+			modifier = show_some_restraint
+			days = 360
+		}
+		hidden_effect = {
+			from.owner = {
+				random_owned_pop = {
+					kill_pop = yes
+				}
+				if = {
+					limit = {
+						event_target:pre_ftl_species = {
+							is_lithoid = no
+						}
+					}
+					add_modifier = {
+						modifier = food_crisis
+						days = 360
+					}
+				}
+				else = {
+					add_modifier = {
+						modifier = rock_crisis
+						days = 360
+					}
+				}
+			}
+			event_target:pre_ftl_country = {
+				random_situation = {
+					limit = {
+						is_situation_type = pre_ftl_tech_progress_situation
+					}
+					remove_situation_flag = has_ongoing_observation_event_chain
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "fircon.1261.b"
+		add_observation_insight_effect = {
+			VALUE = 10
+			OUTPOST = event_target:pre_ftl_planet.observation_outpost 
+		}
+		observation_breach_effect = {
+			RESOLUTION = resolution_pre_ftl_stances_non_interference
+		}
+		hidden_effect = {
+			country_event = { id = fircon.1262 days = 360 }
+			event_target:pre_ftl_country = {
+				random_situation = {
+					limit = {
+						is_situation_type = pre_ftl_tech_progress_situation
+					}
+					remove_situation_flag = has_ongoing_observation_event_chain
+				}
+			}
+		}
+		allow = { 
+			owner = {
+				if = { 
+					limit = {
+						event_target:pre_ftl_species = {
+							is_lithoid = no
+						}
+					}
+					resource_stockpile_compare = { 
+						resource = food value >= 50
+					}
+				}
+				else = {
+					resource_stockpile_compare = { 
+						resource = minerals value >= 50
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				event_target:pre_ftl_species = {
+					is_lithoid = no
+				}
+			}
+			add_resource = {
+				food = -50
+			}
+		}
+		else = {
+			add_resource = {
+				minerals = -50
+			}
+		}
+	}
+
+	option = {
+		name = "fircon.1261.c"
+		trigger = { 
+			OR = {
+				has_civic = civic_hive_devouring_swarm 
+				is_origin_necrophage = yes
+			}
+		}
+		from.owner = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		if = {
+			limit = {
+				event_target:pre_ftl_species = {
+					is_lithoid = no
+				}
+			}
+			add_resource = {
+				food = 100
+			}
+		}
+		else = {
+			add_resource = {
+				minerals = 100
+			}
+		}
+		observation_breach_effect = {
+			RESOLUTION = resolution_pre_ftl_stances_non_interference
+		}
+		hidden_effect = {
+			event_target:pre_ftl_country = {
+				random_situation = {
+					limit = {
+						is_situation_type = pre_ftl_tech_progress_situation
+					}
+					remove_situation_flag = has_ongoing_observation_event_chain
+				}
+			}
+		}
+	}
+	
+	after = {
+		set_observation_events_unlocked = yes
+	}
+}
+
+fleet_event = {
+	id = fircon.5015
+	title = fircon.5015.name
+	desc = fircon.5015.desc
+	picture = GFX_evt_gaia
+	show_sound = event_mystic_reveal_light
+	is_triggered_only = yes
+
+	location = from
+
+	trigger = {
+		from = { 
+			has_star_flag = solarpunk_system_02
+			NOT = {
+				has_star_flag = solarpunk_mad
+			}
+		}
+		owner = {
+			NOT = { has_country_flag = encountered_solarpunk }
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = encountered_solarpunk
+		}
+	}
+
+	option = {
+		name = fircon.5015.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+	option = {
+		exclusive_trigger = {
+			owner = {
+				OR = {
+					is_origin_life_seeded = yes
+					has_valid_civic = civic_idyllic_bloom
+					has_valid_civic = civic_hive_idyllic_bloom
+				}
+			}
+		}
+		name = fircon.5015.b
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+	option = {
+		exclusive_trigger = {
+			owner = {
+				is_homicidal = yes
+			}
+		}
+		name = {
+			trigger = {
+				owner = {
+					has_valid_civic = civic_machine_terminator
+				}
+			}
+			text = fircon.5015.c.exterminator
+		}
+		name = {
+			trigger = {
+				owner = {
+					has_valid_civic = civic_hive_devouring_swarm
+				}
+			}
+			text = fircon.5015.c.swarm
+		}
+		name = {
+			trigger = {
+				owner = {
+					has_valid_civic = civic_fanatic_purifiers
+				}
+			}
+			text = fircon.5015.c.purifier
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fircon.6000
+	title = fircon.6000.name
+	desc = {
+		text = fircon.6000.desc
+		trigger = {
+			NOT = { is_origin_subterranean = yes }
+		}
+	}
+	desc = {
+		text = fircon.6000.desc.subterranean
+		trigger = {
+			is_origin_subterranean = yes
+		}
+	}
+	picture = GFX_evt_alien_segregation
+	show_sound = event_assembly_fight
+	is_triggered_only = yes
+	location = event_target:non_believers_planet
+
+	trigger = {
+		has_first_contact_dlc = yes
+		NOR = {
+			has_global_flag = fircon_6000_fired
+			has_country_flag = recent_preftl_diplomatic_event
+		}
+		any_observed_pre_ftl_within_border = {
+			NOR = {
+				is_origin_subterranean = yes
+				has_civic = civic_flat_world_theory
+				is_broken_shackles_pre_ftl_to_scope = { SCOPE = root }
+			}
+		}
+	}
+
+	immediate = {
+		random_observed_pre_ftl_within_border = {
+			limit = {
+				NOR = {
+					has_civic = civic_flat_world_theory
+					is_origin_subterranean = yes
+					is_broken_shackles_pre_ftl_to_scope = { SCOPE = root }
+				}
+			}
+			capital_scope = {
+				save_event_target_as = non_believers_planet
+			}
+			set_country_flag = non_believers_flag
+			save_event_target_as = non_believers_country
+			species = {
+				save_event_target_as = non_believers_species
+			}
+		}
+		set_global_flag = fircon_6000_fired # only once per game
+		save_event_target_as = subterranean_planet_owner
+		set_timed_country_flag = {
+			flag = recent_preftl_diplomatic_event
+			days = 5400
+		}
+	}
+
+	option = { # Bring them to space
+		name = fircon.6000.a
+		event_target:non_believers_country = {
+			add_modifier = {
+				modifier = pre_ftl_distrustful
+			}
+		}
+		country_event = { id = fircon.6005 days = 15 random = 15 }
+	}
+
+	option = { # The planet is not hollow!
+		name = fircon.6000.b
+		event_target:non_believers_country = {
+			add_modifier = {
+				modifier = pre_ftl_distrustful
+			}
+		}
+		country_event = { id = fircon.6015 days = 15 random = 15 }
+	}
+
+	option = { # Bring them to space
+		name = fircon.6000.c
+		event_target:non_believers_country = {
+			add_modifier = {
+				modifier = pre_ftl_distrustful
+			}
+		}
+		country_event = { id = fircon.6020 days = 15 random = 15 }
+	}
+
+	after = {
+		# Applying it to both the country and the planet to have a visual reminder
+		hidden_effect = {
+			event_target:non_believers_planet = {
+				add_modifier = {
+					modifier = pre_ftl_distrustful
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fircon.1320
+	title = "fircon.1320.name"
+	desc = {
+		text = "fircon.1320.desc.regular"
+		trigger = {
+			is_authoritarian = no
+			is_materialist = no
+		}
+	}
+	desc = {
+		text = "fircon.1320.desc.materialist"
+		trigger = {
+			is_materialist = yes
+			NOT = { has_ethic = ethic_fanatic_authoritarian }
+		}
+	}
+	desc = {
+		text = "fircon.1320.desc.authoritarian"
+		trigger = {
+			is_authoritarian = yes
+			NOT = { has_ethic = ethic_fanatic_materialist }
+		}
+	}
+	picture = GFX_evt_alien_cavemen
+	show_sound = event_pre_ftl_civilization
+	location = event_target:pre_ftl_planet
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:pre_ftl_planet
+		exists = event_target:pre_ftl_species
+		exists = event_target:pre_ftl_country
+	}
+	
+	immediate = {
+		save_event_target_as = observation_post_owner
+	}
+
+	option = {
+		name = "ACKNOWLEDGED"
+		event_target:pre_ftl_country = {
+			shift_fanatic_ethic_safe = { ETHIC = materialist OPPETHIC = spiritualist } 
+		}
+		observation_breach_effect = {
+			RESOLUTION = resolution_pre_ftl_stances_non_interference
+		}
+	}
+
+	after = {
+		set_observation_events_unlocked = yes
+	}
+}
+country_event = {
+	id = fircon.1350
+	title = "fircon.1350.name"
+	desc = "fircon.1350.desc"
+	picture = GFX_evt_medieval_alien_civilization
+	show_sound = evn_fc_observation
+	location = event_target:pre_ftl_planet
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:pre_ftl_planet
+		exists = event_target:pre_ftl_species
+		exists = event_target:pre_ftl_country
+	}
+
+	option = {
+		name = "ACKNOWLEDGED"
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier1unityreward
+			min = @tier1unitymin
+			max = @tier1unitymax
+		}
+		event_target:pre_ftl_country = {
+			shift_fanatic_ethic_safe = { ETHIC = materialist OPPETHIC = spiritualist } 
+		}
+	}
+
+	after = {
+		set_observation_events_unlocked = yes
+	}
+}
+country_event = {
+	id = fircon.1365
+	title = "fircon.1365.name"
+	desc = "fircon.1365.desc"
+	picture = GFX_evt_medieval_alien_civilization
+	show_sound = evn_fc_observation
+	location = event_target:pre_ftl_planet
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:pre_ftl_planet
+		exists = event_target:pre_ftl_species
+		exists = event_target:pre_ftl_country
+	}
+
+	option = {
+		name = "fircon.1365.a"
+		event_target:pre_ftl_country = {
+		    shift_fanatic_ethic_safe = { ETHIC = spiritualist OPPETHIC = materialist }
+			add_awareness = 50
+		}
+	}
+
+	after = {
+		set_observation_events_unlocked = yes
+	}
+}
+country_event = {
+	id = fircon.1370
+	title = "fircon.1370.name"
+	desc = "fircon.1370.desc"
+	picture = GFX_evt_medieval_alien_civilization
+	show_sound = evn_fc_observation
+	location = event_target:pre_ftl_planet
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:pre_ftl_planet
+		exists = event_target:pre_ftl_species
+		exists = event_target:pre_ftl_country
+	}
+
+	option = {
+		name = "fircon.1370.a"
+		event_target:pre_ftl_country = {
+			shift_fanatic_ethic_safe = { ETHIC = xenophobe OPPETHIC = xenophile }
+			add_awareness = 50
+		}
+	}
+
+	after = {
+		set_observation_events_unlocked = yes
+	}
+}
+country_event = {
+	id = fircon.1395
+	title = "fircon.1395.name"
+	desc = "fircon.1395.desc"
+	picture = GFX_evt_grand_speech
+	show_sound = evn_fc_observation
+	location = event_target:pre_ftl_planet
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:pre_ftl_planet
+		exists = event_target:pre_ftl_species
+		exists = event_target:pre_ftl_country
+	}
+
+	immediate = {
+		set_country_flag = society_insights
+		set_predictive_observation_insight = {
+			VALUE = 10
+		}
+	}
+
+	option = {
+		name = "ACKNOWLEDGED" 
+		event_target:pre_ftl_country = {
+		    shift_ethic_safe = { ETHIC = pacifist OPPETHIC = militarist }
+		}
+		add_observation_insight_effect = {
+			VALUE = 10
+			OUTPOST = event_target:pre_ftl_planet.observation_outpost 
+		}
+	}
+
+	after = {
+		set_observation_events_unlocked = yes
+	}
+}
+country_event = {
+	id = fircon.1400
+	title = "fircon.1400.name"
+	desc = "fircon.1400.desc"
+	picture = GFX_evt_victorious_army 
+	show_sound = event_air_raid_siren
+	location = event_target:pre_ftl_planet
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:pre_ftl_planet
+		exists = event_target:pre_ftl_species
+		exists = event_target:pre_ftl_country
+	}
+
+	option = {
+		name = "ACKNOWLEDGED"
+		fromfromfrom.owner = {
+			while = {
+				count = 2
+				random_owned_pop = {
+					kill_pop = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:pre_ftl_country = {
+				advance_pre_ftl_tech = yes
+			}
+		}
+		event_target:pre_ftl_country = {
+			shift_fanatic_ethic_safe = { ETHIC = xenophobe OPPETHIC = xenophile }
+		}
+	}
+
+	after = {
+		set_observation_events_unlocked = yes
+	}
+}
+country_event = {
+	id = fircon.1453
+	title = "fircon.1453.name"
+	desc = "fircon.1453.desc"
+	picture = GFX_evt_burning_settlement
+	show_sound = event_screams
+	location = event_target:pre_ftl_planet
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:pre_ftl_planet
+		exists = event_target:pre_ftl_species
+		exists = event_target:pre_ftl_country
+	}
+
+	immediate = {
+		set_country_flag = society_insights
+		set_predictive_observation_insight = {
+			VALUE = 10
+		}
+	}
+
+	option = {
+		name = "DISTURBING"
+		event_target:pre_ftl_planet = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			add_modifier = {
+				modifier = power_flip
+				days = 1800
+			}
+			event_target:pre_ftl_country = {
+				shift_fanatic_ethic_safe = { ETHIC = egalitarian OPPETHIC = authoritarian }
+			}
+		}
+		add_observation_insight_effect = {
+			VALUE = 10
+			OUTPOST = event_target:pre_ftl_planet.observation_outpost 
+		}
+		add_modifier = {
+			modifier = waking_workers
+			days = 1800
+		}
+	}
+
+	after = {
+		set_observation_events_unlocked = yes
+	}
+}
+country_event = {
+	id = fircon.1460
+	title = "fircon.1460.name"
+	desc = "fircon.1460.desc"
+	picture = GFX_evt_alien_segregation
+	show_sound = evn_fc_observation
+	location = event_target:pre_ftl_planet
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:pre_ftl_planet
+		exists = event_target:pre_ftl_species
+		exists = event_target:pre_ftl_country
+	}
+	
+	option = {
+		name = "ACKNOWLEDGED"
+		trigger = {
+			is_egalitarian = no
+		}
+		event_target:pre_ftl_country = {
+			shift_fanatic_ethic_safe = { ETHIC = authoritarian OPPETHIC = egalitarian }
+		}
+		event_target:pre_ftl_country = {
+			add_awareness = 50
+		}
+	}
+	option = {
+		name = "fircon.1460.b"
+		trigger = {
+			is_egalitarian = yes
+		}
+		event_target:pre_ftl_country = {
+			shift_fanatic_ethic_safe = { ETHIC = authoritarian OPPETHIC = egalitarian }
+		}
+		event_target:pre_ftl_country = {
+			add_awareness = 50
+		}
+	}
+
+	after = {
+		set_observation_events_unlocked = yes
+	}
+}
+country_event = {
+	id = fircon.1490
+	title = "fircon.1490.name"
+	desc = "fircon.1490.desc"
+	picture = GFX_evt_alien_propaganda
+	show_sound = evn_fc_disunity_origin
+	location = event_target:pre_ftl_planet
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "fircon.1490.a"
+		trigger = { 
+			event_target:pre_ftl_country = {
+			is_gestalt = no } 
+		}
+		event_target:pre_ftl_country = {
+			shift_fanatic_ethic_safe = { ETHIC = xenophobe OPPETHIC = xenophile }
+		}
+	}
+
+	option = {
+		name = "fircon.1490.a"
+		trigger = { 
+			event_target:pre_ftl_country = {
+			is_gestalt = yes } 
+		}
+		event_target:pre_ftl_country = {
+			add_awareness = 50
+			force_add_civic = civic_hive_strength_of_legions
+		}
+	}
+
+	after = {
+		set_observation_events_unlocked = yes
+	}
+}
+country_event = {
+	id = fircon.8050
+	title = fircon.8050.name
+	desc = fircon.8050.desc
+	picture = GFX_evt_surrender
+	show_sound = event_galactic_community
+	is_triggered_only = yes
+	location = event_target:preftl_slavers_planet
+
+	trigger = {
+		has_first_contact_dlc = yes
+		has_pre_ftl_trade_agreement = yes
+		NOR = {
+			has_country_flag = fircon.8050_fired
+			has_country_flag = recent_preftl_diplomatic_event
+		}
+		any_observed_pre_ftl_within_border = {
+			NOT = { is_broken_shackles_pre_ftl_to_scope = { SCOPE = root } }
+		}
+	}
+
+	immediate = {
+		get_random_pre_ftl_trade_agreement_no_broken_shackles = { EVENT = preftl_slavers }
+		set_country_flag = fircon.8050_fired
+		set_timed_country_flag = {
+			flag = recent_preftl_diplomatic_event
+			days = 5400
+		}
+	}
+
+	option = {
+		name = fircon.8050.a
+	}
+
+	option = {
+		name = fircon.8050.b
+		allow = {
+			resource_stockpile_compare = { resource = influence value >= 50 }
+		}
+		add_resource = { influence = -50 }
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier1unityreward
+			min = @tier1unitymin
+			max = @tier1unitymax
+		}
+	}
+
+	option = {
+		name = fircon.8050.c
+		custom_tooltip = fircon.8050.c.tt
+		hidden_effect = {
+			event_target:preftl_slavers_planet = {
+				random_owned_pop = {
+					kill_pop = yes
+				}
+				random_owned_pop = {
+					kill_pop = yes
+				}
+				random_owned_pop = {
+					kill_pop = yes
+				}
+				ruin_building = random_no_capital
+				ruin_building = random_no_capital
+			}
+		}
+		event_target:preftl_slavers_country = {
+			shift_ethic_safe = { ETHIC = xenophobe OPPETHIC = xenophile }
+		}
+	}
+}
+country_event = {
+	id = fircon.8065
+	title = fircon.8065.name
+	desc = fircon.8065.desc
+	picture = GFX_evt_financial_instruments
+	show_sound = event_finding_loot
+	is_triggered_only = yes
+	location = event_target:pre_ftl_planet
+
+	trigger = {
+		has_active_observation_post = yes
+	}
+
+	immediate = {
+		remove_modifier = pre_ftl_diplomatic_01
+		remove_modifier = pre_ftl_diplomatic_02
+		event_target:pre_ftl_country.capital_scope = {
+			remove_modifier = pre_ftl_diplomatic_03
+			add_modifier = {
+				modifier = pre_ftl_diplomatic_04
+				days = 5400
+			}
+		}
+		event_target:pre_ftl_country = {
+			if = {
+				limit = {
+					NOT = { has_ethic = "ethic_fanatic_xenophile" }
+				}
+				shift_ethic_safe = { ETHIC = xenophile OPPETHIC = xenophobe }
+				hidden_effect = {
+					while = {
+						count = 3
+						random_owned_pop = {
+							limit = {
+								NOT = { has_ethic = "ethic_xenophile" }
+							}
+							pop_change_ethic = "ethic_xenophile"
+    					}
+    				}
+				}
+			}
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_pre_ftl_diplomacy_02
+			}
+		}
+	}
+
+	option = {
+		name = fircon.8065.a
+		tooltip = {
+			event_target:pre_ftl_country.capital_scope = {
+				remove_modifier = pre_ftl_diplomatic_03
+			}
+			event_target:pre_ftl_country = {
+				if = {
+					limit = {
+						NOT = { has_ethic = "ethic_fanatic_xenophile" }
+					}
+					shift_ethic_safe = { ETHIC = xenophile OPPETHIC = xenophobe }
+					hidden_effect = {
+						while = {
+							count = 3
+							random_owned_pop = {
+								limit = {
+									NOT = { has_ethic = "ethic_xenophile" }
+								}
+								pop_change_ethic = "ethic_xenophile"
+							}
+						}
+					}
+				}
+				add_modifier = {
+					modifier = pre_ftl_diplomatic_04
+					days = 5400
+				}
+				add_opinion_modifier = {
+					who = root.owner
+					modifier = opinion_pre_ftl_diplomacy_02
+				}
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier2researchreward
+			min = @tier2researchmin
+			max = @tier2researchmax
+		}
+	}
+}
+country_event = {
+	id = fircon.8550
+	title = fircon.8550.name
+	desc = fircon.8550.desc
+	picture = GFX_evt_diplomatic_visit
+	show_sound = event_galactic_community
+	is_triggered_only = yes
+	location = event_target:preftl_different_flavors_planet
+	
+	trigger = {
+		exists = event_target:preftl_different_flavors_planet
+	}
+
+	option = {
+		name = "ACKNOWLEDGED"
+		hidden_effect = { 
+			switch = {
+				trigger = has_ethic
+				ethic_fanatic_materialist = { 
+					event_target:preftl_different_flavors_country = {
+						shift_fanatic_ethic_safe = { ETHIC = materialist OPPETHIC = spiritualist } 
+					}
+				}
+				ethic_fanatic_spiritualist = { 
+					event_target:preftl_different_flavors_country = {
+						shift_fanatic_ethic_safe = { ETHIC = spiritualist OPPETHIC = materialist }
+					}
+				}
+				ethic_fanatic_militarist = { 
+					event_target:preftl_different_flavors_country = {
+						shift_fanatic_ethic_safe = { ETHIC = militarist OPPETHIC = pacifist }
+					}
+				}
+				ethic_fanatic_pacifist = { 
+					event_target:preftl_different_flavors_country = {
+						shift_fanatic_ethic_safe = { ETHIC = pacifist OPPETHIC = militarist } 
+					}
+				}
+				ethic_fanatic_xenophile = { 
+					event_target:preftl_different_flavors_country = {
+						shift_fanatic_ethic_safe = { ETHIC = xenophile OPPETHIC = xenophobe }
+					}
+				}
+				ethic_fanatic_xenophobe = { 
+					event_target:preftl_different_flavors_country = {
+						shift_fanatic_ethic_safe = { ETHIC = xenophobe OPPETHIC = xenophile } 
+					}
+				}
+				ethic_fanatic_authoritarian = { 
+					event_target:preftl_different_flavors_country = {
+						shift_fanatic_ethic_safe = { ETHIC = authoritarian OPPETHIC = egalitarian }
+					}
+				}
+				ethic_fanatic_egalitarian = { 
+					event_target:preftl_different_flavors_country = {
+						shift_fanatic_ethic_safe = { ETHIC = egalitarian OPPETHIC = authoritarian }
+					}
+				}
+				ethic_materialist = { 
+					event_target:preftl_different_flavors_country = {
+						shift_ethic_safe = { ETHIC = materialist OPPETHIC = spiritualist } 
+					}
+				}
+				ethic_spiritualist = { 
+					event_target:preftl_different_flavors_country = {
+						shift_ethic_safe = { ETHIC = spiritualist OPPETHIC = materialist }
+					}
+				}
+				ethic_militarist = { 
+					event_target:preftl_different_flavors_country = {
+						shift_ethic_safe = { ETHIC = militarist OPPETHIC = pacifist }
+					}
+				}
+				ethic_pacifist = { 
+					event_target:preftl_different_flavors_country = {
+						shift_ethic_safe = { ETHIC = pacifist OPPETHIC = militarist } 
+					}
+				}
+				ethic_xenophile = { 
+					event_target:preftl_different_flavors_country = {
+						shift_ethic_safe = { ETHIC = xenophile OPPETHIC = xenophobe }
+					}
+				}
+				ethic_xenophobe = { 
+					event_target:preftl_different_flavors_country = {
+						shift_ethic_safe = { ETHIC = xenophobe OPPETHIC = xenophile } 
+					}
+				}
+				ethic_authoritarian = { 
+					event_target:preftl_different_flavors_country = {
+						shift_ethic_safe = { ETHIC = authoritarian OPPETHIC = egalitarian }
+					}
+				}
+				ethic_egalitarian = { 
+					event_target:preftl_different_flavors_country = {
+						shift_ethic_safe = { ETHIC = egalitarian OPPETHIC = authoritarian }
+					}
+				}
+			}
+		}
+		event_target:preftl_different_flavors_country = {
+			add_opinion_modifier = {
+				who = ROOT
+				modifier = opinion_flavors_up
+			}
+		}
+		hidden_effect = {
+			switch = {
+				trigger = has_authority
+				auth_democratic = { 
+					event_target:preftl_different_flavors_country = {
+						change_government = auth_democratic
+					}
+				}
+				auth_imperial = { 
+					event_target:preftl_different_flavors_country = {
+						change_government = auth_imperial
+					}
+				}
+				auth_dictatorial = { 
+					event_target:preftl_different_flavors_country = {
+						change_government = auth_dictatorial
+					}
+				}
+				auth_oligarchic = { 
+					event_target:preftl_different_flavors_country = {
+						change_government = auth_oligarchic
+					}
+				}
+			}
+		}
+		custom_tooltip = align_pre_FTL_country_ethics_tooltip
+	}
+
+	after = {
+		set_observation_events_unlocked = yes
+	}
+
+}

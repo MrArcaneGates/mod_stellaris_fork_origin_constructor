@@ -1,0 +1,100 @@
+namespace = syndaw
+
+event = { # unscoped gatekeeper
+	id = syndaw.400
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		host_has_dlc = "Synthetic Dawn Story Pack"
+		mid_game_years_passed >= -10
+	}
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				NOR = {
+					has_ethic = ethic_gestalt_consciousness
+					has_country_flag = synthetic_empire
+					has_ascension_perk = ap_the_flesh_is_weak
+					is_origin_cyberpunk = yes
+					has_policy_flag = ai_full_rights
+					has_country_flag = situation_machine_uprising_started
+					has_policy_flag = robots_outlawed
+				}
+				OR = {
+					has_technology = tech_combat_computers_3
+					has_technology = tech_synthetic_workers
+				}
+			}
+			random_list = {
+				70 = {} # Nothing happens this decade.
+				30 = {
+					country_event = { id = syndaw.401 random = 500 }
+				}
+			}
+		}
+	}
+}
+country_event = { # per-country gatekeeper
+	id = syndaw.401
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		host_has_dlc = "Synthetic Dawn Story Pack"
+		NOR = {
+			has_ethic = ethic_gestalt_consciousness
+			has_country_flag = synthetic_empire
+			has_ascension_perk = ap_the_flesh_is_weak
+			is_origin_cyberpunk = yes
+			has_policy_flag = ai_full_rights
+			has_country_flag = situation_machine_uprising_started
+			has_policy_flag = robots_outlawed		# If Robots were outlawed before NOW, Empire is safe.
+		}
+		OR = {
+			has_technology = tech_combat_computers_3
+			has_technology = tech_synthetic_workers
+		}
+		any_owned_planet = {
+			is_occupied_flag = no
+			any_owned_pop = { has_trait = trait_mechanical }
+		}
+	}
+
+	immediate = {
+		# Count Robot Pops (can be multiple Robot species).
+		set_variable = { which = var_country_robot_pops value = 0 }
+		every_owned_pop = {
+			limit = { is_robot_pop = yes }
+			change_variable = { which = var_country_robot_pops value = 1 }
+		}
+
+		if = {
+			# Must be >75 OR >25% Robot Pops for Uprising.
+			limit = {
+				OR = {
+					check_variable = { which = var_country_robot_pops value > 75 }
+					pop_percentage = {
+						percentage > 0.25
+						limit = { is_robot_pop = yes }
+					}
+				}
+			}
+
+			random_list = {
+				2 = { # Probable warning sign, 545. Can end up fake and then unavailable in future random.
+					country_event = { id = syndaw.500 }
+					modifier = {
+						factor = 0
+						has_country_flag = triggered_syndaw_500
+					}
+				}
+				1 = { # No warning sign, trigger situation.
+					country_syndaw545_in_days = { DAYS = 0 }
+				}
+			}
+		}
+		clear_variable = var_country_robot_pops
+	}
+}

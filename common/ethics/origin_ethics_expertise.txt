@@ -1,0 +1,89 @@
+ethic_mining_expertise = {
+	cost = 20
+	category = "exp1"
+	category_value = 0
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_shipcraft_expertise = {
+	cost = 30
+	category = "exp2"
+	category_value = 0
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_starbase_expertise = {
+	cost = 20
+	category = "exp3"
+	category_value = 0
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_chemistry_expertise = {
+	cost = 30
+	category = "exp4"
+	category_value = 0
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_terraform_expertise = {
+	cost = 20
+	category = "exp5"
+	category_value = 0
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_trade_expertise = {
+	cost = 30
+	category = "exp6"
+	category_value = 0
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}

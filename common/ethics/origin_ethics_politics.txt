@@ -1,0 +1,173 @@
+ethic_common_ground = {
+	cost = 40
+	category = "pol"
+	category_value = 0
+	
+	playable = {
+		host_has_dlc = "Federations"
+	}
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_hegemon = {
+	cost = 40
+	category = "pol"
+	category_value = 1
+	
+	playable = {
+		host_has_dlc = "Federations"
+	}
+
+	use_for_pops = no
+
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_imperial = {
+	cost = 40
+	category = "pol"
+	category_value = 2
+	
+	playable = {
+		has_overlord_dlc = yes
+	}
+
+	use_for_pops = no
+
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_scion = {
+	cost = 40
+	category = "pol"
+	category_value = 3
+	
+	playable = {
+		host_has_dlc = Federations
+	}
+
+	use_for_pops = no
+
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_lost_colony = {
+	cost = 20
+	category = "pol"
+	category_value = 4
+
+	use_for_pops = no
+
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_payback = {
+	cost = 30
+	category = "pol"
+	category_value = 5
+	
+	playable = {
+		has_first_contact_dlc = yes
+	}
+
+	use_for_pops = no
+
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_broken_shackles = {
+	cost = 30
+	category = "pol"
+	category_value = 6
+	
+	playable = {
+		has_first_contact_dlc = yes
+	}
+
+	use_for_pops = no
+
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_fotd = {
+	cost = 30
+	category = "pol"
+	category_value = 7
+	
+	playable = {
+		has_first_contact_dlc = yes
+	}
+
+	use_for_pops = no
+
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+ethic_toxic_knights = {
+	cost = 30
+	category = "pol"
+	category_value = 8
+	
+	playable = {
+		has_toxoids = yes
+	}
+
+	use_for_pops = no
+
+	#tags = {
+	#}
+
+	random_weight = {
+		base = 0
+	}
+}

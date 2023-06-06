@@ -1,0 +1,186 @@
+spriteTypes = {
+	spriteType = {
+		name = "ethic_common_ground"
+		texturefile = "gfx/interface/icons/ethics/ethic_common_ground.dds"
+	}
+	spriteType = {
+		name = "ethic_hegemon"
+		texturefile = "gfx/interface/icons/ethics/ethic_hegemon.dds"
+	}
+	spriteType = {
+		name = "ethic_imperial"
+		texturefile = "gfx/interface/icons/ethics/ethic_imperial.dds"
+	}
+	spriteType = {
+		name = "ethic_scion"
+		texturefile = "gfx/interface/icons/ethics/ethic_scion.dds"
+	}
+	spriteType = {
+		name = "ethic_lost_colony"
+		texturefile = "gfx/interface/icons/ethics/ethic_lost_colony.dds"
+	}
+	spriteType = {
+		name = "ethic_payback"
+		texturefile = "gfx/interface/icons/ethics/ethic_payback.dds"
+	}
+	spriteType = {
+		name = "ethic_broken_shackles"
+		texturefile = "gfx/interface/icons/ethics/ethic_broken_shackles.dds"
+	}
+	spriteType = {
+		name = "ethic_fotd"
+		texturefile = "gfx/interface/icons/ethics/ethic_fotd.dds"
+	}
+	spriteType = {
+		name = "ethic_galactic_doorstep"
+		texturefile = "gfx/interface/icons/ethics/ethic_galactic_doorstep.dds"
+	}
+	spriteType = {
+		name = "ethic_star_slingshot"
+		texturefile = "gfx/interface/icons/ethics/ethic_star_slingshot.dds"
+	}
+	spriteType = {
+		name = "ethic_shoulders_of_giants"
+		texturefile = "gfx/interface/icons/ethics/ethic_shoulders_of_giants.dds"
+	}
+	spriteType = {
+		name = "ethic_toxic_knights"
+		texturefile = "gfx/interface/icons/ethics/ethic_toxic_knights.dds"
+	}
+	spriteType = {
+		name = "ethic_here_be_dragons"
+		texturefile = "gfx/interface/icons/ethics/ethic_here_be_dragons.dds"
+	}
+	spriteType = {
+		name = "ethic_true_lifeseed"
+		texturefile = "gfx/interface/icons/ethics/ethic_true_lifeseed.dds"
+	}
+	spriteType = {
+		name = "ethic_lifeseed"
+		texturefile = "gfx/interface/icons/ethics/ethic_lifeseed.dds"
+	}
+	spriteType = {
+		name = "ethic_postapoc"
+		texturefile = "gfx/interface/icons/ethics/ethic_postapoc.dds"
+	}
+	spriteType = {
+		name = "ethic_remnant"
+		texturefile = "gfx/interface/icons/ethics/ethic_remnant.dds"
+	}
+	spriteType = {
+		name = "ethic_true_ringworld"
+		texturefile = "gfx/interface/icons/ethics/ethic_true_ringworld.dds"
+	}
+	spriteType = {
+		name = "ethic_ringworld"
+		texturefile = "gfx/interface/icons/ethics/ethic_ringworld.dds"
+	}
+	spriteType = {
+		name = "ethic_true_void_dwellers"
+		texturefile = "gfx/interface/icons/ethics/ethic_true_void_dwellers.dds"
+	}
+	spriteType = {
+		name = "ethic_void_dwellers"
+		texturefile = "gfx/interface/icons/ethics/ethic_void_dwellers.dds"
+	}
+	spriteType = {
+		name = "ethic_ocean_paradise"
+		texturefile = "gfx/interface/icons/ethics/ethic_ocean_paradise.dds"
+	}
+	spriteType = {
+		name = "ethic_doomsday"
+		texturefile = "gfx/interface/icons/ethics/ethic_doomsday.dds"
+	}
+	spriteType = {
+		name = "ethic_machine"
+		texturefile = "gfx/interface/icons/ethics/ethic_machine.dds"
+	}
+	spriteType = {
+		name = "ethic_subterranean"
+		texturefile = "gfx/interface/icons/ethics/ethic_subterranean.dds"
+	}
+	spriteType = {
+		name = "ethic_mechanist"
+		texturefile = "gfx/interface/icons/ethics/ethic_mechanist.dds"
+	}
+	spriteType = {
+		name = "ethic_syncretic_evolution"
+		texturefile = "gfx/interface/icons/ethics/ethic_syncretic_evolution.dds"
+	}
+	spriteType = {
+		name = "ethic_necrophage"
+		texturefile = "gfx/interface/icons/ethics/ethic_necrophage.dds"
+	}
+	spriteType = {
+		name = "ethic_clone_army"
+		texturefile = "gfx/interface/icons/ethics/ethic_clone_army.dds"
+	}
+	spriteType = {
+		name = "ethic_overtuned"
+		texturefile = "gfx/interface/icons/ethics/ethic_overtuned.dds"
+	}
+	spriteType = {
+		name = "ethic_shroudwalker_apprentice"
+		texturefile = "gfx/interface/icons/ethics/ethic_shroudwalker_apprentice.dds"
+	}
+	spriteType = {
+		name = "ethic_progenitor_hive"
+		texturefile = "gfx/interface/icons/ethics/ethic_progenitor_hive.dds"
+	}
+	spriteType = {
+		name = "ethic_tree_of_life"
+		texturefile = "gfx/interface/icons/ethics/ethic_tree_of_life.dds"
+	}
+	spriteType = {
+		name = "ethic_lithoid"
+		texturefile = "gfx/interface/icons/ethics/ethic_lithoid.dds"
+	}
+	spriteType = {
+		name = "ethic_cyberpunk"
+		texturefile = "gfx/interface/icons/ethics/ethic_cyberpunk.dds"
+	}
+	spriteType = {
+		name = "ethic_hots"
+		texturefile = "gfx/interface/icons/ethics/ethic_hots.dds"
+	}
+	spriteType = {
+		name = "ethic_galactic_wonders"
+		texturefile = "gfx/interface/icons/ethics/ethic_galactic_wonders.dds"
+	}
+	spriteType = {
+		name = "ethic_mining_expertise"
+		texturefile = "gfx/interface/icons/ethics/ethic_mining_expertise.dds"
+	}
+	spriteType = {
+		name = "ethic_shipcraft_expertise"
+		texturefile = "gfx/interface/icons/ethics/ethic_shipcraft_expertise.dds"
+	}
+	spriteType = {
+		name = "ethic_starbase_expertise"
+		texturefile = "gfx/interface/icons/ethics/ethic_starbase_expertise.dds"
+	}
+	spriteType = {
+		name = "ethic_chemistry_expertise"
+		texturefile = "gfx/interface/icons/ethics/ethic_chemistry_expertise.dds"
+	}
+	spriteType = {
+		name = "ethic_terraform_expertise"
+		texturefile = "gfx/interface/icons/ethics/ethic_terraform_expertise.dds"
+	}
+	spriteType = {
+		name = "ethic_trade_expertise"
+		texturefile = "gfx/interface/icons/ethics/ethic_trade_expertise.dds"
+	}
+   spriteType = {
+        name = "GFX_text_prosp_unif_icon"
+        texturefile = "gfx/interface/icons/text_icons/prosp_unif_icon.dds"
+    }
+   spriteType = {
+        name = "GFX_text_info_icon"
+        texturefile = "gfx/interface/icons/text_icons/info_icon.dds"
+    }
+	spriteType = {
+		name = "GFX_origin_hots"
+		texturefile = "gfx/event_pictures/origins/origin_hots.dds"
+	}
+}

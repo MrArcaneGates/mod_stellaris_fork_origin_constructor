@@ -1,0 +1,713 @@
+namespace = origin_expand_cp
+
+### fire situation
+country_event = {
+	id = origin_expand_cp.1
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		start_situation = { type = situation_cyberpsychosis }
+	}
+}
+### roll bad events
+situation_event = {
+	id = origin_expand_cp.20
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		random_list = {
+			10 = {
+				situation_event = { id = origin_expand_cp.2 }
+				modifier = {
+					factor = 2
+					current_situation_approach = situation_cyberpsychosis_none
+				}
+			}
+			90 = {
+				#do nothing
+			}
+		}
+	}
+}
+### spawn bad events
+situation_event = {
+	id = origin_expand_cp.2
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		random_list = {
+			8 = {
+				owner = { country_event = { id = origin_expand_cp.21 } }
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = cp21_fired }
+				}
+			}
+			10 = {
+				owner = { country_event = { id = origin_expand_cp.22 } }
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = cp22_fired }
+				}
+			}
+			10 = {
+				owner = { country_event = { id = origin_expand_cp.23 } }
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = cp23_fired }
+				}
+			}
+			10 = {
+				owner = { country_event = { id = origin_expand_cp.24 } }
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = cp24_fired }
+				}
+			}
+			10 = {
+				owner = { country_event = { id = origin_expand_cp.25 } }
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = cp25_fired }
+				}
+			}
+			10 = {
+				owner = { country_event = { id = origin_expand_cp.26 } }
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = cp26_fired }
+				}
+			}
+			10 = {
+				owner = { country_event = { id = origin_expand_cp.27 } }
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = cp27_fired }
+				}
+			}
+			10 = {
+				owner = { country_event = { id = origin_expand_cp.28 } }
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = cp28_fired }
+				}
+				modifier = {
+					factor = 0
+					owner = { is_origin_mechanist = yes }
+				}
+			}
+			3 = {
+				owner = { country_event = { id = origin_expand_cp.29 } }
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = cp29_fired }
+				}
+			}
+			10 = {
+				owner = { country_event = { id = origin_expand_cp.210 } }
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = cp210_fired }
+				}
+				modifier = {
+					factor = 0
+					owner = { is_materialist = yes }
+				}
+				modifier = {
+					factor = 5
+					owner = { is_spiritualist = yes }
+				}
+			}
+			10 = {
+				owner = { country_event = { id = origin_expand_cp.211 } }
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = cp211_fired }
+				}
+			}
+		}
+	}
+}
+# Illegal implants
+country_event = {
+	id = origin_expand_cp.21
+	title = "origin_expand_cp.21.name"
+	desc = "origin_expand_cp.21.desc"
+	picture = GFX_evt_black_market
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cp21_fired
+	}
+	option = {
+		name = "origin_expand_cp.21.a"
+		capital_scope = {
+			add_modifier = { modifier = cp_crime days = 1800 }
+		}
+	}
+	option = {
+		name = "origin_expand_cp.21.b"
+		trigger = {
+			has_valid_civic = civic_police_state
+		}
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 200 }
+		}
+		add_resource = { energy = -200 }
+	}
+	option = {
+		name = "origin_expand_cp.21.c"
+		exclusive_trigger = {
+			has_valid_civic = civic_criminal_heritage
+		}
+		add_resource = { energy = 1000 }
+		capital_scope = {
+			add_modifier = { modifier = cp_crime days = 1800 }
+		}
+	}
+}
+# Scientist goes crazy
+country_event = {
+	id = origin_expand_cp.22
+	title = "origin_expand_cp.22.name"
+	desc = "origin_expand_cp.22.desc"
+	picture = GFX_evt_deficit
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cp22_fired
+	}
+	option = {
+		name = "origin_expand_cp.22.a"
+		random_owned_leader = {
+			limit = { leader_class = scientist }
+			kill_leader = { show_notification = yes }
+		}
+	}
+	option = {
+		name = "origin_expand_cp.22.b"
+		trigger = {
+			has_valid_civic = civic_technocracy
+		}
+		random_owned_leader = {
+			limit = { leader_class = scientist }
+			kill_leader = { show_notification = yes }
+		}
+	}
+	option = {
+		name = "origin_expand_cp.22.c"
+		trigger = {
+			has_valid_civic = civic_permanent_employment
+		}
+		random_owned_leader = {
+			limit = { leader_class = scientist }
+			add_trait = leader_trait_maimed
+		}
+	}
+	option = {
+		name = "origin_expand_cp.22.d"
+		trigger = {
+			has_valid_civic = civic_reanimated_armies
+		}
+		random_owned_leader = {
+			limit = { leader_class = scientist }
+			add_trait = leader_trait_maimed
+		}
+	}
+}
+# Governor assasinated
+country_event = {
+	id = origin_expand_cp.23
+	title = "origin_expand_cp.23.name"
+	desc = "origin_expand_cp.23.desc"
+	picture = GFX_evt_night_raid
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cp23_fired
+	}
+	option = {
+		name = "origin_expand_cp.23.a"
+		random_owned_leader = {
+			limit = { leader_class = governor }
+			kill_leader = { show_notification = yes }
+		}
+	}
+	option = {
+		name = "origin_expand_cp.23.b"
+		trigger = {
+			has_valid_civic = civic_permanent_employment
+		}
+		random_owned_leader = {
+			limit = { leader_class = governor }
+			add_trait = leader_trait_maimed
+		}
+	}
+	option = {
+		name = "origin_expand_cp.23.c"
+		trigger = {
+			has_valid_civic = civic_reanimated_armies
+		}
+		random_owned_leader = {
+			limit = { leader_class = governor }
+			add_trait = leader_trait_maimed
+		}
+	}
+}
+# Questionable experiments
+country_event = {
+	id = origin_expand_cp.24
+	title = "origin_expand_cp.24.name"
+	desc = "origin_expand_cp.24.desc"
+	picture = GFX_evt_vivisection
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cp24_fired
+	}
+	option = {
+		name = "origin_expand_cp.24.a"
+		add_modifier = { modifier = cp_questionable_experiments days = 1800 }
+	}
+	option = {
+		name = "origin_expand_cp.24.b"
+		trigger = {
+			NAND = {
+				is_xenophobe = yes
+				any_owned_pop = {
+					NOT = { is_same_species = root }
+					has_trait = trait_cybernetic
+				}
+			}
+			OR = {
+				is_authoritarian = yes
+				has_valid_civic = civic_technocracy
+			}
+		}
+		allow = {
+			is_egalitarian = no
+		}
+		if = {
+			limit = {
+				is_xenophile = no
+				any_owned_pop = {
+					NOT = { is_same_species = root }
+					has_trait = trait_cybernetic
+				}
+			}
+			random_owned_pop = {
+				limit = {
+					NOT = { is_same_species = root }
+					has_trait = trait_cybernetic
+				}
+				kill_pop = yes
+			}
+		}
+		else = {
+			random_owned_pop = {
+				limit = { has_trait = trait_cybernetic }
+				kill_pop = yes
+			}
+		}
+		add_modifier = { modifier = cp_auth_questionable_experiments days = 1800 }
+	}
+	option = {
+		name = "origin_expand_cp.24.c"
+		trigger = {
+			any_owned_pop = {
+				NOT = { is_same_species = root }
+				has_trait = trait_cybernetic
+			}
+			is_xenophobe = yes
+		}
+		random_owned_pop = {
+			limit = { 
+				has_trait = trait_cybernetic
+				NOT = { is_same_species = root }
+			}
+			kill_pop = yes
+		}
+		add_modifier = { modifier = cp_xeno_questionable_experiments days = 1800 }
+	}
+	option = {
+		name = "origin_expand_cp.24.d"
+		add_resource = { unity = 200 }
+	}
+}
+# Malfunctioning implants
+country_event = {
+	id = origin_expand_cp.25
+	title = "origin_expand_cp.25.name"
+	desc = "origin_expand_cp.25.desc"
+	picture = GFX_evt_bribery
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cp25_fired
+	}
+	option = {
+		name = "origin_expand_cp.25.a"
+		add_modifier = { modifier = cp_implant_recall days = 1800 }
+	}
+}
+# Cyberpsycho riot
+country_event = {
+	id = origin_expand_cp.26
+	title = "origin_expand_cp.26.name"
+	desc = "origin_expand_cp.26.desc"
+	picture = GFX_evt_archaeologists_escaping
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cp26_fired
+	}
+	option = {
+		name = "origin_expand_cp.26.a"
+		capital_scope = {
+			add_planet_devastation = 15
+		}
+	}
+	option = {
+		name = "origin_expand_cp.26.b"
+		trigger = {
+			has_valid_civic = civic_police_state
+		}
+		capital_scope = {
+			add_planet_devastation = 5
+		}
+		add_resource = { unity = 300 }
+	}
+	option = {
+		name = "origin_expand_cp.26.c"
+		trigger = {
+			has_valid_civic = civic_technocracy
+		}
+		add_resource = { society_research = 1200 }
+		capital_scope = {
+			add_planet_devastation = 25
+		}
+	}
+}
+# Anti-implant sect
+country_event = {
+	id = origin_expand_cp.27
+	title = "origin_expand_cp.27.name"
+	desc = "origin_expand_cp.27.desc"
+	picture = GFX_evt_broken_shackles
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cp27_fired
+	}
+	option = {
+		name = "origin_expand_cp.27.a"
+		capital_scope = {
+			add_modifier = { modifier = cp_anti_implant_sect days = 1800 }
+			while = {
+				count = 3
+				random_owned_pop = {
+					limit = { is_same_species = root }
+					clear_ethos = yes
+					pop_force_add_ethic = ethic_spiritualist
+				}
+			}
+		}
+	}
+	option = {
+		name = "origin_expand_cp.27.b"
+		exclusive_trigger = {
+			is_spiritualist = yes
+		}
+		add_resource = { unity = -300 }
+		capital_scope = {
+			add_modifier = { modifier = cp_anti_implant_sect days = 1800 }
+		}
+	}
+	option = {
+		name = "origin_expand_cp.27.c"
+		allow = {
+			is_egalitarian = no
+			resource_stockpile_compare = { resource = energy value >= 200 }
+		}
+		add_resource = { energy = -200 }
+		add_resource = { influence = 50 }
+	}
+}
+# Worker strike
+country_event = {
+	id = origin_expand_cp.28
+	title = "origin_expand_cp.28.name"
+	desc = "origin_expand_cp.28.desc"
+	picture = GFX_evt_alien_propaganda
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cp28_fired
+	}
+	option = {
+		name = "origin_expand_cp.28.a"
+			add_modifier = { modifier = cp_worker_strike days = 1800 }
+	}
+	option = {
+		name = "origin_expand_cp.28.b"
+		exclusive_trigger = {
+			is_egalitarian = yes
+		}
+		add_resource = { unity = 400 }
+		add_modifier = { modifier = cp_worker_strike days = 1800 }
+	}
+	option = {
+		name = "origin_expand_cp.28.c"
+		trigger = {
+			OR = {
+				is_authoritarian = yes
+				has_valid_civic = civic_police_state
+			}
+		}
+		allow = {
+			is_egalitarian = no
+		}
+		add_modifier = { modifier = cp_worker_strike_banned days = 1800 }
+	}
+}
+# Ruler is dead
+country_event = {
+	id = origin_expand_cp.29
+	title = "origin_expand_cp.29.name"
+	desc = "origin_expand_cp.29.desc"
+	picture = GFX_evt_space_funeral
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cp29_fired
+	}
+	option = {
+		name = "origin_expand_cp.29.a"
+		ruler = {
+			kill_leader = {
+				type = ruler
+				show_notification = yes
+			}
+		}
+		capital_scope = {
+			add_modifier = { modifier = cp_dead_ruler days = 1800 }
+		}
+	}
+	option = {
+		name = "origin_expand_cp.29.b"
+		trigger = {
+			has_valid_civic = civic_shadow_council
+		}
+		ruler = {
+			kill_leader = {
+				type = ruler
+				show_notification = yes
+			}
+		}
+	}
+	option = {
+		name = "origin_expand_cp.29.c"
+		exclusive_trigger = {
+			NOT =  { has_valid_civic = civic_shadow_council }
+			NOT =  { has_valid_civic = civic_reanimated_armies }
+			OR = {
+				has_valid_civic = civic_philosopher_king
+				has_valid_civic = civic_imperial_cult
+			}
+		}
+		ruler = {
+			kill_leader = {
+				type = ruler
+				show_notification = yes
+			}
+		}
+		capital_scope = {
+			add_modifier = { modifier = cp_dead_ruler days = 3600 }
+		}
+	}
+	option = {
+		name = "origin_expand_cp.29.d"
+		trigger = {
+			has_valid_civic = civic_reanimated_armies
+		}
+		ruler = {
+			create_lich_king = yes
+		}
+	}
+	option = {
+		name = "origin_expand_cp.29.e"
+		trigger = {
+			has_valid_civic = civic_permanent_employment
+		}
+		ruler = {
+			add_trait = leader_trait_zombie_king
+		}
+	}
+}
+# Materialism on rise
+country_event = {
+	id = origin_expand_cp.210
+	title = "origin_expand_cp.210.name"
+	desc = "origin_expand_cp.210.desc"
+	picture = GFX_evt_alien_propaganda
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cp210_fired
+	}
+	option = {
+		name = "origin_expand_cp.210.a"
+		trigger = {
+			is_spiritualist = no
+		}
+		capital_scope = {
+			while = {
+				count = 6
+				random_owned_pop = {
+					limit = { is_same_species = root }
+					clear_ethos = yes
+					pop_force_add_ethic = ethic_materialist
+				}
+			}
+		}
+	}
+	option = {
+		name = "origin_expand_cp.210.b"
+		trigger = {
+			is_spiritualist = yes
+		}
+		capital_scope = {
+			while = {
+				count = 6
+				random_owned_pop = {
+					limit = { is_same_species = root }
+					clear_ethos = yes
+					pop_force_add_ethic = ethic_materialist
+				}
+			}
+		}
+		add_modifier = { modifier = cp_materialist_movement days = 1800 }
+		add_resource = { unity = 600 }
+	}
+	option = {
+		name = "origin_expand_cp.210.c"
+		trigger = {
+			is_spiritualist = yes
+		}
+		capital_scope = {
+			while = {
+				count = 6
+				random_owned_pop = {
+					limit = { is_same_species = root }
+					clear_ethos = yes
+					pop_force_add_ethic = ethic_materialist
+				}
+			}
+		}
+		ruler = {
+			kill_leader = {
+				type = ruler
+				show_notification = no
+			}
+		}
+		add_modifier = { modifier = cp_materialist_movement days = 1800 }
+		capital_scope = {
+			add_modifier = { modifier = cp_materialist_revolution days = 720 }
+		}
+		shift_ethic_safe = { ETHIC = materialist OPPETHIC = spiritualist }
+	}
+	option = {
+		name = "origin_expand_cp.210.d"
+		trigger = {
+			is_spiritualist = no
+		}
+		capital_scope = {
+			while = {
+				count = 6
+				random_owned_pop = {
+					limit = { is_same_species = root }
+					clear_ethos = yes
+					pop_force_add_ethic = ethic_materialist
+				}
+			}
+		}
+		add_modifier = { modifier = cp_materialist_movement days = 1800 }
+		shift_ethic_safe = { ETHIC = materialist OPPETHIC = spiritualist }
+	}
+	option = {
+		name = "origin_expand_cp.210.e"
+		trigger = {
+			is_spiritualist = no
+		}
+		allow = {
+			is_egalitarian = no
+			resource_stockpile_compare = { resource = energy value >= 300 }
+		}
+		add_resource = { energy = -300 }
+	}
+}
+# Conspiracy theories
+country_event = {
+	id = origin_expand_cp.211
+	title = "origin_expand_cp.211.name"
+	desc = "origin_expand_cp.211.desc"
+	picture = GFX_evt_infiltration_neutral
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cp211_fired
+	}
+	option = {
+		name = "origin_expand_cp.211.a"
+		exclusive_trigger = {
+			has_valid_civic = civic_shadow_council
+		}
+		add_resource = { influence = 100 }
+	}
+	option = {
+		name = "origin_expand_cp.212.b"
+		add_modifier = { modifier = cp_consp_theories days = 1800 }
+	}
+	option = {
+		name = "origin_expand_cp.212.c"
+		trigger = {
+			OR = {
+				has_authority = auth_democratic
+				has_authority = auth_oligarchic
+				has_authority = auth_dictatorial
+			}
+		}
+		force_add_civic = civic_shadow_council
+		add_modifier = { modifier = cp_consp_theories days = 1800 }
+	}
+}
+### happy end
+situation_event = {
+	id = origin_expand_cp.3
+	title = "origin_expand_cp.3.name"
+	desc = "origin_expand_cp.3.desc"
+	picture = GFX_evt_crisis_defeated
+	is_triggered_only = yes
+	
+	immediate = {
+		owner = { remove_modifier = cp_implant_recall }
+	}
+	option = {
+		name = "origin_expand_cp.3.a"
+		owner = { add_resource = { influence = 100 } }
+	}
+	option = {
+		name = "origin_expand_cp.3.b"
+		owner = { add_resource = { unity = 1000 } }
+	}
+	option = {
+		name = "origin_expand_cp.3.c"
+		owner = { 
+			add_resource = { society_research = 3000 }
+			add_resource = { engineering_research = 4000 }
+		}
+	}
+}

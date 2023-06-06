@@ -1,0 +1,751 @@
+@festivalDuration = 1800 #days
+
+namespace = leviathans
+
+country_event = {
+	id = leviathans.500
+	title = leviathans.500.name
+	desc = leviathans.500a.desc
+	desc = leviathans.500b.desc
+	desc = leviathans.500c.desc
+	desc = leviathans.500d.desc
+	desc = leviathans.500e.desc
+	desc = leviathans.500f.desc
+	desc = leviathans.500g.desc
+	desc = leviathans.500h.desc
+	desc = leviathans.500i.desc
+	desc = leviathans.500j.desc
+	desc = leviathans.500k.desc
+	desc = leviathans.500l.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	custom_gui_option = "enclave_curator_option"
+	picture_event_data = {
+		portrait = event_target:curator_enclave_country
+		room = enclave_curator_room
+	}
+	location = event_target:curator_enclave_system
+
+	trigger = {
+		exists = event_target:curator_enclave_country
+		NOT = { has_country_flag = attacked_curators }
+	}
+
+	# Research (Curator Insight)
+	option = {
+		name = leviathans.500.b
+		trigger = { is_homicidal = no }
+		allow = {
+			custom_tooltip = {
+				fail_text = leviathans.500.b.alreadyaided
+				NOT = { has_modifier = curator_insight }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.507 }
+		}
+	}
+	# Information about Guardians/Leviathans
+	option = {
+		name = leviathans.500.c
+		trigger = { is_homicidal = no }
+		hidden_effect = {
+			country_event = { id = leviathans.508 }
+		}
+	}
+	# Scientist
+	option = {
+		name = leviathans.500.d
+		trigger = { is_homicidal = no }
+		allow = {
+			custom_tooltip = {
+				fail_text = leviathans.500.d.opinion
+				event_target:curator_enclave_country = {
+					trust = {
+						who = root
+						value >= 50
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = leviathans.500.d.alreadyrecruited
+				NOT = {
+					any_owned_leader = { has_trait = leader_trait_curator }
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.590 }
+		}
+	}
+	# Intel
+	option = {
+		name = leviathans.500.h
+		trigger = {
+			is_homicidal = no
+			any_country = {
+				valid_curators_intel_trade_target = yes
+			}
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = leviathans.500.d.opinion
+				event_target:curator_enclave_country = {
+					trust = {
+						who = root
+						value >= 50
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.599 }
+		}
+	}
+	# Think Tank
+	option = {
+		name = leviathans.500.f
+		trigger = {
+			is_homicidal = no
+			event_target:curator_enclave_country = {
+				NOT = { has_country_flag = think_tank@root }
+			}
+			any_system_within_border = {
+				has_star_flag = enclave
+				any_fleet_in_system = {
+					exists = owner
+					owner = {
+						is_same_value = event_target:curator_enclave_country
+					}
+				}
+			}
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = leviathans.500.d.opinion
+				event_target:curator_enclave_country = {
+					trust = {
+						who = root
+						value >= 50
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.511 }
+		}
+	}
+	# Infinity Machine's secret (after finishing Infinity Sphere chain)
+	option = {
+		name = leviathans.500.g
+		trigger = {
+			has_country_flag = pantagruel
+			has_country_flag = asked_about_infinity_machine
+			NOT = { has_country_flag = offered_information }
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.4000 }
+		}
+	}
+	# L-Cluster Clue
+	option = {
+		name = leviathans.500.i
+		trigger = {
+			has_event_chain = l_cluster_chain
+			NOR = {
+				is_homicidal = yes
+				has_global_flag = l_cluster_opened
+				has_completed_event_chain_counter = {
+					event_chain = l_cluster_chain
+					counter = clues
+				}
+			}
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = leviathans.500.i.tooltip.noclue
+				NOT = { has_country_flag = curator_clue_purchased }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.600 }
+		}
+	}
+	# Goodbye
+	option = {
+		name = {
+			trigger = { has_valid_civic = civic_fanatic_purifiers }
+			text = SCUM
+		}
+		name = {
+			trigger = { has_valid_civic = civic_hive_devouring_swarm }
+			text = TASTY
+		}
+		name = {
+			trigger = { has_valid_civic = civic_machine_terminator }
+			text = EXTERMINATE
+		}
+		name = {
+			trigger = {
+				NOR = {
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_machine_terminator
+				}
+			}
+			text = GOODBYE
+		}
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = leviathans.508
+	base = leviathans.500
+	desc_clear = yes
+	option_clear = yes
+
+	title = leviathans.508.name
+	desc = leviathans.508.desc
+
+	# Find a Leviathan
+	option = {
+		name = leviathans.508.a
+		response_text = leviathans.508.a.reply
+		trigger = {
+			any_country = {
+				is_guardian_country = yes
+				NOT = { has_communications = root }
+				num_fleets > 0
+				any_controlled_fleet = {
+					exists = solar_system
+					solar_system = {
+						has_star_flag = guardian
+						is_curator_guardian_poi = no
+					}
+				}
+			}
+		}
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 300 }
+		}
+		add_resource = { energy = -300 }
+		custom_tooltip = opinion10
+		hidden_effect = {
+			event_target:curator_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 10
+				}
+			}
+			capital_scope = {
+				closest_system = {
+					min_steps = 0
+					max_steps = 999
+					limit = {
+						has_star_flag = guardian
+						is_curator_guardian_poi = no
+						any_fleet_in_system = {
+							exists = owner
+							owner = {
+								is_guardian_country = yes
+								NOT = { has_communications = root }
+							}
+						}
+					}
+					random_fleet_in_system = {
+						limit = {
+							exists = owner
+							owner = {
+								is_guardian_country = yes
+								NOT = { has_communications = root }
+							}
+						}
+						owner = {
+							switch = {
+								trigger = is_country_type
+								guardian_dragon = {
+									create_curator_guardian_poi = {
+										POI = curator_poi_dragon
+									}
+								}
+								guardian_sphere = {
+									create_curator_guardian_poi = {
+										POI = curator_poi_technosphere
+									}
+								}
+								guardian_horror = {
+									create_curator_guardian_poi = {
+										POI = curator_poi_horror
+									}
+								}
+								guardian_stellarite = {
+									create_curator_guardian_poi = {
+										POI = curator_poi_stellarite
+									}
+								}
+								guardian_hiver = {
+									create_curator_guardian_poi = {
+										POI = curator_poi_hiver
+									}
+								}
+								guardian_fortress = {
+									create_curator_guardian_poi = {
+										POI = curator_poi_fortress
+									}
+								}
+								guardian_wraith = {
+									create_curator_guardian_poi = {
+										POI = curator_poi_wraith
+									}
+								}
+								guardian_dreadnought = {
+									create_curator_guardian_poi = {
+										POI = curator_poi_dreadnought
+									}
+								}
+								guardian_hatchling = {
+									create_curator_guardian_poi = {
+										POI = curator_poi_hatchling
+									}
+								}
+								guardian_scavenger_bot = {
+									create_curator_guardian_poi = {
+										POI = curator_poi_scavenger_bot
+									}
+								}
+								guardian_elderly_tiyanki = {
+									create_curator_guardian_poi = {
+										POI = curator_poi_tiyanki
+									}
+								}
+								default = {
+									log_error = "No option in leviathans.508.a for Leviathan country [This.GetCountryType]"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	# Ether Drake
+	option = {
+		name = leviathans.508.b
+		trigger = {
+			any_country = {
+				is_country_type = guardian_dragon
+				has_communications = root
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.510 }
+		}
+	}
+	# Enigmatic Fortress
+	option = {
+		name = leviathans.508.c
+		trigger = {
+			any_country = {
+				is_country_type = guardian_fortress
+				has_communications = root
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.515 }
+		}
+	}
+	# Stellar Devourer
+	option = {
+		name = leviathans.508.d
+		trigger = {
+			any_country = {
+				is_country_type = guardian_stellarite
+				has_communications = root
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.520 }
+		}
+	}
+	# Dimensional Horror
+	option = {
+		name = leviathans.508.e
+		trigger = {
+			any_country = {
+				is_country_type = guardian_horror
+				has_communications = root
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.525 }
+		}
+	}
+	# Asteroid Hive
+	option = {
+		name = leviathans.508.f
+		trigger = {
+			any_country = {
+				is_country_type = guardian_hiver
+				has_communications = root
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.530 }
+		}
+	}
+	# Infinity Machine
+	option = {
+		name = leviathans.508.g
+		trigger = {
+			any_country = {
+				is_country_type = guardian_sphere
+				has_communications = root
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.535 }
+		}
+	}
+	# Automated Dreadnought
+	option = {
+		name = leviathans.508.h
+		trigger = {
+			any_country = {
+				is_country_type = guardian_dreadnought
+				has_communications = root
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.540 }
+		}
+	}
+	# Wraith
+	option = {
+		name = leviathans.508.i
+		trigger = {
+			any_country = {
+				is_country_type = guardian_wraith
+				has_communications = root
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.545 }
+		}
+	}
+	# Voidspawn
+	option = {
+		name = leviathans.508.j
+		trigger = {
+			any_country = {
+				is_country_type = guardian_hatchling
+				has_communications = root
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.550 }
+		}
+	}
+	# Scavenger Bot
+	option = {
+		name = leviathans.508.k
+		trigger = {
+			any_country = {
+				is_country_type = guardian_scavenger_bot
+				has_communications = root
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.555 }
+		}
+	}
+	# Tiyanki Matriarch
+	option = {
+		name = leviathans.508.l
+		trigger = {
+			any_country = {
+				is_country_type = guardian_elderly_tiyanki
+				has_communications = root
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.556 }
+		}
+	}
+	# Infinity Machine (Pantagruel outcome)
+	option = {
+		name = leviathans.500.g
+		trigger = {
+			has_country_flag = pantagruel
+			has_country_flag = asked_about_infinity_machine
+			NOT = { has_country_flag = offered_information }
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.4000 }
+		}
+	}
+	# Toxic God
+	option = {
+		name = leviathans.508.m
+		trigger = {
+			OR = {
+				AND = {
+					is_origin_toxic_knights = yes
+					NOT = { has_global_flag = toxic_god_spawned }
+				}
+				any_country = {
+					is_country_type = guardian_toxic_god
+					has_communications = root
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = leviathans.558 }
+		}
+	}
+
+	# Back to main menu
+	option = {
+		name = leviathans.506.d
+		hidden_effect = {
+			country_event = { id = leviathans.500 }
+		}
+	}
+	# Goodbye
+	option = {
+		name = GOODBYE
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = leviathans.558
+	base = leviathans.500
+	desc_clear = yes
+	option_clear = yes
+
+	title = leviathans.558.name
+	desc = {
+		text = leviathans.558.desc
+		trigger = {
+			any_country = {
+				is_country_type = guardian_toxic_god
+				has_communications = root
+			}
+		}
+	}
+	desc = {
+		text = leviathans.558.desc.knights
+		trigger = {
+			is_origin_toxic_knights = yes
+			NOT = { has_global_flag = toxic_god_spawned }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { has_global_flag = toxic_god_spawned }
+			random_system = {
+				limit = { has_star_flag = guardian_toxic_god_system }
+				save_event_target_as = toxic_god_system
+			}
+		}
+	}
+
+	option = {
+		name = {
+			trigger = {
+				NOT = { has_country_flag = bought_toxic_god_info_1 }
+			}
+			text = leviathans.558.A
+		}
+		name = {
+			trigger = {
+				has_country_flag = bought_toxic_god_info_1
+			}
+			text = leviathans.558.AA
+		}
+		allow = {
+			if = {
+				limit = {
+					is_origin_toxic_knights = yes
+					NOR = {
+						has_global_flag = toxic_god_spawned
+						has_country_flag = bought_toxic_god_info_1
+					}
+				}
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 1000
+				}
+			}
+		}
+		is_dialog_only = yes
+		response_text = leviathans.558.A.reply
+		if = {
+			limit = {
+				NOT = { has_country_flag = bought_toxic_god_info_1 }
+			}
+			if = {
+				limit = {
+					is_origin_toxic_knights = yes
+					NOT = { has_global_flag = toxic_god_spawned }
+				}
+				add_resource = {
+					energy = -1000
+				}
+				random_situation = {
+					limit = { is_situation_type = situation_toxic_knights }
+					add_situation_progress = 3
+				}
+			}
+			hidden_effect = { set_country_flag = bought_toxic_god_info_1 }
+		}
+	}
+	option = {
+		name = {
+			trigger = {
+				NOT = { has_country_flag = bought_toxic_god_info_2 }
+			}
+			text = leviathans.558.B
+		}
+		name = {
+			trigger = {
+				has_country_flag = bought_toxic_god_info_2
+			}
+			text = leviathans.558.BB
+		}
+		allow = {
+			if = {
+				limit = {
+					is_origin_toxic_knights = yes
+					NOR = {
+						has_global_flag = toxic_god_spawned
+						has_country_flag = bought_toxic_god_info_2
+					}
+				}
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 1000
+				}
+			}
+		}
+		is_dialog_only = yes
+		response_text = leviathans.558.B.reply
+		if = {
+			limit = {
+				NOT = { has_country_flag = bought_toxic_god_info_2 }
+			}
+			if = {
+				limit = {
+					is_origin_toxic_knights = yes
+					NOT = { has_global_flag = toxic_god_spawned }
+				}
+				add_resource = {
+					energy = -1000
+				}
+				random_situation = {
+					limit = { is_situation_type = situation_toxic_knights }
+					add_situation_progress = 3
+				}
+			}
+			hidden_effect = { set_country_flag = bought_toxic_god_info_2 }
+		}
+	}
+	#Unfortunately, we cannot use the standard options, because the Toxic God is MUCH stronger than regular Leviathans
+	option = { # Can we fight it? (No)
+		name = leviathans.506.f
+		trigger = { fleet_power < 30000 }
+		is_dialog_only = yes
+		response_text = leviathans.5106.f1.reply
+	}
+	option = { # Can we fight it? (Probably not)
+		name = leviathans.506.f
+		trigger = {
+			fleet_power > 30000
+			fleet_power < 60000
+		}
+		is_dialog_only = yes
+		response_text = leviathans.5106.f2.reply
+	}
+	option = { # Can we fight it? (Maybe)
+		name = leviathans.506.f
+		trigger = {
+			fleet_power > 60000
+			fleet_power < 120000
+		}
+		is_dialog_only = yes
+		response_text = leviathans.5106.f3.reply
+	}
+	option = { # Can we fight it? (Yes)
+		name = leviathans.506.f
+		trigger = { fleet_power > 120000 }
+		is_dialog_only = yes
+		response_text = leviathans.5106.f4.reply
+	}
+	option = { # Back
+		name = leviathans.506.d
+		hidden_effect = {
+			country_event = { id = leviathans.500 }
+		}
+	}
+	option = { # Sign Off
+		name = GOODBYE
+		default_hide_option = yes
+	}
+}
+
+fleet_event = {
+	id = leviathans.610
+	title = leviathans.610.name
+	desc = {
+		text = leviathans.610.desc
+		trigger = {
+			owner = {
+				NOT = { is_origin_here_be_dragons = yes }
+			}
+		}
+	}
+	desc = {
+		text = leviathans.610.desc.here_be_dragons
+		trigger = {
+			owner = { is_origin_here_be_dragons = yes }
+		}
+	}
+	picture = GFX_evt_space_dragon
+	location = from
+	show_sound = event_yellow_alert
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = guardians_dragon_system
+			any_fleet_in_system = { is_ship_size = space_dragon_red }
+		}
+		owner = {
+			NOT = {
+				has_country_flag = dragon_encounter
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = dragon_encounter
+		}
+	}
+
+	option = {
+		name = leviathans.610.a
+	}
+}
+

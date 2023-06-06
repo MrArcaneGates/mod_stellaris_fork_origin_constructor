@@ -1,0 +1,1779 @@
+namespace = origin_expand
+
+##### switch temporary origin "ethics" to modifiers ####
+
+event = {
+	id = origin_expand.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				NOR = {
+					is_origin_payback = yes
+					is_origin_broken_shackles = yes
+					is_origin_doomsday = yes
+					is_origin_void_dwellers = yes
+				}
+			}
+			country_event = { id = origin_expand.7 }
+		}
+		every_playable_country = {
+			limit = {
+				is_origin_void_dwellers = yes
+			}
+			country_event = { id = origin_expand.8 }
+		}
+		every_country = {
+			limit = { has_ethic = ethic_common_ground }
+			add_modifier = { modifier = modifier_origin_common_ground }
+			country_remove_ethic = ethic_common_ground
+		}
+		every_country = {
+			limit = { has_ethic = ethic_hegemon }
+			add_modifier = { modifier = modifier_origin_hegemon }
+			country_remove_ethic = ethic_hegemon
+		}
+		every_country = {
+			limit = { has_ethic = ethic_imperial }
+			add_modifier = { modifier = modifier_origin_imperial }
+			country_remove_ethic = ethic_imperial
+		}
+		every_country = {
+			limit = { has_ethic = ethic_scion }
+			add_modifier = { modifier = modifier_origin_scion }
+			country_remove_ethic = ethic_scion
+		}
+		every_country = {
+			limit = { has_ethic = ethic_lost_colony }
+			add_modifier = { modifier = modifier_origin_lost_colony }
+			country_remove_ethic = ethic_lost_colony
+		}
+		every_country = {
+			limit = { has_ethic = ethic_payback }
+			add_modifier = { modifier = modifier_origin_payback }
+			country_remove_ethic = ethic_payback
+		}
+		every_country = {
+			limit = { has_ethic = ethic_broken_shackles }
+			add_modifier = { modifier = modifier_origin_broken_shackles }
+			country_remove_ethic = ethic_broken_shackles
+		}
+		every_country = {
+			limit = { has_ethic = ethic_fotd }
+			add_modifier = { modifier = modifier_origin_fotd }
+			country_remove_ethic = ethic_fotd
+		}
+		every_country = {
+			limit = { has_ethic = ethic_galactic_doorstep }
+			add_modifier = { modifier = modifier_origin_galactic_doorstep }
+			country_remove_ethic = ethic_galactic_doorstep
+		}
+		every_country = {
+			limit = { has_ethic = ethic_star_slingshot }
+			add_modifier = { modifier = modifier_origin_star_slingshot }
+			country_remove_ethic = ethic_star_slingshot
+		}
+		every_country = {
+			limit = { has_ethic = ethic_shoulders_of_giants }
+			add_modifier = { modifier = modifier_origin_shoulders_of_giants }
+			country_remove_ethic = ethic_shoulders_of_giants
+		}
+		every_country = {
+			limit = { has_ethic = ethic_toxic_knights }
+			add_modifier = { modifier = modifier_origin_toxic_knights }
+			country_remove_ethic = ethic_toxic_knights
+		}
+		every_country = {
+			limit = { has_ethic = ethic_here_be_dragons }
+			add_modifier = { modifier = modifier_origin_here_be_dragons }
+			country_remove_ethic = ethic_here_be_dragons
+		}
+		every_country = {
+			limit = { has_ethic = ethic_true_lifeseed }
+			add_modifier = { modifier = modifier_origin_true_lifeseed }
+			country_remove_ethic = ethic_true_lifeseed
+		}
+		every_country = {
+			limit = { has_ethic = ethic_lifeseed }
+			add_modifier = { modifier = modifier_origin_lifeseed }
+			country_remove_ethic = ethic_lifeseed
+		}
+		every_country = {
+			limit = { has_ethic = ethic_postapoc }
+			add_modifier = { modifier = modifier_origin_postapoc }
+			country_remove_ethic = ethic_postapoc
+		}
+		every_country = {
+			limit = { has_ethic = ethic_remnant }
+			add_modifier = { modifier = modifier_origin_remnant }
+			country_remove_ethic = ethic_remnant
+		}
+		every_country = {
+			limit = { has_ethic = ethic_true_ringworld }
+			add_modifier = { modifier = modifier_origin_true_ringworld }
+			country_remove_ethic = ethic_true_ringworld
+		}
+		every_country = {
+			limit = { has_ethic = ethic_ringworld }
+			add_modifier = { modifier = modifier_origin_ringworld }
+			country_remove_ethic = ethic_ringworld
+		}
+		every_country = {
+			limit = { has_ethic = ethic_true_void_dwellers }
+			add_modifier = { modifier = modifier_origin_true_void_dwellers }
+			country_remove_ethic = ethic_true_void_dwellers
+		}
+		every_country = {
+			limit = { has_ethic = ethic_void_dwellers }
+			add_modifier = { modifier = modifier_origin_void_dwellers }
+			country_remove_ethic = ethic_void_dwellers
+		}
+		every_country = {
+			limit = { has_ethic = ethic_ocean_paradise }
+			add_modifier = { modifier = modifier_origin_ocean_paradise }
+			country_remove_ethic = ethic_ocean_paradise
+		}
+		every_country = {
+			limit = { has_ethic = ethic_doomsday }
+			add_modifier = { modifier = modifier_origin_doomsday }
+			country_remove_ethic = ethic_doomsday
+		}
+		every_country = {
+			limit = { has_ethic = ethic_machine }
+			add_modifier = { modifier = modifier_origin_machine }
+			country_remove_ethic = ethic_machine
+		}
+		every_country = {
+			limit = { has_ethic = ethic_subterranean }
+			add_modifier = { modifier = modifier_origin_subterranean }
+			country_remove_ethic = ethic_subterranean
+		}
+		every_country = {
+			limit = { has_ethic = ethic_mechanist }
+			add_modifier = { modifier = modifier_origin_mechanist }
+			country_remove_ethic = ethic_mechanist
+		}
+		every_country = {
+			limit = { has_ethic = ethic_syncretic_evolution }
+			add_modifier = { modifier = modifier_origin_syncretic_evolution }
+			country_remove_ethic = ethic_syncretic_evolution
+		}
+		every_country = {
+			limit = { has_ethic = ethic_necrophage }
+			add_modifier = { modifier = modifier_origin_necrophage }
+			country_remove_ethic = ethic_necrophage
+		}
+		every_country = {
+			limit = { has_ethic = ethic_clone_army }
+			add_modifier = { modifier = modifier_origin_clone_army }
+			country_remove_ethic = ethic_clone_army
+		}
+		every_country = {
+			limit = { has_ethic = ethic_overtuned }
+			add_modifier = { modifier = modifier_origin_overtuned }
+			country_remove_ethic = ethic_overtuned
+		}
+		every_country = {
+			limit = { has_ethic = ethic_shroudwalker_apprentice }
+			add_modifier = { modifier = modifier_origin_shroudwalker_apprentice }
+			country_remove_ethic = ethic_shroudwalker_apprentice
+		}
+		every_country = {
+			limit = { has_ethic = ethic_progenitor_hive }
+			add_modifier = { modifier = modifier_origin_progenitor_hive }
+			country_remove_ethic = ethic_progenitor_hive
+		}
+		every_country = {
+			limit = { has_ethic = ethic_tree_of_life }
+			add_modifier = { modifier = modifier_origin_tree_of_life }
+			country_remove_ethic = ethic_tree_of_life
+		}
+		every_country = {
+			limit = { has_ethic = ethic_lithoid }
+			add_modifier = { modifier = modifier_origin_lithoid }
+			country_remove_ethic = ethic_lithoid
+		}
+		every_country = {
+			limit = { has_ethic = ethic_cyberpunk }
+			add_modifier = { modifier = modifier_origin_cyberpunk }
+			country_remove_ethic = ethic_cyberpunk
+		}
+		every_country = {
+			limit = { has_ethic = ethic_hots }
+			add_modifier = { modifier = modifier_origin_hots }
+			country_remove_ethic = ethic_hots
+		}
+		every_country = {
+			limit = { has_ethic = ethic_galactic_wonders }
+			add_modifier = { modifier = modifier_origin_galactic_wonders }
+			country_remove_ethic = ethic_galactic_wonders
+		}
+	}
+}
+### Test event, there is nothing to see here
+event = {
+	id = origin_expand.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { is_primitive = yes }
+			every_owned_planet = {
+				planet_event = {
+				id = planet_destruction.100
+				}
+			}
+		}
+	}
+}
+
+### Add latent psi trait to shroudwalker origin
+country_event = {
+	id = origin_expand.3
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_owned_pop = {
+			limit = { is_same_species = root }
+			modify_species = {				
+				species = this
+				add_trait = trait_latent_psionic
+			}
+		}
+		change_dominant_species = { species = last_created_species change_all = yes }
+		every_owned_pop = {
+			limit = { NOT = { has_trait = trait_mechanical } }
+			modify_species = {				
+				species = this
+				add_trait = trait_latent_psionic
+			}
+		}
+	}
+}
+
+### Spawn Toxic Knights Habitat
+country_event = {
+	id = origin_expand.4
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		if = { 
+			limit = { is_origin_void_dwellers = no }
+			capital_scope = {
+				solar_system = {
+					spawn_planet = {
+						class = pc_habitat
+						location = prev
+						orbit_location = yes
+						orbit_distance_offset = 20
+						orbit_angle_offset = 15
+						size = 6
+						init_effect = {
+							clear_deposits = yes
+							clear_planet_modifiers = yes
+							set_planet_flag = megastructure
+							set_planet_flag = habitat
+							set_planet_flag = advanced_habitat
+							set_planet_flag = toxic_knights_habitat
+						}
+					}
+				}
+				toxic_knights_order_habitat_setup_edited = yes
+			}
+		}
+		else = {
+			capital_scope = {
+				toxic_knights_vd_setup = yes
+			}
+		}
+	}
+}
+
+### Fix necrophages purging all secondary species pops
+event = {
+	id = origin_expand.6
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_country = {
+			limit = {
+				NOT = { has_valid_civic = civic_fanatic_purifiers }
+				is_origin_necrophage = yes
+			}
+			country_event = { id = origin_expand.60 }
+		}
+	}
+}
+
+### Prosperous Unification
+country_event = {
+	id = origin_expand.7
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		count_GP = yes
+		if = {
+			limit = {
+				check_variable = {
+					which = GP_value
+					value > 80
+				}
+			}
+			# do nothing
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = GP_value
+					value > 50
+				}
+			}
+			add_research_option = tech_planetary_unification
+			capital_scope = {
+				while = {
+					count = 2
+					create_pop = {
+						species = owner_main_species
+					}
+				}
+			}
+			if = {
+				limit = { is_gestalt = no }
+				capital_scope = { 
+					add_modifier = { modifier = prosp_uni_mod days = 1800 }
+					add_district_and_planet_size_if_needed_effect = { district = district_mining }
+					check_planet_employment = yes
+				}
+			}
+			else = {
+				capital_scope = { 
+					add_modifier = { modifier = prosp_uni_mod_gestalt days = 1800 }
+					add_district_and_planet_size_if_needed_effect = { district = district_mining }
+					check_planet_employment = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = GP_value
+					value > 20
+				}
+			}
+			add_research_option = tech_planetary_unification
+			add_tech_progress = { tech = tech_planetary_unification progress = 0.25 }
+			capital_scope = {
+				while = {
+					count = 4
+					create_pop = {
+						species = owner_main_species
+					}
+				}
+			}
+			if = {
+				limit = { is_gestalt = no }
+				capital_scope = { 
+					add_modifier = { modifier = prosp_uni_mod days = 3600 }
+					add_district_and_planet_size_if_needed_effect = { district = district_mining }
+					add_district_and_planet_size_if_needed_effect = { district = district_generator }
+					check_planet_employment = yes
+				}
+			}
+			else = {
+				capital_scope = { 
+					add_modifier = { modifier = prosp_uni_mod_gestalt days = 3600 }
+					add_district_and_planet_size_if_needed_effect = { district = district_mining }
+					add_district_and_planet_size_if_needed_effect = { district = district_generator }
+					check_planet_employment = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = GP_value
+					value = 20
+				}
+			}
+			add_research_option = tech_planetary_unification
+			add_tech_progress = { tech = tech_planetary_unification progress = 0.5 }
+			capital_scope = {
+				while = {
+					count = 6
+					create_pop = {
+						species = owner_main_species
+					}
+				}
+			}
+			if = {
+				limit = { is_gestalt = no }
+				capital_scope = { 
+					add_modifier = { modifier = prosp_uni_mod days = 5400 }
+					add_district_and_planet_size_if_needed_effect = { district = district_city }
+					add_district_and_planet_size_if_needed_effect = { district = district_mining }
+					add_district_and_planet_size_if_needed_effect = { district = district_generator }
+					add_building = building_holo_theatres
+					check_planet_employment = yes
+				}
+			}
+			else = {
+				capital_scope = { 
+					add_modifier = { modifier = prosp_uni_mod_gestalt days = 5400 }
+					add_district_and_planet_size_if_needed_effect = { district = district_mining }
+					add_district_and_planet_size_if_needed_effect = { district = district_generator }
+					check_planet_employment = yes
+				}
+			}
+		}
+		else = {
+			add_research_option = tech_planetary_unification
+			add_tech_progress = { tech = tech_planetary_unification progress = 0.5 }
+			capital_scope = {
+				while = {
+					count = 8
+					create_pop = {
+						species = owner_main_species
+					}
+				}
+			}
+			if = {
+				limit = { is_gestalt = no }
+				capital_scope = { 
+					add_modifier = { modifier = prosp_uni_mod days = 7200 }
+					add_district_and_planet_size_if_needed_effect = { district = district_city }
+					add_district_and_planet_size_if_needed_effect = { district = district_mining }
+					add_district_and_planet_size_if_needed_effect = { district = district_generator }
+					add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+					add_building = building_holo_theatres
+					check_planet_employment = yes
+				}
+			}
+			else = {
+				capital_scope = { 
+					add_modifier = { modifier = prosp_uni_mod_gestalt days = 7200 }
+					add_district_and_planet_size_if_needed_effect = { district = district_mining }
+					add_district_and_planet_size_if_needed_effect = { district = district_generator }
+					add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+					check_planet_employment = yes
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = origin_expand.8
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		count_GP = yes
+		if = {
+			limit = {
+				check_variable = {
+					which = GP_value
+					value > 80
+				}
+			}
+			# do nothing
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = GP_value
+					value > 50
+				}
+			}
+			add_research_option = tech_planetary_unification
+			capital_scope = {
+				while = {
+					count = 2
+					create_pop = {
+						species = owner_main_species
+					}
+				}
+			}
+			every_owned_planet = {
+				add_modifier = { modifier = prosp_uni_mod days = 1800 }
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = GP_value
+					value > 20
+				}
+			}
+			add_research_option = tech_planetary_unification
+			add_tech_progress = { tech = tech_planetary_unification progress = 0.25 }
+			capital_scope = {
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+			every_owned_planet = {
+				add_modifier = { modifier = prosp_uni_mod days = 3600 }
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = GP_value
+					value = 20
+				}
+			}
+			add_research_option = tech_planetary_unification
+			add_tech_progress = { tech = tech_planetary_unification progress = 0.5 }
+			every_owned_planet = {
+				add_modifier = { modifier = prosp_uni_mod days = 5400 }
+				while = {
+					count = 2
+					create_pop = {
+						species = owner_main_species
+					}
+				}
+			}
+		}
+		else = {
+			add_research_option = tech_planetary_unification
+			add_tech_progress = { tech = tech_planetary_unification progress = 0.5 }
+			capital_scope = {
+				while = {
+					count = 2
+					create_pop = {
+						species = owner_main_species
+					}
+				}
+			}
+			every_owned_planet = {
+				add_modifier = { modifier = prosp_uni_mod days = 7200 }
+				while = {
+					count = 2
+					create_pop = {
+						species = owner_main_species
+					}
+				}
+			}
+		}
+	}
+}
+
+### Quantum Catapult (origin.3500)
+country_event = {
+	id = origin_expand.9
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Find Quantum Catapult Star
+		capital_scope.solar_system = {
+			spawn_system = {
+				min_distance = 5
+				max_distance = 8
+				max_jumps = 0
+				initializer = catapult_system_initializer
+				#hyperlane = no
+			}
+			closest_system = {
+				limit = { has_star_flag = cata_system }
+				save_event_target_as = quantum_catapult_system
+			}
+		}
+		set_country_flag = slingshot_origin_arcsite_owner
+		add_modifier = {
+			modifier = into_the_unknown
+			days = -1
+		}
+		set_visited = event_target:quantum_catapult_system
+		event_target:quantum_catapult_system = {
+			set_star_flag = quantum_catapult_system_flag@root
+
+			spawn_megastructure = {
+				type = "quantum_catapult_ruined_slingshot"
+				planet = event_target:quantum_catapult_system.star
+
+				init_effect = {
+					create_ambient_object = {
+						type = "large_debris_object"
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 20
+							angle = 20
+						}
+					}
+					create_ambient_object = {
+						type = "large_debris_object"
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 20
+							angle = 150
+						}
+					}
+					create_ambient_object = {
+						type = "medium_debris_01_object"
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 35
+							angle = 90
+						}
+					}
+					create_ambient_object = {
+						type = "medium_debris_02_object"
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = prev
+							distance = 3
+							angle = 270
+						}
+					}
+				}
+			}
+			star = { create_archaeological_site = slingshot_digsite }
+		}
+	}
+}
+
+# Progenitor Hive
+country_event = {
+	id = origin_expand.10
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		progenitor_hive_init = yes
+	}
+}
+
+# Doomsday
+country_event = {
+	id = origin_expand.11
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		delete_prescripted_planets = yes
+	}
+}
+
+# Heart of the Swarm
+country_event = {
+	id = origin_expand.12
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		capital_scope = {
+			set_planet_size = 25
+			while = {
+				count = 12
+				add_deposit = d_hive_overgrowth
+			}
+		}
+	}
+}
+
+# Syncretic Evolution
+country_event = {
+	id = origin_expand.13
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		spawn_syncretic_species = yes
+	}
+}
+
+# Cyberpunk ( utopia.2501 with no window )
+country_event = {
+	id = origin_expand.14
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		set_country_flag = cyborg_empire
+		if = {
+			limit = {
+				any_owned_pop = {
+					is_exact_same_species = root
+				}
+			}
+			random_owned_pop = {
+				limit = { is_exact_same_species = root }
+				create_cybernetic_species_mod = yes
+				species = { save_event_target_as = new_main_species }
+			}
+		}
+		else = {
+			random_owned_pop = {
+				limit = { is_same_species = root }
+				create_cybernetic_species_mod = yes
+				species = { save_event_target_as = new_main_species }
+			}
+		}
+		change_dominant_species = { species = event_target:new_main_species }
+
+		if = {
+			limit = {
+				is_hive_empire = no
+			}
+			while = {
+				limit = {
+					any_owned_pop = {
+						is_sapient = yes
+						species = {
+							NOR = {
+								has_trait = trait_cybernetic
+								has_trait = trait_mechanical
+								has_trait = trait_machine_unit
+								has_trait = trait_hive_mind
+							}
+						}
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						is_sapient = yes
+						species = {
+							NOR = {
+								has_trait = trait_cybernetic
+								has_trait = trait_mechanical
+								has_trait = trait_machine_unit
+								has_trait = trait_hive_mind
+							}
+						}
+					}
+					create_cybernetic_species_mod = yes
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				is_hive_empire = yes
+			}
+			while = {
+				limit = {
+					any_owned_pop = {
+						is_sapient = yes
+						species = {
+							has_trait = trait_hive_mind
+							NOR = {
+								has_trait = trait_cybernetic
+								has_trait = trait_mechanical
+								has_trait = trait_machine_unit
+							}
+						}
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						is_sapient = yes
+						species = {
+							has_trait = trait_hive_mind
+							NOR = {
+								has_trait = trait_cybernetic
+								has_trait = trait_mechanical
+								has_trait = trait_machine_unit
+							}
+						}
+					}
+					create_cybernetic_species_mod = yes
+				}
+			}
+		}
+
+		while = {
+			limit = {
+				any_owned_leader = {
+					species = {
+						NOR = {
+							has_trait = trait_cybernetic
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+						}
+					}
+				}
+			}
+			random_owned_leader = {
+				limit = {
+					species = {
+						NOR = {
+							has_trait = trait_cybernetic
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+						}
+					}
+				}
+				root.capital_scope = { #workaround to prevent main species from accidentally flipping
+					create_pop = {
+						species = prev
+					}
+					last_created_pop = {
+						create_cybernetic_species_mod = yes
+						kill_pop = yes
+					}
+				}
+			}
+		}
+
+		while = {
+			limit = {
+				any_pool_leader = {
+					species = {
+						NOR = {
+							has_trait = trait_cybernetic
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+						}
+					}
+				}
+			}
+			random_pool_leader = {
+				limit = {
+					species = {
+						NOR = {
+							has_trait = trait_cybernetic
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+						}
+					}
+				}
+				root.capital_scope = { #workaround to prevent main species from accidentally flipping
+					create_pop = {
+						species = prev
+					}
+					last_created_pop = {
+						create_cybernetic_species_mod = yes
+						kill_pop = yes
+					}
+				}
+			}
+		}
+
+		while = {
+			limit = {
+				any_owned_army = {
+					exists = species
+					species = {
+						NOR = {
+							has_trait = trait_cybernetic
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+						}
+					}
+				}
+			}
+			random_owned_army = {
+				limit = {
+					exists = species
+					species = {
+						NOR = {
+							has_trait = trait_cybernetic
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+						}
+					}
+				}
+				root.capital_scope = { #workaround to prevent main species from accidentally flipping
+					create_pop = {
+						species = prev.species
+					}
+					last_created_pop = {
+						create_cybernetic_species_mod = yes
+						kill_pop = yes
+					}
+				}
+			}
+		}
+
+		every_controlled_ship = {
+			limit = {
+				is_ship_class = shipclass_colonizer
+				species = {
+					NOR = {
+						has_trait = trait_cybernetic
+						has_trait = trait_mechanical
+						has_trait = trait_machine_unit
+					}
+				}
+			}
+			root.capital_scope = { #workaround to prevent main species from accidentally flipping
+				create_pop = {
+					species = prev
+				}
+				last_created_pop = {
+					create_cybernetic_species_mod = yes
+					kill_pop = yes
+				}
+			}
+		}
+
+		every_owned_leader = {
+			limit = {
+				species = { has_trait = trait_cybernetic }
+				NOR = {
+					has_trait = leader_trait_admiral_cyborg
+					has_trait = leader_trait_general_cyborg
+					has_trait = leader_trait_governor_cyborg
+					has_trait = leader_trait_scientist_cyborg
+					has_trait = leader_trait_ruler_cyborg
+					has_trait = leader_trait_curator
+				}
+			}
+			if = {
+				limit = { leader_class = admiral }
+				add_trait = leader_trait_admiral_cyborg
+				add_ruler_trait = leader_trait_ruler_cyborg
+			}
+			if = {
+				limit = { leader_class = general }
+				add_trait = leader_trait_general_cyborg
+				add_ruler_trait = leader_trait_ruler_cyborg
+			}
+			if = {
+				limit = { leader_class = governor }
+				add_trait = leader_trait_governor_cyborg
+				add_ruler_trait = leader_trait_ruler_cyborg
+			}
+			if = {
+				limit = { leader_class = scientist }
+				add_trait = leader_trait_scientist_cyborg
+				add_ruler_trait = leader_trait_ruler_cyborg
+			}
+			if = {
+				limit = { leader_class = ruler }
+				add_trait = leader_trait_ruler_cyborg
+				add_ruler_trait = leader_trait_ruler_cyborg
+			}
+		}
+
+		every_pool_leader = {
+			limit = {
+				species = { has_trait = trait_cybernetic }
+				NOR = {
+					has_trait = leader_trait_admiral_cyborg
+					has_trait = leader_trait_general_cyborg
+					has_trait = leader_trait_governor_cyborg
+					has_trait = leader_trait_scientist_cyborg
+					has_trait = leader_trait_ruler_cyborg
+				}
+			}
+			if = {
+				limit = { leader_class = admiral }
+				add_trait = leader_trait_admiral_cyborg
+				add_ruler_trait = leader_trait_ruler_cyborg
+			}
+			if = {
+				limit = { leader_class = general }
+				add_trait = leader_trait_general_cyborg
+				add_ruler_trait = leader_trait_ruler_cyborg
+			}
+			if = {
+				limit = { leader_class = governor }
+				add_trait = leader_trait_governor_cyborg
+				add_ruler_trait = leader_trait_ruler_cyborg
+			}
+			if = {
+				limit = { leader_class = scientist }
+				add_trait = leader_trait_scientist_cyborg
+				add_ruler_trait = leader_trait_ruler_cyborg
+			}
+			if = {
+				limit = { leader_class = ruler }
+				add_trait = leader_trait_ruler_cyborg
+				add_ruler_trait = leader_trait_ruler_cyborg
+			}
+		}
+
+		if = {
+			limit = {
+				any_planet_within_border = {
+					has_planet_flag = fotd_seperatist_planet@root
+					owner = {
+						has_country_flag = fotd_seperatist_country@root
+					}
+				}
+			}
+			country_event = { id = origin.6095 days = 5 random = 2 }
+		}
+	}
+}
+country_event = {
+	id = origin_expand.15
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		spawn_necro_species = yes
+	}
+}
+
+# Exp: trade enclave greeting
+country_event = {
+	id = origin_expand.16
+	title = origin_expand.16.name
+	trigger = {
+		exists = event_target:trade_exp_enclave
+	}
+	desc = {
+		trigger = {
+			hidden:owner = {
+				switch = {
+					trigger = has_modifier
+					modifier_origin_broken_shackles = { text = origin_expand.16.shackles.desc }
+					modifier_origin_payback = { text = origin_expand.16.payback.desc }
+					default = { text = origin_expand.16.generic.desc }
+				}
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		portrait = event_target:trade_exp_enclave
+		room = enclave_trader_room
+	}
+
+	option = {
+		name = origin_expand.16.a
+		exclusive_trigger = {
+			OR = {
+				is_origin_broken_shackles = yes
+				is_origin_payback = yes
+			}
+		}
+		add_resource = { unity = 300 }
+	}
+	option = {
+		name = origin_expand.16.b
+		trigger = {
+			is_xenophobe = no
+		}
+		random_owned_planet = {
+			limit = { has_planet_flag = trade_exp_habitat }
+			add_modifier = { modifier = oc_trade_boom days = 1800 }
+		}
+		custom_tooltip = opinion50
+		hidden_effect = {
+			event_target:trade_exp_enclave = {
+				add_trust = {
+					who = root
+					amount = 50
+				}
+			}
+		}
+	}
+	option = {
+		name = origin_expand.16.c
+		trigger = {
+			is_xenophobe = yes
+		}
+		random_owned_planet = {
+			limit = { has_planet_flag = trade_exp_habitat }
+			add_modifier = { modifier = oc_trade_boom days = 1800 }
+		}
+		custom_tooltip = opinion40
+		hidden_effect = {
+			event_target:trade_exp_enclave = {
+				add_trust = {
+					who = root
+					amount = 40
+				}
+			}
+		}
+	}
+	option = {
+		name = origin_expand.16.d
+		trigger = {
+			has_authority = auth_corporate
+		}
+		random_owned_planet = {
+			limit = { has_planet_flag = trade_exp_habitat }
+			add_modifier = { modifier = oc_trade_boom days = 1800 }
+		}
+		add_resource = { energy = 200 }
+		add_resource = { consumer_goods = 100 }
+		custom_tooltip = opinion30
+		hidden_effect = {
+			event_target:trade_exp_enclave = {
+				add_trust = {
+					who = root
+					amount = 30
+				}
+			}
+		}
+	}
+}
+# Galactic Wonders
+country_event = {
+	id = origin_expand.17
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = gw_arcsite_owner
+		capital_scope.solar_system = {
+			random_list = {
+				15 = {
+					spawn_system = {
+						min_distance = 10
+						max_distance = 20
+						max_jumps = 0
+						initializer = gw_init_dyson
+					}
+				}
+				5 = {
+					spawn_system = {
+						min_distance = 10
+						max_distance = 20
+						max_jumps = 0
+						initializer = gw_init_assembly
+					}
+					modifier = {
+						add = 5
+						root = { is_xenophobe = no }
+					}
+					modifier = {
+						add = 10
+						root = { has_ethic = ethic_xenophile }
+					}
+					modifier = {
+						add = 15
+						root = { has_ethic = ethic_fanatic_xenophile }
+					}
+					modifier = {
+						add = 10
+						root = { has_civic = civic_diplomatic_corps }
+					}
+					modifier = {
+						add = 10
+						root = { has_civic = civic_public_relations_specialists }
+					}
+					modifier = {
+						factor = 0
+						root = { is_homicidal = yes }
+					}
+				}
+				10 = {
+					spawn_system = {
+						min_distance = 10
+						max_distance = 20
+						max_jumps = 0
+						initializer = gw_init_art
+					}
+					modifier = {
+						add = 5
+						root = { has_ethic = ethic_spiritualist }
+					}
+					modifier = {
+						add = 10
+						root = { has_ethic = ethic_fanatic_spiritualist }
+					}
+					modifier = {
+						add = 10
+						root = { has_civic = civic_pleasure_seekers }
+					}
+				}
+				10 = {
+					spawn_system = {
+						min_distance = 10
+						max_distance = 20
+						max_jumps = 0
+						initializer = gw_init_strategic
+					}
+					modifier = {
+						add = 10
+						root = { has_ethic = ethic_militarist }
+					}
+					modifier = {
+						add = 15
+						root = { has_ethic = ethic_fanatic_militarist }
+					}
+					modifier = {
+						add = 10
+						root = { is_origin_clone_army = yes }
+					}
+					modifier = {
+						add = 10
+						root = { has_technology = tech_destroyers } # Expertise origins leave no origin-modifier to check
+					}
+				}
+				10 = {
+					spawn_system = {
+						min_distance = 10
+						max_distance = 20
+						max_jumps = 0
+						initializer = gw_init_decompressor
+					}
+					modifier = {
+						add = 10
+						root = { has_technology = tech_mineral_purification_1 } # Expertise origins leave no origin-modifier to check
+					}
+					modifier = {
+						add = 10
+						root = { has_civic = civic_relentless_industrialists }
+					}
+					modifier = {
+						add = 10
+						root = { is_origin_remnant = yes } # What does the ecumenopoli? Eat minerals. A lot.
+					}
+				}
+				10 = {
+					spawn_system = {
+						min_distance = 10
+						max_distance = 20
+						max_jumps = 0
+						initializer = gw_init_ringworld
+					}
+					modifier = {
+						add = 10
+						root = { is_origin_shattered_ring = yes }
+					}
+					modifier = {
+						add = 10
+						root = { has_ethic = ethic_pacifist }
+					}
+					modifier = {
+						add = 15
+						root = { has_ethic = ethic_fanatic_pacifist }
+					}
+				}
+				10 = {
+					spawn_system = {
+						min_distance = 10
+						max_distance = 20
+						max_jumps = 0
+						initializer = gw_init_nexus
+					}
+					modifier = {
+						add = 10
+						root = { has_ethic = ethic_materialist }
+					}
+					modifier = {
+						add = 15
+						root = { has_ethic = ethic_fanatic_materialist }
+					}
+					modifier = {
+						add = 10
+						root = { has_civic = civic_technocracy }
+					}
+				}
+			}
+			closest_system = {
+				limit = { has_star_flag = gw_system }
+				save_event_target_as = galactic_wonders_system
+			}
+			event_target:galactic_wonders_system = {
+				set_star_flag = gw_system_of@root
+				random_system_planet = { create_archaeological_site = galactic_wonders_digsite }
+			}
+		}
+	}
+}
+# GW ship event
+ship_event = {
+	id = origin_expand.171
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { is_origin_galactic_wonders = yes }
+		solar_system = {
+			has_star_flag = gw_system_of@root.owner
+			NOT = { has_star_flag = gw_occupied }
+		}
+	}
+
+	immediate = {
+		solar_system = {
+			set_star_flag = gw_occupied
+		}
+		owner = {
+			country_event = {
+				id = origin_expand.172
+			}
+		}
+	}
+}
+
+# GW country event
+country_event = {
+	id = origin_expand.172
+	title = origin_expand.172.title
+	desc = origin_expand.1720.desc
+	picture = GFX_evt_hyper_relay_conjunction
+	show_sound = evn_ove_slingshot_stars
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_origin_galactic_wonders = yes
+	}
+
+	option = {
+		name = origin_expand.172.a
+		add_resource = { influence = 150 }
+	}
+}
+# GW arcsite events
+fleet_event = {
+	id = origin_expand.173
+	title = "origin_expand.173.name"
+	desc = "origin_expand.173.desc"
+	picture = GFX_evt_necromancy
+	show_sound = event_dig_site
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+
+	option = {
+		name = origin_expand.173.a
+	}
+}
+fleet_event = {
+	id = origin_expand.174
+	title = "origin_expand.174.name"
+	desc = "origin_expand.174.desc"
+	picture = GFX_evt_baol_datacrystals
+	show_sound = event_dig_site
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+
+	option = {
+		name = origin_expand.174.a
+		owner = {
+			if = {
+				limit = { is_gestalt = yes }
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier4researchreward
+					min = @tier4researchmin
+					max = @tier4researchmax
+				}
+			}
+			else_if = {
+				limit = { NOT = { has_technology = tech_robotic_workers } }
+				give_technology = { tech = tech_robotic_workers }
+			}
+			else_if = {
+				limit = { NOT = { has_technology = tech_droid_workers } }
+				give_technology = { tech = tech_droid_workers }
+			}
+			else_if = {
+				limit = { NOT = { has_technology = tech_synthetic_workers } }
+				give_technology = { tech = tech_synthetic_workers }
+			}
+			else = {
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier4researchreward
+					min = @tier4researchmin
+					max = @tier4researchmax
+				}
+			}
+		}
+	}
+}
+fleet_event = {
+	id = origin_expand.175
+	title = "origin_expand.175.name"
+	desc = "origin_expand.175.desc"
+	picture = GFX_evt_psionics
+	show_sound = event_dig_site
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+
+	option = {
+		name = origin_expand.175.a
+		hidden_effect = {
+			owner = {
+				random_list = {
+					10 = {
+						add_research_option = tech_psionic_theory
+						modifier = {
+							factor = 0
+							OR = {
+								is_gestalt = yes
+								has_technology = tech_psionic_theory
+							}
+						}
+					}
+					90 = {
+						add_monthly_resource_mult = {
+							resource = society_research
+							value = @tier4researchreward
+							min = @tier4researchmin
+							max = @tier4researchmax
+						}
+					}
+				}
+			}
+		}
+	}
+}
+fleet_event = {
+	id = origin_expand.176
+	title = "origin_expand.176.name"
+	desc = "origin_expand.176.desc"
+	picture = GFX_evt_mysterious_signal
+	show_sound = event_dig_site
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+
+	option = {
+		name = origin_expand.176.a
+		hidden_effect = {
+			owner = { country_event = { id = origin_expand.177 } }
+		}
+	}
+}
+# GW ending
+country_event = {
+	id = origin_expand.177
+	title = origin_expand.177.name
+	desc = origin_expand.177.desc
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		room = shroud_room
+	}
+
+	option = {
+		name = origin_expand.177.a
+		hidden_effect = {
+			country_event = { id = origin_expand.178 }
+			if = {
+				limit = { NOT = { has_global_flag = thalaneri_spawned } }
+				create_species = {
+					name = "TA"
+					class = HUM
+					namelist = "ta_name_list"
+					portrait = humanoid_04
+					gender = female
+				}
+				create_country = {
+					name = "Thal'Aneri"
+					type = thalaneri
+					species = last_created_species
+				}
+				last_created_country = {
+					create_leader = {
+						name = random
+						species = last_created_species
+						class = governor
+						effect = { save_global_event_target_as = waifu }
+						immortal = yes
+					}
+				}
+				set_global_flag = thalaneri_spawned
+			}
+		}
+	}
+}
+country_event = {
+	id = origin_expand.178
+	title = origin_expand.178.name
+	desc = origin_expand.178.desc
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		room = shroud_room
+		portrait = event_target:waifu
+	}
+
+	option = {
+		name = origin_expand.178.a
+		hidden_effect = {
+			country_event = { id = origin_expand.179 }
+		}
+	}
+	option = {
+		name = origin_expand.178.b
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+		hidden_effect = {
+			country_event = { id = origin_expand.183 }
+		}
+	}
+	option = {
+		name = origin_expand.178.c
+		trigger = { has_valid_civic = civic_machine_terminator }
+		hidden_effect = {
+			owner = { country_event = { id = origin_expand.183 } }
+		}
+	}
+	option = {
+		name = origin_expand.178.d
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+		hidden_effect = {
+			country_event = { id = origin_expand.183 }
+		}
+	}
+}
+country_event = {
+	id = origin_expand.179
+	title = origin_expand.179.name
+	desc = origin_expand.179.desc
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		room = shroud_room
+		portrait = event_target:waifu
+	}
+
+	option = {
+		name = origin_expand.179.a
+		is_dialog_only = yes
+		response_text = origin_expand.179.a.reply
+	}
+	option = {
+		name = origin_expand.179.b
+		is_dialog_only = yes
+		response_text = origin_expand.179.b.reply
+	}
+	option = {
+		name = origin_expand.179.c
+		hidden_effect = {
+			country_event = { id = origin_expand.180 }
+		}
+	}
+}
+country_event = {
+	id = origin_expand.180
+	title = origin_expand.180.name
+	desc = origin_expand.180.desc
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		room = shroud_room
+		portrait = event_target:waifu
+	}
+
+	option = {
+		name = origin_expand.180.a
+		add_research_option = tech_mega_engineering
+		hidden_effect = {
+			country_event = { id = origin_expand.181 }
+		}
+	}
+}
+country_event = {
+	id = origin_expand.181
+	title = origin_expand.181.name
+	desc = origin_expand.181.desc
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		room = shroud_room
+		portrait = event_target:waifu
+	}
+
+	option = {
+		name = origin_expand.181.a
+		hidden_effect = {
+			country_event = { id = origin_expand.182 }
+		}
+	}
+}
+country_event = {
+	id = origin_expand.182
+	title = origin_expand.182.name
+	desc = origin_expand.182.desc
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		room = shroud_room
+	}
+
+	option = {
+		name = origin_expand.182.a
+		add_resource = { minor_artifacts = 100 }
+	}
+}
+country_event = {
+	id = origin_expand.183
+	title = origin_expand.183.name
+	desc = origin_expand.183.desc
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "enclave_artist_window"
+	custom_gui_option = "enclave_artist_option"
+	picture_event_data = {
+		room = shroud_room
+		portrait = event_target:waifu
+	}
+
+	option = {
+		name = origin_expand.183.a
+		hidden_effect = {
+			country_event = { id = origin_expand.184 }
+		}
+	}
+}
+country_event = {
+	id = origin_expand.184
+	title = "origin_expand.184.name"
+	desc = "origin_expand.184.desc"
+	picture = GFX_evt_exploding_planet
+	is_triggered_only = yes
+	
+	immediate = {
+		capital_scope = {
+			every_owned_pop = { kill_pop = yes }
+			destroy_colony = yes
+			if = {
+				limit = {
+					is_ringworld = yes
+				}
+				spawn_ringworld_cracker_effect = yes
+				change_pc = pc_ringworld_seam_damaged
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					entity_offset_height = -15
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				spawn_habitat_cracker_effect = yes
+				remove_planet = yes
+			}
+			else = { change_pc = pc_shattered }
+			clear_deposits = yes
+			add_deposit = d_alloys_10
+		}
+	}
+	option = {
+		name = "origin_expand.184.a"
+	}
+}
+
+country_event = {
+	id = origin_expand.60
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		save_event_target_as = necrocountry@root
+		every_owned_species = {
+			limit = { NOT = { has_trait = trait_necrophage } }
+			set_species_flag = syncretic_species@root.owner
+			set_citizenship_type = {
+				country = root
+				type = citizenship_slavery
+			}
+			#set_population_controls = {
+			#	country = this
+			#	type = no
+			#}
+			#set_migration_controls = {
+			#	country = this
+			#	type = no
+			#}
+		}
+		every_owned_pop = {
+			clear_pop_category = yes
+		}
+		every_owned_planet = { check_planet_employment = yes }
+	}
+}

@@ -1,0 +1,1527 @@
+# 00_scripted_effects
+set_origin_effect = {
+	country_event = { id = game_start.8 }
+	give_starting_resources_effect = yes
+	# Necrophages
+	if = {
+		limit = {
+			has_trait = trait_necrophage
+		}
+		#set_origin = origin_necrophage
+		add_modifier = { modifier = modifier_origin_necrophage }
+	}
+	# Subterranean
+	else_if = {
+		limit = {
+			has_trait = trait_cave_dweller
+		}
+		#set_origin = origin_subterranean
+		add_modifier = { modifier = modifier_origin_subterranean }
+	}
+	# Void Dwellers
+	else_if = {
+		limit = {
+			has_trait = trait_void_dweller_1
+		}
+		set_origin = origin_void_dwellers
+	}
+	# Calamitous Birth
+	else_if = {
+		limit = {
+			from = { has_origin = origin_lithoid }
+			has_trait = trait_lithoid
+		}
+		set_origin = origin_lithoid
+	}
+	# Liberated
+	else_if = {
+		limit = {
+			has_country_flag = released_empire
+		}
+		set_origin = origin_liberated
+	}
+	else = {
+		set_origin = origin_default
+	}
+
+	# Fix hive/machine
+	if = {
+		limit = {
+			is_machine_empire = yes
+			NOT = { has_trait = trait_machine_unit }
+		}
+		country_remove_ethic = ethic_gestalt_consciousness
+		shift_ethic_safe = { ETHIC = xenophobe OPPETHIC = xenophile }
+		change_government = random
+	}
+	else_if = {
+		limit = {
+			is_hive_empire = yes
+			NOT = { has_trait = trait_hive_mind }
+		}
+		country_remove_ethic = ethic_gestalt_consciousness
+		shift_ethic_safe = { ETHIC = xenophobe OPPETHIC = xenophile }
+		change_government = random
+	}
+	else_if = {
+		limit = {
+			is_machine_empire = no
+			has_trait = trait_machine_unit
+		}
+		switch_to_gestalt = yes
+		change_government = {
+			authority = auth_machine_intelligence
+			cooldown = no
+			remove_invalid_civics = yes
+		}
+	}
+	else_if = {
+		limit = {
+			is_hive_empire = no
+			has_trait = trait_hive_mind
+		}
+		switch_to_gestalt = yes
+		change_government = {
+			authority = auth_hive_mind
+			cooldown = no
+			remove_invalid_civics = yes
+		}
+	}
+}
+# first_contact_dlc_effects
+uplift_pre_ftl_with_origin_effect = {
+	random_country = {
+		limit = {
+			is_hive_empire = no
+			species = {
+				ideal_planet_is_special = no
+				NOt = { is_same_value = root.species }
+			}
+			is_preftl_but_not_special = yes
+		}
+		if = {
+			limit = {
+				is_xenophobe = yes
+			}
+			shift_ethic_safe = { ETHIC = xenophile OPPETHIC = xenophobe }
+		}
+		if = {
+			limit = {
+				is_authoritarian = yes
+			}
+			shift_ethic_safe = { ETHIC = egalitarian OPPETHIC = authoritarian }
+		}
+		save_event_target_as = uplifted_country
+		remove_pre_ftl_flags = yes
+		set_country_type = default
+		change_country_flag = random
+		set_species_graphical_culture = yes
+		change_government = {
+			authority = random
+			civics = random
+		}
+		set_name = random
+		capital_scope = {
+			every_deposit = {
+				remove_deposit = yes
+			}
+			remove_all_districts = yes
+			remove_all_buildings = yes
+		}
+		set_origin = $ORIGIN$
+		capital_scope = {
+			solar_system = {
+				generate_home_system_resources = yes
+				create_starbase = {
+					size = starbase_starport
+					module = shipyard
+					building = crew_quarters
+					owner = event_target:uplifted_country
+					effect = {
+						set_starbase_module = {
+							slot = 1
+							module = trading_hub
+						}
+					}
+				}
+			}
+			generate_start_deposits_and_blockers = yes
+			generate_start_buildings_and_districts = yes
+			generate_start_pops = yes
+			generate_home_planet_final_pass = yes
+		}
+		switch = {
+			trigger = has_origin
+			origin_broken_shackles = {
+				country_event = { id = origin.110 }
+				capital_scope = {
+					while = {
+						limit = { num_pops > 28 }
+						random_owned_pop = {
+							kill_pop = yes
+						}
+					}
+				}
+			}
+			origin_payback = {
+				country_event = { id = origin.4000 }
+				capital_scope = {
+					while = {
+						limit = { num_pops > 18 }
+						random_owned_pop = {
+							kill_pop = yes
+						}
+					}
+				}
+			}
+		}
+	}
+}
+align_pre_FTL_country_ethics = {
+	switch = {
+		trigger = has_ethic
+		ethic_fanatic_materialist = { 
+			event_target:pre_ftl_country = {
+				shift_fanatic_ethic_safe = { ETHIC = materialist OPPETHIC = spiritualist } 
+			}
+		}
+		ethic_fanatic_spiritualist = { 
+			event_target:pre_ftl_country = {
+				shift_fanatic_ethic_safe = { ETHIC = spiritualist OPPETHIC = materialist }
+			}
+		}
+		ethic_fanatic_militarist = { 
+			event_target:pre_ftl_country = {
+				shift_fanatic_ethic_safe = { ETHIC = militarist OPPETHIC = pacifist }
+			}
+		}
+		ethic_fanatic_pacifist = { 
+			event_target:pre_ftl_country = {
+				shift_fanatic_ethic_safe = { ETHIC = pacifist OPPETHIC = militarist } 
+			}
+		}
+		ethic_fanatic_xenophile = { 
+			event_target:pre_ftl_country = {
+				shift_fanatic_ethic_safe = { ETHIC = xenophile OPPETHIC = xenophobe }
+			}
+		}
+		ethic_fanatic_xenophobe = { 
+			event_target:pre_ftl_country = {
+				shift_fanatic_ethic_safe = { ETHIC = xenophobe OPPETHIC = xenophile } 
+			}
+		}
+		ethic_fanatic_authoritarian = { 
+			event_target:pre_ftl_country = {
+				shift_fanatic_ethic_safe = { ETHIC = authoritarian OPPETHIC = egalitarian }
+			}
+		}
+		ethic_fanatic_egalitarian = { 
+			event_target:pre_ftl_country = {
+				shift_fanatic_ethic_safe = { ETHIC = egalitarian OPPETHIC = authoritarian }
+			}
+		}
+		ethic_materialist = { 
+			event_target:pre_ftl_country = {
+				shift_ethic_safe = { ETHIC = materialist OPPETHIC = spiritualist } 
+			}
+		}
+		ethic_spiritualist = { 
+			event_target:pre_ftl_country = {
+				shift_ethic_safe = { ETHIC = spiritualist OPPETHIC = materialist }
+			}
+		}
+		ethic_militarist = { 
+			event_target:pre_ftl_country = {
+				shift_ethic_safe = { ETHIC = militarist OPPETHIC = pacifist }
+			}
+		}
+		ethic_pacifist = { 
+			event_target:pre_ftl_country = {
+				shift_ethic_safe = { ETHIC = pacifist OPPETHIC = militarist } 
+			}
+		}
+		ethic_xenophile = { 
+			event_target:pre_ftl_country = {
+				shift_ethic_safe = { ETHIC = xenophile OPPETHIC = xenophobe }
+			}
+		}
+		ethic_xenophobe = { 
+			event_target:pre_ftl_country = {
+				shift_ethic_safe = { ETHIC = xenophobe OPPETHIC = xenophile } 
+			}
+		}
+		ethic_authoritarian = { 
+			event_target:pre_ftl_country = {
+				shift_ethic_safe = { ETHIC = authoritarian OPPETHIC = egalitarian }
+			}
+		}
+		ethic_egalitarian = { 
+			event_target:pre_ftl_country = {
+				shift_ethic_safe = { ETHIC = egalitarian OPPETHIC = authoritarian }
+			}
+		}
+	}
+}
+pre_ftl_indoctrinate_operation_result = {
+	if = { # if your empire is fanatic, always shift the pre-FTLs to your main ethic
+		limit = {
+			is_fanatic = yes
+		}
+		switch = {
+			trigger = has_ethic
+			ethic_fanatic_spiritualist = {
+				shift_pre_ftl_pop_ethic = { ETHIC = spiritualist BONUS = $BONUS$ }
+			}
+			ethic_fanatic_militarist = {
+				shift_pre_ftl_pop_ethic = { ETHIC = militarist BONUS = $BONUS$ }
+			}
+			ethic_fanatic_xenophobe = {
+				shift_pre_ftl_pop_ethic = { ETHIC = xenophobe BONUS = $BONUS$ }
+			}
+			ethic_fanatic_egalitarian = {
+				shift_pre_ftl_pop_ethic = { ETHIC = egalitarian BONUS = $BONUS$ }
+			}
+			ethic_fanatic_materialist = {
+				shift_pre_ftl_pop_ethic = { ETHIC = materialist BONUS = $BONUS$ }
+			}
+			ethic_fanatic_pacifist = {
+				shift_pre_ftl_pop_ethic = { ETHIC = pacifist BONUS = $BONUS$ }
+			}
+			ethic_fanatic_xenophile = {
+				shift_pre_ftl_pop_ethic = { ETHIC = xenophile BONUS = $BONUS$ }
+			}
+			ethic_fanatic_authoritarian = {
+				shift_pre_ftl_pop_ethic = { ETHIC = authoritarian BONUS = $BONUS$ }
+			}
+		}
+	}
+	else = { # if not fanatic, shift to one of your ethics
+		random_list = {
+			1 = {
+				shift_pre_ftl_pop_ethic = { ETHIC = spiritualist BONUS = $BONUS$ }
+				modifier = {
+					mult = 0
+					is_spiritualist = no
+				}
+			}
+			1 = {
+				shift_pre_ftl_pop_ethic = { ETHIC = militarist BONUS = $BONUS$ }
+				modifier = {
+					mult = 0
+					is_militarist = no
+				}
+			}
+			1 = {
+				shift_pre_ftl_pop_ethic = { ETHIC = xenophobe BONUS = $BONUS$ }
+				modifier = {
+					mult = 0
+					is_xenophobe = no
+				}
+			}
+			1 = {
+				shift_pre_ftl_pop_ethic = { ETHIC = egalitarian BONUS = $BONUS$ }
+				modifier = {
+					mult = 0
+					is_egalitarian = no
+				}
+			}
+			1 = {
+				shift_pre_ftl_pop_ethic = { ETHIC = materialist BONUS = $BONUS$ }
+				modifier = {
+					mult = 0
+					is_materialist = no
+				}
+			}
+			1 = {
+				shift_pre_ftl_pop_ethic = { ETHIC = pacifist BONUS = $BONUS$ }
+				modifier = {
+					mult = 0
+					is_pacifist = no
+				}
+			}
+			1 = {
+				shift_pre_ftl_pop_ethic = { ETHIC = xenophile BONUS = $BONUS$ }
+				modifier = {
+					mult = 0
+					is_xenophile = no
+				}
+			}
+			1 = {
+				shift_pre_ftl_pop_ethic = { ETHIC = authoritarian BONUS = $BONUS$ }
+				modifier = {
+					mult = 0
+					is_authoritarian = no
+				}
+			}
+		}
+	}
+}
+shift_pre_ftl_pop_ethic = {
+	set_timed_country_flag = {
+		flag = preftl_espionage_operation_recent_shift_ethic_target
+		days = 1800 # 5 years
+	}
+	set_country_flag = shifting_pre_ftl_ethic_to_$ETHIC$
+	hidden_effect = {
+		from.target = {
+			capital_scope = {
+				add_modifier = {
+					modifier = espionage_pre_ftl_indoctrination_$ETHIC$
+					years = 5
+				}
+			}
+			while = {
+				count = value:pre_ftl_pops_shifting_ethic|BONUS|$BONUS$|
+				random_owned_pop = {
+					limit = {
+						is_$ETHIC$ = no
+					}
+					pop_change_ethic = ethic_$ETHIC$
+				}
+			}
+		}
+	}
+}
+infiltrate_government_annexation_effect = {
+	if = {
+		limit = {
+			is_species_class = REP
+			root = { is_species_class = HUM }
+		}
+		root = { set_country_flag = reverse_v } # "Payback" achievement
+	}
+	capital_scope = {
+		save_event_target_as = annexed_planet
+		if = {
+			limit = {
+				root = {
+					is_hive_empire = no
+				}
+			}
+			add_modifier = {
+				modifier = infiltration_happiness
+				days = 7300
+			}
+		}
+
+		random_owned_pop = {
+			save_event_target_as = prim_species
+		}
+		observation_outpost = {
+			dismantle = yes
+		}
+		set_owner = ROOT
+		# Update armies
+		remove_all_armies = yes
+		create_army = {
+			name = random
+			owner = ROOT
+			species = owner_main_species
+			type = "defense_army"
+		}
+		# Update buildings
+		remove_all_buildings = yes
+		if = {
+			limit = {
+				root = {
+					is_hive_empire = no
+				}
+			}
+			add_building = building_capital
+			# Add districts
+			if = {
+				limit = {
+					NOT = { is_planet_class = pc_ringworld_habitable }
+				}
+				while = {
+					count = 3
+					add_district = {
+						district_type = district_city
+						ignore_cap = yes
+					}
+				}
+				while = {
+					count = 2
+					add_district = {
+						district_type = district_industrial
+						ignore_cap = yes
+					}
+				}
+				# Add food/mining districts
+				if = {
+					limit = {
+						prev = {
+							is_lithoid_empire = no
+						}
+					}
+					while = {
+						count = 3
+						add_district = {
+							district_type = district_farming
+							ignore_cap = yes
+						}
+					}
+				}
+				else = {
+					while = {
+						count = 3
+						add_district = {
+							district_type = district_mining
+							ignore_cap = yes
+						}
+					}
+				}
+				# Resume adding starter districts
+				while = {
+					count = 3
+					add_district = {
+						district_type = district_mining
+						ignore_cap = yes
+					}
+				}
+				while = {
+					count = 3
+					add_district = {
+						district_type = district_generator
+						ignore_cap = yes
+					}
+				}
+				# Phototrophic variant (if applicable)
+				if = {
+					limit = {
+						root = { is_phototrophic = yes }
+					}
+					while = {
+						count = 2
+						add_district = {
+							district_type = district_generator
+							ignore_cap = yes
+						}
+					}
+				}
+				add_building = building_research_lab_1
+				add_building = building_commercial_zone
+			}
+		}
+		else = {
+			add_building = building_hive_capital
+			if = {
+				limit = {
+					root = {
+						is_origin_progenitor_hive = yes
+					}
+				}
+				add_building = building_offspring_nest	
+			}
+			else = {
+				add_building = building_spawning_pool
+			}
+			# Add districts
+			if = {
+				limit = {
+					NOT = { is_planet_class = pc_ringworld_habitable }
+				}
+				while = {
+					count = 3
+					add_district = {
+						district_type = district_hive
+						ignore_cap = yes
+					}
+				}
+				while = {
+					count = 2
+					add_district = {
+						district_type = district_industrial
+						ignore_cap = yes
+					}
+				}
+				# Add food/mining districts
+				if = {
+					limit = {
+						prev = {
+							is_lithoid_empire = no
+						}
+					}
+					while = {
+						count = 3
+						add_district = {
+							district_type = district_farming
+							ignore_cap = yes
+						}
+					}
+				}
+				else = {
+					while = {
+						count = 3
+						add_district = {
+							district_type = district_mining
+							ignore_cap = yes
+						}
+					}
+				}
+				# Resume adding starter districts
+				while = {
+					count = 3
+					add_district = {
+						district_type = district_mining
+						ignore_cap = yes
+					}
+				}
+				while = {
+					count = 3
+					add_district = {
+						district_type = district_generator
+						ignore_cap = yes
+					}
+				}
+				# Phototrophic variant (if applicable)
+				if = {
+					limit = {
+						root = { is_phototrophic = yes }
+					}
+					while = {
+						count = 2
+						add_district = {
+							district_type = district_generator
+							ignore_cap = yes
+						}
+					}
+				}
+				add_building = building_research_lab_1
+			}
+		}
+	}
+}
+# galactic_community_effects
+breach_fix_resolution_divinity_a_defined_purpose_machine = {
+	if = {
+		limit = {
+			is_active_resolution = "resolution_divinity_a_defined_purpose"
+			in_breach_of = resolution_divinity_a_defined_purpose
+			is_machine_empire = yes
+			NOT = { has_valid_civic = civic_machine_servitor }
+			NOT = { has_valid_civic = civic_machine_assimilator }
+			exists = event_target:defined_purpose_random_species
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					is_origin_machine = yes
+				}
+				set_origin = origin_default
+			}
+			force_add_civic = civic_machine_servitor
+
+			capital_scope = {
+				create_pop = {
+					species = event_target:defined_purpose_random_species
+				}
+			}
+		}
+
+		custom_tooltip = "federations.10340.complybecomerogueservitor_tooltip"
+	}
+	else_if = {
+		limit = {
+			is_active_resolution = "resolution_divinity_a_defined_purpose"
+			in_breach_of = resolution_divinity_a_defined_purpose
+			is_machine_empire = yes
+			NOT = { has_valid_civic = civic_machine_servitor }
+			NOT = { has_valid_civic = civic_machine_assimilator }
+			NOT = { exists = event_target:defined_purpose_random_species }
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					is_origin_machine = yes
+				}
+				set_origin = origin_default
+			}
+			force_add_civic = civic_machine_servitor
+
+			create_species = {
+				name = random
+				class = random_non_machine
+				portrait = random
+				traits = random
+				effect = {
+					save_event_target_as = defined_purpose_backup_species
+				}
+			}
+
+			capital_scope = {
+				create_pop = {
+					species = event_target:defined_purpose_backup_species
+				}
+			}
+		}
+
+		custom_tooltip = "federations.10340.complybecomerogueservitor_tooltip"
+	}
+}
+# pre_ftl_scripted_effects
+set_pre_ftl_origin = {
+	switch = {
+		trigger = has_planet_flag
+		pre_ftl_default = {
+			owner = {
+				set_origin = origin_default_pre_ftl
+			}
+		}
+		pre_ftl_mechanists = {
+			owner = {
+				set_origin = origin_mechanists
+			}
+		}
+		pre_ftl_life_seeded = {
+			owner = {
+				set_origin = origin_life_seeded
+			}
+		}
+		pre_ftl_ocean_paradise = {
+			owner = {
+				set_origin = origin_ocean_paradise
+			}
+		}
+		pre_ftl_subterranean = {
+			owner = {
+				set_origin = origin_subterranean
+			}
+		}
+		pre_ftl_void_dwellers = {
+			owner = {
+				set_origin = origin_void_dwellers
+			}
+		}
+		pre_ftl_shattered_ring = {
+			owner = {
+				set_origin = origin_shattered_ring
+			}
+		}
+	}
+}
+select_pre_ftl_origin = {
+	# Void Dwellers
+	if = {
+		limit = {
+			is_planet_class = pc_habitat
+		}
+		set_planet_flag = pre_ftl_void_dwellers
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		# Do nothing!
+	}
+	else_if = {
+		limit = { is_planet_class = pc_shattered_ring_habitable }
+		set_planet_flag = pre_ftl_shattered_ring
+	}
+	else = {
+		random_list = {
+			# Default pre-ftl origin
+			# All other origins require First Contact.
+			100 = { set_planet_flag = pre_ftl_default }
+
+			# Mechanists (requires Utopia)
+			5 = {
+				modifier = {
+					factor = 0
+					OR = {
+						has_first_contact_dlc = no
+						has_utopia = no
+						has_planet_flag = pre_ftl_hive_mind
+						any_galaxy_planet = {
+							has_planet_flag = pre_ftl_mechanists
+						}
+					}
+				}
+				set_planet_flag = pre_ftl_mechanists
+			}
+
+			# Life-Seeded (requires Apocalypse)
+			5 = {
+				modifier = {
+					factor = 0
+					NOT = {
+						host_has_dlc = "Apocalypse"
+					}
+				}
+				modifier = {
+					factor = 0
+					OR = {
+						has_first_contact_dlc = no
+						any_galaxy_planet = {
+							has_planet_flag = pre_ftl_life_seeded
+						}
+						any_country = {
+							is_origin_life_seeded = yes
+						}
+					}
+				}
+				set_planet_flag = pre_ftl_life_seeded
+				change_pc = pc_gaia
+				create_life_seeded_planet = yes
+			}
+
+			# Ocean Paradise (Requires Aquatics)
+			5 = {
+				modifier = {
+					factor = 0
+					OR = {
+						has_aquatics = no
+						has_first_contact_dlc = no
+					}
+				}
+				modifier = {
+					factor = 0
+					OR = {
+						any_galaxy_planet = {
+							has_planet_flag = pre_ftl_ocean_paradise
+						}
+						any_country = {
+							is_origin_ocean_paradise = yes
+						}
+					}
+				}
+				set_planet_flag = pre_ftl_ocean_paradise
+				change_pc = pc_ocean
+				set_planet_size = 30
+				create_ocean_paradise_planet = yes
+			}
+
+			# Subterranean (requires Overlord)
+			5 = {
+				modifier = {
+					factor = 0
+					OR = {
+						has_overlord_dlc = no
+						has_first_contact_dlc = no
+					}
+
+				}
+				modifier = {
+					factor = 0
+					any_galaxy_planet = {
+						has_planet_flag = pre_ftl_subterranean
+					}
+				}
+				set_planet_flag = pre_ftl_subterranean
+			}
+		}
+	}
+}
+pre_ftl_clean_up_effect = {
+	owner = {
+		if = {
+			limit = {
+				is_origin_subterranean = yes
+			}
+			# If you're not in the industrial age, we'll accelerate your progress.
+			if = {
+				limit = {
+					is_pre_industrial = yes
+				}
+				remove_pre_ftl_flags = yes
+				set_pre_ftl_age = industrial_age
+				set_country_flag = industrial_age
+				change_country_flag = {
+					icon = {
+						category = "pre_ftl"
+						file = "preftl_industrial_age.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors={
+						"beige"
+						"yellow"
+						"null"
+						"null"
+					}
+				}
+				capital_scope = {
+					remove_all_buildings = yes
+				}
+				if = {
+					limit = {
+						is_hive_empire = no
+					}
+					change_government = {
+						civics = {
+							civic = civic_increasing_urbanization
+							civic = civic_atmospheric_pollution
+						}
+					}
+					capital_scope = {
+						add_building = building_primitive_farm
+						add_building = building_primitive_factory
+						add_building = building_primitive_mine
+						add_building = building_primitive_power_plant
+						add_building = building_primitive_capital
+						add_building = building_urban_dwellings
+					}
+				}
+				else = {
+					change_government = {
+						civics = {
+							civic = civic_hive_centralized_consciousness
+							civic = civic_hive_atmospheric_pollution
+						}
+					}
+					capital_scope = {
+						add_building = building_hive_primitive_farm
+						add_building = building_hive_primitive_factory
+						add_building = building_hive_primitive_mine
+						add_building = building_hive_primitive_power_plant
+						add_building = building_hive_primitive_capital
+						add_building = building_hive_urban_dwellings
+					}
+				}
+
+				capital_scope = {
+					if = {
+						limit = {
+							num_pops > @industrial_age_pops
+						}
+						while = {
+							limit = {
+								num_pops > @industrial_age_pops
+							}
+							random_owned_pop = {
+								kill_pop = yes
+							}
+						}
+					}
+					else_if = {
+						limit = { num_pops < @industrial_age_pops }
+						while = {
+							limit = {
+								num_pops < @industrial_age_pops
+							}
+							create_pop = {
+								species = owner_main_species
+							}
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				is_origin_mechanist = yes
+			}
+			# If you're not in the industrial age, we'll accelerate your progress.
+			if = {
+				limit = {
+					is_pre_industrial = yes
+				}
+				remove_pre_ftl_flags = yes
+				set_pre_ftl_age = industrial_age
+				set_country_flag = industrial_age
+				change_country_flag = {
+					icon = {
+						category = "pre_ftl"
+						file = "preftl_industrial_age.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors={
+						"beige"
+						"yellow"
+						"null"
+						"null"
+					}
+				}
+				capital_scope = {
+					remove_all_buildings = yes
+				}
+				change_government = {
+					civics = {
+						civic = civic_increasing_urbanization
+						civic = civic_atmospheric_pollution
+					}
+				}
+				capital_scope = {
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+				}
+			}
+
+			create_built_robot_species = yes
+			last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+			set_country_flag = created_robots
+
+			capital_scope = {
+				while = {
+					count = 4
+					create_pop = {
+						species = event_target:pre_ftl_mechanist_robot
+					}
+				}
+				if = {
+					limit = {
+						num_pops > @industrial_age_pops
+					}
+					while = {
+						limit = {
+							num_pops > @industrial_age_pops
+						}
+						random_owned_pop = {
+							kill_pop = yes
+						}
+					}
+				}
+				else_if = {
+					limit = { num_pops < @industrial_age_pops }
+					while = {
+						limit = {
+							num_pops < @industrial_age_pops
+						}
+						create_pop = {
+							species = owner_main_species
+						}
+					}
+				}
+			}
+		}
+	}
+}
+setup_pre_ftl_planet = {
+	set_owner = last_created_country
+	set_capital = yes
+
+	remove_building = building_colony_shelter
+	last_created_country = {
+		switch = {
+			trigger = has_country_flag
+			stone_age = {
+				prev = {
+					add_building = building_crude_huts
+					remove_building = building_colony_shelter
+					while = {
+						count = @stone_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+			}
+			bronze_age = {
+				prev = {
+					add_building = building_primitive_dwellings
+					add_building = building_stone_palace
+					remove_building = building_colony_shelter
+					while = {
+						count = @bronze_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+			}
+			iron_age = {
+				prev = {
+					add_building = building_primitive_dwellings
+					add_building = building_stone_palace
+					remove_building = building_colony_shelter
+					while = {
+						count = @iron_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+			}
+			late_medieval_age = {
+				prev = {
+					add_building = building_primitive_dwellings
+					add_building = building_primitive_dwellings
+					add_building = building_stone_palace
+					remove_building = building_colony_shelter
+					while = {
+						count = @late_medieval_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+			}
+			renaissance_age = {
+				prev = {
+					add_building = building_primitive_dwellings
+					add_building = building_primitive_dwellings
+					add_building = building_stone_palace
+					remove_building = building_colony_shelter
+					while = {
+						count = @renaissance_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+			}
+			steam_age = {
+				prev = {
+					add_building = building_urban_dwellings
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_stone_palace
+					remove_building = building_colony_shelter
+					while = {
+						count = @steam_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+			}
+			industrial_age = {
+				prev = {
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+					remove_building = building_colony_shelter
+					while = {
+						count = @industrial_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = {
+					limit = {
+						is_origin_mechanist = yes
+					}
+					create_built_robot_species = yes
+					last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+					set_country_flag = created_robots
+					prev = {
+						while = {
+							count = 2
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:pre_ftl_mechanist_robot
+							}
+						}
+					}
+				}
+			}
+			machine_age = {
+				prev = {
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+					remove_building = building_colony_shelter
+					while = {
+						count = @machine_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = {
+					limit = {
+						is_origin_mechanist = yes
+					}
+					create_built_robot_species = yes
+					last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+					set_country_flag = created_robots
+					prev = {
+						while = {
+							count = 4
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:pre_ftl_mechanist_robot
+							}
+						}
+					}
+				}
+			}
+			atomic_age = {
+				prev = {
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+					remove_building = building_colony_shelter
+					while = {
+						count = @atomic_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = {
+					limit = {
+						is_origin_mechanist = yes
+					}
+					create_built_robot_species = yes
+					last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+					set_country_flag = created_robots
+					prev = {
+						while = {
+							count = 6
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:pre_ftl_mechanist_robot
+							}
+						}
+					}
+				}
+			}
+			early_space_age = {
+				prev = {
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+					remove_building = building_colony_shelter
+					while = {
+						count = @early_space_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = {
+					limit = {
+						is_origin_mechanist = yes
+					}
+					create_built_robot_species = yes
+					last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+					set_country_flag = created_robots
+					prev = {
+						while = {
+							count = 8
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:pre_ftl_mechanist_robot
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			last_created_country = {
+				OR = {
+					has_country_flag = machine_age
+					has_country_flag = atomic_age
+					has_country_flag = early_space_age
+				}
+			}
+		}
+		create_pre_ftl_blockers = yes
+	}
+}
+increase_pre_ftl_pops_by_age_effect = {
+	set_country_flag = $PRE_FTL_AGE$_pops
+	hidden_effect = {
+		switch = {
+			trigger = has_country_flag
+			stone_age_pops = {
+				# Do nothing
+			}
+			bronze_age_pops = {
+				capital_scope = {
+					while = {
+						count = @ancient_or_medieval_era_growth
+						create_pop = {
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			iron_age_pops = {
+				capital_scope = {
+					while = {
+						count = @ancient_or_medieval_era_growth
+						create_pop = {
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			late_medieval_age_pops = {
+				capital_scope = {
+					while = {
+						count = @ancient_or_medieval_era_growth
+						create_pop = {
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			renaissance_age_pops = {
+				capital_scope = {
+					while = {
+						count = @ancient_or_medieval_era_growth
+						create_pop = {
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			steam_age_pops = {
+				capital_scope = {
+					while = {
+						count = @victorian_era_growth
+						create_pop = {
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			industrial_age_pops = {
+				capital_scope = {
+					if = {
+						limit = {
+							owner = { is_origin_mechanist = yes }
+						}
+						owner = {
+							if = {
+								limit = {
+									NOT = { has_country_flag = created_robots }
+								}
+								set_country_flag = created_robots
+								create_built_robot_species = yes
+								last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+							}
+						}
+						while = {
+							count = 2
+							while = {
+								count = @victorian_era_growth
+								create_pop = {
+									species = event_target:pre_ftl_mechanist_robot
+								}
+							}
+						}
+					}
+					else = {
+						while = {
+							count = @victorian_era_growth
+							create_pop = {
+								species = owner_main_species
+							}
+						}
+					}
+				}
+			}
+			machine_age_pops = {
+				capital_scope = {
+					while = {
+						count = @machine_age_growth
+						create_pop = {
+							species = owner_main_species
+						}
+					}
+					random_list = {
+						25 = {
+							# One fewer pop gained
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+						}
+						50 = {
+							# DO NOTHING
+						}
+						25 = {
+							# One extra pop gained
+							create_pop = {
+								species = owner_main_species
+							}
+						}
+					}
+					if = {
+						limit = {
+							owner = { is_origin_mechanist = yes }
+						}
+						owner = {
+							if = {
+								limit = {
+									NOT = { has_country_flag = created_robots }
+								}
+								set_country_flag = created_robots
+								create_built_robot_species = yes
+								last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+							}
+						}
+						while = {
+							count = 2
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:pre_ftl_mechanist_robot
+							}
+						}
+					}
+				}
+			}
+			atomic_age_pops = {
+				capital_scope = {
+					while = {
+						count = @atomic_age_growth
+						create_pop = {
+							species = owner_main_species
+						}
+					}
+					random_list = {
+						25 = {
+							# One fewer pop gained
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+						}
+						50 = {
+							# DO NOTHING
+						}
+						25 = {
+							# One extra pop gained
+							create_pop = {
+								species = owner_main_species
+							}
+						}
+					}
+					if = {
+						limit = {
+							owner = { is_origin_mechanist = yes }
+						}
+						owner = {
+							if = {
+								limit = {
+									NOT = { has_country_flag = created_robots }
+								}
+								set_country_flag = created_robots
+								create_built_robot_species = yes
+								last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+							}
+						}
+						while = {
+							count = 2
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:pre_ftl_mechanist_robot
+							}
+						}
+					}
+				}
+			}
+			early_space_age_pops = {
+				capital_scope = {
+					while = {
+						count = @early_space_age_growth
+						create_pop = {
+							species = owner_main_species
+						}
+					}
+					random_list = {
+						25 = {
+							# One fewer pop gained
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+						}
+						50 = {
+							# DO NOTHING
+						}
+						25 = {
+							# One extra pop gained
+							create_pop = {
+								species = owner_main_species
+							}
+						}
+					}
+					if = {
+						limit = {
+							owner = { is_origin_mechanist = yes }
+						}
+						owner = {
+							if = {
+								limit = {
+									NOT = { has_country_flag = created_robots }
+								}
+								set_country_flag = created_robots
+								create_built_robot_species = yes
+								last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+							}
+						}
+						while = {
+							count = 2
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:pre_ftl_mechanist_robot
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	remove_country_flag = $pre_ftl_age$_pops
+}

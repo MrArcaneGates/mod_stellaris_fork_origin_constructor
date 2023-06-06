@@ -1,0 +1,40 @@
+
+col = {}
+
+xen = {}
+
+mil = {}
+
+spi = {}
+
+hive = {}
+
+### NEW STUFF ###
+
+pol = {}
+
+pla = {}
+
+sys = {}
+
+hiv = {}
+
+spe = {}
+
+spe2 = {}
+
+lit = {}
+
+### EXPERTISE ETHICS ###
+
+exp1 = {}
+
+exp2 = {}
+
+exp3 = {}
+
+exp4 = {}
+
+exp5 = {}
+
+exp6 = {}
