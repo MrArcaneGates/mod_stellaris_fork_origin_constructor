@@ -66,7 +66,8 @@ humans1_1 = {
 		texture = 0
 		attachment = 1
 		clothes = 0
-		leader_class = ruler
+		trait = "trait_ruler_eye_for_talent"
+		leader_class = governor
 	}
 }
 # Humans with Humanoid ships
@@ -138,7 +139,8 @@ humans2_1 = {
 		texture = 0
 		attachment = 6
 		clothes = 4
-		leader_class = ruler
+		trait = "trait_ruler_warlike"
+		leader_class = admiral
 	}
 }
 
@@ -209,6 +211,7 @@ voor = {
 		attachment = 0
 		clothes = 3
 		ruler_title = "PRESCRIPTED_ruler_title_voor"
-		leader_class = ruler
+		trait = "leader_trait_spark_of_genius"
+		leader_class = scientist
 	}
 }
